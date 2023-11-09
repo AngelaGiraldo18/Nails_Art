@@ -9,7 +9,8 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import {UsuarioService}  from './service/usuario.service'
+import {UsuarioService}  from './service/usuario.service';
+import { GaleriaComponent } from './galeria/galeria.component'
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {UsuarioService}  from './service/usuario.service'
     PrincipalComponent,
     FooterComponent,
     LoginComponent,
+    GaleriaComponent,
     
   ],
   imports: [
