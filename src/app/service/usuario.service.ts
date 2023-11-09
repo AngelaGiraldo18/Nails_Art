@@ -18,6 +18,8 @@ export class UsuarioService {
   authenticatedRequest(endpoint: string, data: any): Observable<any> {
     // Recupera el token de localStorage
     const token = localStorage.getItem('token');
+    console.log(token);
+    
 
     if (!token) {
       console.error('No se ha encontrado un token de autenticación.');
