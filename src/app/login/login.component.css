@@ -2,7 +2,14 @@
 font-family: Arial, Helvetica, sans-serif;
 text-decoration: none;
 }
+.password-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
 .wrapper {
+  margin-top: -50px;
     display: grid;
     place-items: center;
     background-size: cover;

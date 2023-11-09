@@ -16,13 +16,16 @@
                 </div>
                 <div class="flip-card__back">
                     <div class="title">Registrate</div>
-                    <form class="flip-card__form" action="">
-                        <input class="flip-card__input" placeholder="Nombres" type="text">
-                        <input class="flip-card__input" placeholder="Apellidos" type="text">
-                        <input class="flip-card__input" name="email" placeholder="Email" type="email">
-                        <input class="flip-card__input" name="password" placeholder="Contraseña" type="password">
-                        <button class="flip-card__btn">Registrate!</button>
-                    </form>
+                    <form class="flip-card__form" (ngSubmit)="registrarUsuario()">
+                        <input class="flip-card__input" placeholder="Nombres" type="text" name="nombre" [(ngModel)]="usuario.nombre" required>
+                        <input class="flip-card__input" placeholder="Apellidos" type="text" name="apellido" [(ngModel)]="usuario.apellido" required>
+                        <input class="flip-card__input" name="email" placeholder="Email" type="email" [(ngModel)]="usuario.email" required>
+                        <input class="flip-card__input" name="password" placeholder="Contraseña" type="password" [(ngModel)]="usuario.contrasena" required>
+                        <div *ngIf="usuario.contrasena.length < 8" class="password-message">
+                          La contraseña debe tener al menos 8 caracteres.
+                        </div>
+                        <button class="flip-card__btn" type="submit">Registrate</button>
+                      </form>                                       
                 </div>
             </div>
         </label>
