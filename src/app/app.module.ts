@@ -10,7 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {UsuarioService}  from './service/usuario.service';
-import { GaleriaComponent } from './galeria/galeria.component'
+import { GaleriaComponent } from './galeria/galeria.component';
+import { CitaComponent } from './cita/cita.component'
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { GaleriaComponent } from './galeria/galeria.component'
     FooterComponent,
     LoginComponent,
     GaleriaComponent,
+    CitaComponent,
     
   ],
   imports: [

@@ -1,0 +1,72 @@
+<body>
+
+    <div class="wrapper">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h1>Agenda tu cita</h1>
+        <div class="campos">
+          <div class="input-box">
+            <input type="text" placeholder="Ingresa tu nombre" formControlName="nombre">
+          </div>
+          
+  
+          <div class="input-box">
+            <input type="date" placeholder="Fecha 1" formControlName="fecha1">
+          </div>
+  
+  
+          <div class="input-box">
+            <input type="time" placeholder="Hora" formControlName="hora">
+          </div>
+  
+  
+          <div class="input-box">
+            <label for="servicio">¿Qué Servicio desea?</label>
+            <select class="controls" id="servicio" name="servicio" formControlName="servicio">
+              <option value="Semipermanente">Semipermanente</option>
+              <option value="Acrilicas">Acrilicas</option>
+              <option value="Uñas en Gel">Uñas en Gel</option>
+              <option value="Tradicionales">Tradicionales</option>
+              <option value="Poligel">Poligel</option>
+              <option value="Press On">Press On</option>
+              <option value="Acrilicas Encapsuladas">Acrilicas Encapsuladas</option>
+              <option value="Acrilicas con Baby Bomer">Acrilicas con Baby Bomer</option>
+            </select>
+          </div>
+  
+  
+          <div class="input-box">
+            <label for="manos-pies">¿Manos o Pies?</label>
+            <select class="controls" id="manos-pies" name="manos_pies" formControlName="manos_pies">
+              <option value="Manos">Manos</option>
+              <option value="Pies">Pies</option>
+              <option value="Manos y Pies">Manos y Pies</option>
+            </select>
+          </div>
+        </div>
+  
+  
+  
+        <div class="input-box">
+          <label for="manicuarista">¿Con quién desea el servicio?</label>
+          <select class="controls" name="manicuarista" formControlName="manicuarista">
+            <option value="Sergio Rico">Sergio Rico</option>
+            <option value="Angela Giraldo">Angela Giraldo</option>
+            <option value="Juan Nieto">Juan Nieto</option>
+            <option value="Jesus Gonzales">Jesus Gonzales</option>
+          </select>
+        </div>
+  
+  
+  
+        <div class="hi">
+          <div class="remember-forgot">
+            <label>
+              <input type="checkbox" formControlName="aceptar"> Acepto los términos y condiciones
+            </label>
+          </div>
+          <button type="submit" class="btn">Reservar</button>
+        </div>
+      </form>
+  
+    </div>
+  </body>
