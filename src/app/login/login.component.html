@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="wrapper">
     <div class="background"></div>
     <div class="card-switch">
@@ -8,10 +9,11 @@
             <div class="flip-card__inner">
                 <div class="flip-card__front">
                     <div class="title">inicia sesion</div>
-                    <form class="flip-card__form" action="">
-                        <input class="flip-card__input" name="email" placeholder="Email" type="email">
-                        <input class="flip-card__input" name="password" placeholder="Contraseña" type="password">
-                        <button class="flip-card__btn">Inicia!</button>
+                    <!-- login.component.html -->
+                    <form class="flip-card__form" (ngSubmit)="iniciarSesion()">
+                    <input class="flip-card__input" name="email" placeholder="Email" [(ngModel)]="usuarioLg.email" type="email" required>
+                    <input class="flip-card__input" name="password" placeholder="Contraseña" [(ngModel)]="usuarioLg.contrasena" type="password" required>
+                    <button class="flip-card__btn" type="submit">Inicia Sesión</button>
                     </form>
                 </div>
                 <div class="flip-card__back">

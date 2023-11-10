@@ -41,6 +41,8 @@ header{
     justify-content: space-around;
     color: #631878;
     z-index: 200;
+    position: relative;
+    top: -20px;
 }
 .redes-header i{
     font-size: 20px;

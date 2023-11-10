@@ -9,7 +9,7 @@ text-decoration: none;
 }
 
 .wrapper {
-  margin-top: -50px;
+  margin-top: -100px;
     display: grid;
     place-items: center;
     background-size: cover;
