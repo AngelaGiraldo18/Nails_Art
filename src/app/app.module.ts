@@ -13,7 +13,7 @@ import {UsuarioService}  from './service/usuario.service';
 import { GravatarModule } from 'ngx-gravatar';
 import { AuthInterceptor } from './auth.interceptor';
 import { AgragarManicuristaComponent } from './agragar-manicurista/agragar-manicurista.component';
-
+import { GaleriaComponent } from './galeria/galeria.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { AgragarManicuristaComponent } from './agragar-manicurista/agragar-manic
     FooterComponent,
     LoginComponent,
     AgragarManicuristaComponent,
-    
+    GaleriaComponent,
   ],
   imports: [
     GravatarModule.forRoot({
