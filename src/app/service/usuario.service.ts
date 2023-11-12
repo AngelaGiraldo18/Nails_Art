@@ -43,7 +43,7 @@ export class UsuarioService {
     return this.http.post(`${this.apiUrl}/createManicurista`, data);
   }
   getManicuristas(): Observable<any[]> {
-  return this.http.get<any[]>(`${this.apiUrl}/getManicurista`);
+  return this.http.get<any[]>(`${this.apiUrl}/manicuristas`);
   }
   updateManicurista(data: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/updateManicurista`, data);
