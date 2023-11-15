@@ -97,6 +97,7 @@ export class AgragarManicuristaComponent implements OnInit{
     );
   }
   
+  
     
   registrarManicurista(): void {
     console.log("intentando registrar/editar manicurista ", this.manicurista);

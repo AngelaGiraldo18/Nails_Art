@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="text-center">
+          <button
+            class="btn btn-primary"
+            (click)="view = CalendarView.Month"
+            [class.active]="view === CalendarView.Month"
+          >
+            Mes
+          </button>
+          <button
+            class="btn btn-primary"
+            (click)="view = CalendarView.Day"
+            [class.active]="view === CalendarView.Day"
+          >
+            Día
+          </button>
+        </div>
+        <div>
+          <ng-container *ngIf="view === CalendarView.Month">
+            <calendar-month-view
+              [viewDate]="viewDate"
+              [events]="events"
+              (dayClicked)="dayClicked($event)"
+            ></calendar-month-view>
+          </ng-container>
+          <ng-container *ngIf="view === CalendarView.Day">
+            <calendar-day-view
+              [viewDate]="viewDate"
+              [events]="events"
+              (hourSegmentClicked)="dayClicked($event)"
+            ></calendar-day-view>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #modalContent let-date="date">
+    <div class="modal-header">
+      <h4 class="modal-title">Selecciona una hora para {{ date | date: 'dd/MM/yyyy' }}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <!-- Aquí puedes agregar la lógica para mostrar las horas disponibles y permitir la selección -->
+      <!-- Puedes utilizar un formulario, botones, etc. -->
+      <p>Horas disponibles para {{ date | date: 'dd/MM/yyyy' }}:</p>
+      <!-- Ejemplo: -->
+      <button class="btn btn-outline-success">8:00 AM</button>
+      <button class="btn btn-outline-success">9:00 AM</button>
+      
+    </div>
+  </ng-template>
+  

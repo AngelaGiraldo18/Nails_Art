@@ -21,8 +21,9 @@
 <div id="myModal" class="modal">
   <div class="modal-content">
     <span class="close" (click)="cerrarModal()">&times;</span>
-    <h2>{{ editMode ? 'Editar Manicurista' : 'Agregar Manicurista' }}</h2>
-
+    <div class="headermodal">
+      <h2>{{ editMode ? 'Editar Manicurista' : 'Agregar Manicurista' }}</h2>
+    </div>
     <form (ngSubmit)="registrarManicurista()">
       <label for="nombre">Nombre:</label>
       <input [(ngModel)]="manicurista.nombre" type="text" id="nombre" name="nombre" required>
