@@ -12,7 +12,6 @@ text-decoration: none;
   margin-top: -100px;
     display: grid;
     place-items: center;
-    background-size: cover;
     background: transparent;
     --input-focus: #631878;
   --font-color: #fff;
