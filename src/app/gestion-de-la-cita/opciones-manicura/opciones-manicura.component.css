@@ -1,0 +1,73 @@
+.opciones-manicura {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .opcion {
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .opcion:hover {
+    background-color: #f0f0f0;
+  }
+  /* En el archivo seleccionar-manicurista.component.css */
+.manicuristas {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .manicurista {
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .manicurista:hover {
+    background-color: #f0f0f0;
+  }
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .cerrar-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  
+  h2 {
+    color: #631878;
+  }
+  
+  .manicuristas {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .manicurista {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  /* Estilo cuando se selecciona una opción */
+  .manicurista.selected {
+    background-color: #631878;
+    color: #fff;
+  }

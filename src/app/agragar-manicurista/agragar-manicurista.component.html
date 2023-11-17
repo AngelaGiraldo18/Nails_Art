@@ -31,8 +31,14 @@
       <label for="apellido">Apellido:</label>
       <input [(ngModel)]="manicurista.apellido" type="text" id="apellido" name="apellido" required>
 
-      <label for="email">Email:</label>
-      <input [(ngModel)]="manicurista.email" type="email" id="email" name="email" required>
+      <label for="email">Email Personal</label>
+      <input [(ngModel)]="manicurista.emailPersonal" type="email" id="email" name="email" required>
+
+      <label for="email">Email de la app</label>
+      <input [(ngModel)]="manicurista.emailApp" type="email" id="email" name="email" required>
+
+      <label for="email">Contraseña</label>
+      <input [(ngModel)]="manicurista.contrasenaApp" type="password" id="password" name="password" required>
 
       <label for="celular">Celular:</label>
       <input [(ngModel)]="manicurista.celular" type="text" id="celular" name="celular" required>
@@ -57,7 +63,6 @@
       <th>Celular</th>
       <th>Dirección</th>
       <th>Descripción</th>
-      <th>Estado</th>
       <th>Acciones</th>
     </tr>
   </thead>
@@ -65,11 +70,10 @@
     <tr *ngFor="let manicurista of manicuristas">
       <td>{{ manicurista.nombre }}</td>
       <td>{{ manicurista.apellido }}</td>
-      <td>{{ manicurista.email }}</td>
+      <td>{{ manicurista.emailPersonal }}</td>
       <td>{{ manicurista.celular }}</td>
       <td>{{ manicurista.direccion }}</td>
       <td>{{ manicurista.descripcion }}</td>
-      <td>{{ manicurista.estado }}</td>
       <td>
         <button class="btn-editar" (click)="editarManicurista(manicurista)">Editar</button>
         <button class="btn-desactivar" (click)="eliminarManicurista(manicurista.idmanicurista)">eliminar</button>

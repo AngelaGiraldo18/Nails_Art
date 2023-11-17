@@ -16,6 +16,7 @@ export class UsuarioService {
   // Inyecta el módulo HttpClient en el servicio
   constructor(private http: HttpClient) {}
 
+  //peticiones de el usuario
   createUser(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/createusuario`, data);
   }
@@ -39,6 +40,7 @@ export class UsuarioService {
   }
   public usuarioInfo: any;
 
+  //peticiones de la manicurita
   createManicurista(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/createManicurista`, data);
   }
@@ -48,15 +50,20 @@ export class UsuarioService {
   updateManicurista(data: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/updateManicurista`, data);
   }
-cambiarEstadoManicurista(idmanicurista: number, estado: string): Observable<any> {
-  const data = { idmanicurista, estado };
-  return this.authenticatedRequest('cambiarEstadoAsociacion', data);
+  eliminarManicurista(idmanicurista: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/eliminarManicurista/${idmanicurista}`);
+  }
+  
+  //estas son las peticiones de la agendacion de citas
+  createTipoUñas(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/crearTiposUñas`, data);
+  }
+  obtenerCitasPorFecha(fecha: string): Observable<any[]> {
+    console.log('Fecha antes de la solicitud HTTP:', fecha);
+    return this.http.get<any[]>(`${this.apiUrl}/citas/${fecha}`).pipe(
+        tap(citas => console.log('Citas después de la solicitud HTTP:', citas))
+    );
 }
-eliminarManicurista(idmanicurista: number): Observable<any> {
-  return this.http.delete(`${this.apiUrl}/eliminarManicurista/${idmanicurista}`);
-}
-
-
 
   authenticatedRequest(endpoint: string, data: any): Observable<any> {
     // Recupera el token de localStorage

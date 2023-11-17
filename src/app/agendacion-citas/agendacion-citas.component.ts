@@ -1,34 +1,59 @@
-import { Component, ChangeDetectionStrategy, ViewChild, TemplateRef } from '@angular/core';
-import { CalendarEvent, CalendarView } from 'angular-calendar';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from '../service/usuario.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-agendacion-citas',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './agendacion-citas.component.html',
   styleUrls: ['./agendacion-citas.component.css']
 })
-export class AgendacionCitasComponent  {
-  view: CalendarView = CalendarView.Month;
-  viewDate: Date = new Date();
-  events: CalendarEvent[] = [
-    // Aquí puedes cargar eventos desde tu servidor si es necesario
-  ];
+export class AgendacionCitasComponent implements OnInit {
+  usuarioInfo: any;
+  mostrarOpcionesManicura = false;
+  mostrarSeleccionManicurista = false;
+  mostrarSeleccionHorario = false;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private usuarioService: UsuarioService) {}
 
-  @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
-
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    if (events.length > 0) {
-      // Aquí puedes manejar la lógica de mostrar la modal y cargar las horas disponibles para el día seleccionado
-      this.openModal(date);
-    }
+  ngOnInit(): void {
+    // Suscríbete al observable usuarioInfo$ para recibir actualizaciones
+    this.usuarioService.usuarioInfo$.subscribe(usuario => {
+      this.usuarioInfo = usuario;
+    });
   }
 
-  openModal(date: Date): void {
-    const modalRef = this.modal.open(this.modalContent, { centered: true });
-    // Aquí puedes pasar datos a la modal si es necesario
-    modalRef.componentInstance.date = date;
+  mostrarNuevaCita(): void {
+    this.ocultarComponentes();
+    this.mostrarOpcionesManicura = true;
+  }
+
+  mostrarGestionCitas(): void {
+    this.ocultarComponentes();
+    // Agrega lógica para mostrar la gestión de citas
+  }
+
+  mostrarHistorial(): void {
+    this.ocultarComponentes();
+    // Agrega lógica para mostrar el historial
+  }
+
+  mostrarFavoritos(): void {
+    this.ocultarComponentes();
+    // Agrega lógica para mostrar los favoritos
+  }
+
+  private ocultarComponentes(): void {
+    this.mostrarOpcionesManicura = false;
+    this.mostrarSeleccionManicurista = false;
+    this.mostrarSeleccionHorario = false;
+  }
+
+  mostrarOpcionesManicuraClick(): void {
+    this.ocultarComponentes();
+    this.mostrarOpcionesManicura = true;
+  }
+
+  mostrarSeleccionHorarioClick(): void {
+    this.ocultarComponentes();
+    this.mostrarSeleccionHorario = true;
   }
 }

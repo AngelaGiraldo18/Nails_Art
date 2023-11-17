@@ -1,0 +1,29 @@
+<!-- opciones-manicura.component.html -->
+
+<div class="opciones-manicura">
+    <!-- Opciones de manicura -->
+    <div (click)="seleccionarTipoManicura('manos')" [class.selected]="tipoManicuraSeleccionado === 'manos'">Manos</div>
+    <div (click)="seleccionarTipoManicura('pies')" [class.selected]="tipoManicuraSeleccionado === 'pies'">Pies</div>
+    <div (click)="seleccionarTipoManicura('manosypies')" [class.selected]="tipoManicuraSeleccionado === 'manosypies'">Manos y pies</div>
+  
+    <!-- Modal para más opciones -->
+    <div *ngIf="mostrarModal" class="modal">
+        <span class="cerrar-modal" (click)="cerrarModal()">x</span>
+        <h2>Selecciona más opciones</h2>
+  
+        <!-- Otras opciones y lógica para la modal -->
+        <div (click)="abrirManos()">Manos</div>
+        <div (click)="abrirPies()">Pies</div>
+
+        <h2>manicuristas</h2>
+        <div *ngFor="let manicurista of manicuristas" class="manicuristas">
+            <div class="manicurista">
+                <span>{{ manicurista.nombre }}</span>
+            </div>
+            <!-- Agrega más opciones según sea necesario -->
+        </div>
+      
+        <!-- Botón para navegar al siguiente componente -->
+        <button (click)="navegarASiguienteComponente()">Siguiente</button>
+    </div>
+</div>

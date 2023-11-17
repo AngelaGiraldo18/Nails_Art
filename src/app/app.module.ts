@@ -19,7 +19,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatDialogModule } from '@angular/material/dialog';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './modal/modal.component';
+import { CalendarioManicuristaComponent } from './calendario-manicurista/calendario-manicurista.component';
+import { OpcionesManicuraComponent } from './gestion-de-la-cita/opciones-manicura/opciones-manicura.component';
+import { SeleccionarHorarioComponent } from './gestion-de-la-cita/seleccionar-horario/seleccionar-horario.component';
 
 
 @NgModule({
@@ -32,6 +35,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AgragarManicuristaComponent,
     GaleriaComponent,
     AgendacionCitasComponent,
+    ModalComponent,
+    CalendarioManicuristaComponent,
+    OpcionesManicuraComponent,
+    SeleccionarHorarioComponent,
   ],
   imports: [
     GravatarModule.forRoot({
@@ -39,7 +46,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       size: 100,  // Tamaño predeterminado del avatar
       fallback: 'retro',  // Imagen predeterminada si Gravatar no tiene una asociada al correo electrónico
     }),
-    NgbModule,
     MatDialogModule,
     BrowserModule,
     AppRoutingModule,
