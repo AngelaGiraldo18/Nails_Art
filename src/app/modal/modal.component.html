@@ -1,0 +1,16 @@
+<div class="contenedorPrincipalModal">
+    <div class="contenedorHijoModal">
+      <h2>Citas para {{ data.selectedDate | date:'dd/MM/yyyy' }}</h2>
+      <ul>
+        <li *ngFor="let cita of data.citas">
+          {{ cita.fecha_hora_inicio | date:'HH:mm' }} - {{ cita.fecha_hora_fin | date:'HH:mm' }}
+          <span *ngIf="cita.estado === 'realizada'" class="realizada">Realizada</span>
+          <span *ngIf="cita.estado === 'programada'" class="programada">Programada</span>
+          <span *ngIf="cita.estado === 'cancelada'" class="cancelada">Cancelada</span>
+          <br />
+          Usuario: {{ cita.usuario_nombre }} | Manicurista: {{ cita.manicurista_nombre }} | Servicio: {{ cita.servicio_nombre }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  
