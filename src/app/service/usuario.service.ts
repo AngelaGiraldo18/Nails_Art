@@ -64,6 +64,19 @@ export class UsuarioService {
         tap(citas => console.log('Citas después de la solicitud HTTP:', citas))
     );
 }
+//petiiones de el empleado candidato 
+  createEmpleadoCandidato(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/createEmpleadoCandidato`, data);
+  }
+  getAllEmpleadosCandidatos(email: string): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/getAllEmpleadosCandidatos/${email}`);
+  }
+  sendEmailWithEmpleadosData(email: string): Observable<any> {
+    const data = { email }; // Incluye el correo electrónico en el cuerpo de la solicitud
+    return this.http.post(`${this.apiUrl}/sendEmailWithEmpleadosData`, data);
+  }
+
+
 
   authenticatedRequest(endpoint: string, data: any): Observable<any> {
     // Recupera el token de localStorage
@@ -85,5 +98,4 @@ export class UsuarioService {
 
     return this.http.post(`${this.apiUrl}/${endpoint}`, data, httpOptions);
   }
-
 }
