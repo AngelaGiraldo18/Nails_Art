@@ -1,0 +1,131 @@
+.contenerdorAgendacion{
+    width: 90%;
+    margin-left: 100px;
+}
+.contenedorH{
+    display: flex;
+    border: 5px solid #631878;
+    border-radius: 30px;
+    justify-content: center;
+    height: 500px;
+}
+.contenedorOpciones{
+    display: flex;
+    width: 400px;
+    height: 50px;
+    border-radius: 20px;
+    border-bottom: 1px solid;
+    color:#631878 ;
+}
+.contenedorOpciones div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+}
+/* En el archivo agendacion-citas.component.css */
+.contenedorAgendacion {
+    width: 90%;
+    margin-left: 100px;
+  }
+  
+  .contenedorH {
+    display: flex;
+    border: 5px solid #631878;
+    border-radius: 30px;
+    justify-content: center;
+    height: 500px;
+  }
+  
+  .contenedorOpciones {
+    display: flex;
+    width: 400px;
+    height: 50px;
+    border-radius: 20px;
+    border-bottom: 1px solid;
+    color: #631878;
+  }
+  
+  .contenedorOpciones div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+    cursor: pointer;
+    transition: border-bottom 0.3s ease-in-out;
+  }
+  
+  .contenedorOpciones div:hover {
+    border-bottom: 3px solid #631878;
+  }
+  
+  .contenido-dinamico {
+    margin-top: 20px;
+  }
+  
+  /* Añade estilos según sea necesario para los componentes específicos */
+  .opciones-manicura {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .opcion {
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .opcion:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .manicuristas {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .manicurista {
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .manicurista:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .horarios {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .horario {
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .horario:hover {
+    background-color: #f0f0f0;
+  }
+  .contenido-dinamico{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .botonCambio{
+    width: 150px;
+    height: 50px;
+    position: relative;
+    top: 400px;
+    
+  }

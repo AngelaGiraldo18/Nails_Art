@@ -1,0 +1,58 @@
+.contenedorPrincipalModal{
+    width: 65rem;
+    height: 35rem;
+    display: flex;
+    justify-content: center;
+}
+.contenedorHijoModal{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.contenedorHijoModal ul{
+    margin-left: 20px;
+    list-style: none;
+    color: black;
+}
+.contenedorHijoModal2{
+    border: 1px solid black;
+    height: 200px;
+    width: 650px;
+    position: relative;
+    top: 200px;
+}
+.divInputs{
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 30px;
+}
+.input {
+    --input-focus: #631878;
+    --font-color: #631878;
+    --font-color-sub: #631878;
+    --bg-color: #fff;
+    --main-color: #631878;
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+    margin-left: 30px;
+    margin-top: 20px;
+  }
+  
+  .input::placeholder {
+    color: var(--font-color-sub);
+    opacity: 0.8;
+  }
+  
+  .input:focus {
+    border: 2px solid var(--input-focus);
+  }

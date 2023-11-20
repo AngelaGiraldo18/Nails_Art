@@ -10,12 +10,13 @@ export class AgragarManicuristaComponent implements OnInit{
   manicurista = {
     idmanicurista: null,
     nombre: '',
-    apellido: '',
-    email: '',
-    celular: '',
-    direccion: '',
-    descripcion: '',
-    estado: 'A'
+    apellido:'',
+    emailPersonal:'',
+    emailApp:'',
+    contrasenaApp:'',
+    celular:'',
+    direccion:'',
+    descripcion:'' 
   };
   manicuristas: any[] = [];
   editMode = false;
@@ -55,22 +56,6 @@ export class AgragarManicuristaComponent implements OnInit{
     this.abrirModal();
   }
 
-  cambiarEstadoManicurista(manicurista: any): void {
-    const nuevoEstado = manicurista.estado === 'A' ? 'I' : 'A';
-    this.usuarioService.cambiarEstadoManicurista(manicurista.idmanicurista, nuevoEstado).subscribe(
-      (response) => {
-        console.log('Estado del manicurista cambiado con éxito:', response);
-        this.getManicuristas();
-      },
-      (error) => {
-        console.error('Error al cambiar el estado del manicurista:', error);
-        if (error && error.error && error.error.message) {
-          console.error('Mensaje de error del servidor:', error.error.message);
-        }
-      }
-    );
-  }
-
 
   eliminarManicurista(idmanicurista: number): void {
     this.usuarioService.eliminarManicurista(idmanicurista).subscribe(
@@ -97,6 +82,7 @@ export class AgragarManicuristaComponent implements OnInit{
     );
   }
   
+  
     
   registrarManicurista(): void {
     console.log("intentando registrar/editar manicurista ", this.manicurista);
@@ -111,12 +97,13 @@ export class AgragarManicuristaComponent implements OnInit{
         this.manicurista = {
           idmanicurista: null,
           nombre: '',
-          apellido: '',
-          email: '',
-          celular: '',
-          direccion: '',
-          descripcion: '',
-          estado: 'A'
+          apellido:'',
+          emailPersonal:'',
+          emailApp:'',
+          contrasenaApp:'',
+          celular:'',
+          direccion:'',
+          descripcion:''
         };
         this.cerrarModal();
         this.getManicuristas();  // Corrige esta línea llamando al método en la instancia del servicio

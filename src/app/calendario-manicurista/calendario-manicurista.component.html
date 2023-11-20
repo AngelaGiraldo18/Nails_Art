@@ -1,0 +1,8 @@
+<app-header></app-header>
+<div class="calendar">
+    <mwl-calendar-month-view
+    class="calendar-month"
+      [viewDate]="viewDate"
+      (dayClicked)="onDayClick($event.day)">
+    </mwl-calendar-month-view>
+  </div>  
