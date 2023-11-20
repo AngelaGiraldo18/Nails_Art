@@ -85,5 +85,5 @@ export class UsuarioService {
 
     return this.http.post(`${this.apiUrl}/${endpoint}`, data, httpOptions);
   }
-
+  
 }
