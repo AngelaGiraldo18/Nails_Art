@@ -5,13 +5,15 @@ import { LoginComponent } from './login/login.component';
 import { AgragarManicuristaComponent } from './agragar-manicurista/agragar-manicurista.component';
 import { AgendacionCitasComponent } from './agendacion-citas/agendacion-citas.component';
 import { CalendarioManicuristaComponent } from './calendario-manicurista/calendario-manicurista.component';
+import { ContactoComponent } from './contacto/contacto.component';
 const routes: Routes = [
   { path: '', component: PrincipalComponent },
   {path:'Inicio',component:PrincipalComponent},
   { path: 'Login', component: LoginComponent },
   { path:'AgrManicurista', component:AgragarManicuristaComponent},
   {path:'Calendario',component:CalendarioManicuristaComponent},
-  {path:'agendarCita',component:AgendacionCitasComponent}
+  {path:'agendarCita',component:AgendacionCitasComponent},
+  {path:'contacto',component:ContactoComponent}
 ];
 
 
