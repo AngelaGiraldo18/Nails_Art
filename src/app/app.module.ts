@@ -23,6 +23,7 @@ import { ModalComponent } from './modal/modal.component';
 import { CalendarioManicuristaComponent } from './calendario-manicurista/calendario-manicurista.component';
 import { OpcionesManicuraComponent } from './gestion-de-la-cita/opciones-manicura/opciones-manicura.component';
 import { SeleccionarHorarioComponent } from './gestion-de-la-cita/seleccionar-horario/seleccionar-horario.component';
+import { ContactoComponent } from './contacto/contacto.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { SeleccionarHorarioComponent } from './gestion-de-la-cita/seleccionar-ho
     CalendarioManicuristaComponent,
     OpcionesManicuraComponent,
     SeleccionarHorarioComponent,
+    ContactoComponent,
   ],
   imports: [
     GravatarModule.forRoot({

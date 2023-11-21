@@ -1,0 +1,33 @@
+<app-header></app-header>
+<div class="todo">
+  <h1>TRABAJA CON NOSOTROS</h1>
+  <section class="parte2">
+    <div class="registro-cuadro">
+      <h2>Comunícate con Nuestro Equipo</h2><br>
+      <!-- Tu formulario HTML -->
+      <form (ngSubmit)="onSubmit()" [formGroup]="form" enctype="multipart/form-data">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" formControlName="nombre" required><br><br>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" formControlName="apellido" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" required><br><br>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="number" id="telefono" formControlName="telefono" required><br><br>
+
+        <label for="hojaVidaFile">Adjunta un PDF de tu hoja de vida:</label>
+        <input type="file" id="hojaVidaFile" name="hoja_vida_path" (change)="onFileSelected($event)" accept=".pdf" required><br><br>
+
+        <div class="aceptacion-Privacidad">
+          <label for="aceptoPrivacidad">Acepto política y tratamiento de datos</label>
+          <input class="CuadroAcepto" type="checkbox" id="aceptoPrivacidad" type="checkbox" formControlName="aceptoPrivacidad" required>
+        </div><br>
+
+        <button type="submit" [disabled]="processing">Enviar</button>
+      </form>
+    </div>
+  </section>
+</div>
