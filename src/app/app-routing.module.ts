@@ -13,7 +13,8 @@ const routes: Routes = [
   { path:'AgrManicurista', component:AgragarManicuristaComponent},
   {path:'Calendario',component:CalendarioManicuristaComponent},
   {path:'agendarCita',component:AgendacionCitasComponent},
-  {path:'contacto',component:ContactoComponent}
+  {path:'contacto',component:ContactoComponent},
+
 ];
 
 
