@@ -22,7 +22,6 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { ModalComponent } from './modal/modal.component';
 import { CalendarioManicuristaComponent } from './calendario-manicurista/calendario-manicurista.component';
 import { OpcionesManicuraComponent } from './gestion-de-la-cita/opciones-manicura/opciones-manicura.component';
-import { SeleccionarHorarioComponent } from './gestion-de-la-cita/seleccionar-horario/seleccionar-horario.component';
 import { ContactoComponent } from './contacto/contacto.component';
 
 
@@ -39,7 +38,6 @@ import { ContactoComponent } from './contacto/contacto.component';
     ModalComponent,
     CalendarioManicuristaComponent,
     OpcionesManicuraComponent,
-    SeleccionarHorarioComponent,
     ContactoComponent,
   ],
   imports: [
@@ -49,6 +47,7 @@ import { ContactoComponent } from './contacto/contacto.component';
       fallback: 'retro',  // Imagen predeterminada si Gravatar no tiene una asociada al correo electrónico
     }),
     MatDialogModule,
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -56,7 +55,10 @@ import { ContactoComponent } from './contacto/contacto.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    })
   ],
   providers: [
     UsuarioService,

@@ -55,8 +55,8 @@ export class UsuarioService {
   }
   
   //estas son las peticiones de la agendacion de citas
-  createTipoUñas(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/crearTiposUñas`, data);
+  createCita(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/crearCita`, data);
   }
   obtenerCitasPorFecha(fecha: string): Observable<any[]> {
     console.log('Fecha antes de la solicitud HTTP:', fecha);
