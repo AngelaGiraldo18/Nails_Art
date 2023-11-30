@@ -1,132 +1,149 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { UsuarioService } from 'src/app/service/usuario.service';
-import { HttpErrorResponse } from '@angular/common/http';
-
+import { CalendarView, CalendarWeekViewComponent } from 'angular-calendar';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-opciones-manicura',
   templateUrl: './opciones-manicura.component.html',
   styleUrls: ['./opciones-manicura.component.css']
 })
-export class OpcionesManicuraComponent {
-  @Output() tipoManicuraSeleccionada = new EventEmitter<string>();
-  @Output() diaYHorarioSeleccionado = new EventEmitter<{ dia: string, horario: string }>();
-
-  tipoManicuraSeleccionado: string | null = null;
-  mostrarModal = false;
-  mostrarManos = false;
-  mostrarPies = false;
+export class OpcionesManicuraComponent implements OnInit {
   manicuristas: any[] = [];
+  tipoServicioSeleccionado: string = '';
+  manicuristaSeleccionada: any = null;
+  ubicacionServicio: string = '';
+  duracionEnHoras: number = 0;
+  opcionSeleccionada: string = ''; 
+  modalAbierta: boolean = false;
+  calendarioModalAbierta: boolean = false;
+  siguienteHabilitado: boolean = false;
+  usuarioInfo: any; 
 
+  //otras propiedades de el componente
+  @ViewChild('calendar') calendar!: CalendarWeekViewComponent;
+  view: CalendarView = CalendarView.Week;
+  viewDate: Date = new Date();
+  daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+  startHour = 8;
+  endHour = 18;
 
-  constructor(private router: Router, private usuarioService: UsuarioService) {}
+  constructor(
+    private usuarioService: UsuarioService
+  ) {}
 
   ngOnInit(): void {
+    // Obtén los manicuristas y la información del usuario
     this.usuarioService.getManicuristas().subscribe(
       (manicuristas) => {
         this.manicuristas = manicuristas;
-        debugger; // Establece un punto de interrupción aquí
       },
       (error) => {
         console.error('Error al obtener manicuristas:', error);
       }
     );
+
+    this.usuarioService.usuarioInfo$.subscribe(usuario => {
+      this.usuarioInfo = usuario;
+    });
   }
 
-  seleccionarTipoManicura(tipo: string): void {
-    // Lógica para determinar duración y descripción según el tipo seleccionado
-    let duracionEnManoHora = 0;
-    let duracionEnPieHora = 0;
-    let descripcion = '';
-  
-    switch (tipo) {
-      case 'manos':
-        duracionEnManoHora = 1.5;
-        descripcion = 'Descripción para manos';
-        break;
-      case 'pies':
-        duracionEnPieHora = 1;
-        descripcion = 'Descripción para pies';
-        break;
-      case 'manosypies':
-        duracionEnManoHora = 1;
-        duracionEnPieHora = 1;
-        descripcion = 'Descripción para manos y pies';
-        break;
-      default:
-        // Tratamiento por defecto o manejo de errores
+  seleccionarFecha(event: any): void {
+    const fechaSeleccionada = event.date;
+    console.log('Fecha seleccionada:', fechaSeleccionada);  
+  }
+  abrirModal(tipoServicio: string) {
+    this.tipoServicioSeleccionado = tipoServicio;
+    this.modalAbierta = true;
+  }
+  abrirCalendarioModal() {
+    this.calendarioModalAbierta = true;
+  }
+
+  cerrarModal() {
+    this.modalAbierta = false;
+  }
+
+  cerrarCalendarioModal() {
+    this.calendarioModalAbierta = false;
+  }
+
+  seleccionarManicurista(manicurista: any) {
+    this.manicuristaSeleccionada = manicurista;
+    this.verificarSeleccion();
+  }
+  marcarComoFavorita(manicurista: any) {
+    this.manicuristaSeleccionada.favorita = !this.manicuristaSeleccionada.favorita;
+  }
+  seleccionarTipoServicio(tipoServicio: string) {
+    this.ubicacionServicio = tipoServicio;
+    this.calcularDuracionEnHoras();
+    this.verificarSeleccion();
+    this.opcionSeleccionada = tipoServicio;
+    console.log('Tipo de servicio seleccionado:', tipoServicio);
+  }
+  calcularDuracionEnHoras() {
+    if (this.tipoServicioSeleccionado === 'Tradicional') {
+      this.duracionEnHoras = (this.ubicacionServicio === 'manos' || this.ubicacionServicio === 'pies') ? 1 : 2;
+    } else if (this.tipoServicioSeleccionado === 'Semipermanente') {
+      this.duracionEnHoras = (this.ubicacionServicio === 'manos') ? 2 : 1.5;
+    } else if (this.tipoServicioSeleccionado === 'Acrilicas') {
+      this.duracionEnHoras = (this.ubicacionServicio === 'manos') ? 3 : 2.5;
     }
-  
-    this.tipoManicuraSeleccionado = tipo;
-    this.tipoManicuraSeleccionada.emit(tipo);
-    this.mostrarModal = true;
-  
-    // Comentamos esta línea para usar la nueva función
-    // this.usuarioService.createTipoUñas(data).subscribe(...
-  
-    // Llamamos a la nueva función
-    this.registrarTipoUñas();
   }
 
-  abrirManos(): void {
-    this.mostrarManos = true;
+  verificarSeleccion() {
+    this.siguienteHabilitado = this.manicuristaSeleccionada !== null && this.tipoServicioSeleccionado !== '';
   }
 
-  abrirPies(): void {
-    this.mostrarPies = true;
-  }
+  @Output() siguiente = new EventEmitter<void>();
 
-  aceptarModal(opcion: string): void {
-    console.log(`Opción seleccionada: ${opcion}`);
-
-    this.diaYHorarioSeleccionado.emit({ dia: 'lunes', horario: '10:00 AM' });
-
-    this.mostrarModal = false;
-    this.mostrarManos = false;
-    this.mostrarPies = false;
-  }
-
-  cerrarModal(): void {
-    this.mostrarModal = false;
-    this.mostrarManos = false;
-    this.mostrarPies = false;
-  }
-
-  navegarASiguienteComponente(): void {
-    this.router.navigate(['/seleccionar-horario']);
-  }
-
-
-registrarTipoUñas(): void {
-  console.log('Intentando registrar tipo de uñas ', this.tipoManicuraSeleccionado);
-
-  const duracionEnManoHora = 1.5; // Valores de duración en horas según tu lógica
-  const duracionEnPieHora = 1;
-
-  const descripcion = 'Descripción para ' + this.tipoManicuraSeleccionado;
-
-  const data = {
-    nombre: this.tipoManicuraSeleccionado,
-    duracion_en_mano_hora: duracionEnManoHora,
-    duracion_en_pie_hora: duracionEnPieHora,
-    descripcion: descripcion,
-  };
-
-  const observable = this.usuarioService.createTipoUñas(data);
-
-  observable.subscribe(
-    (response) => {
-      console.log('Tipo de uñas registrado con éxito:', response);
-      this.mostrarModal = false;
-      this.mostrarManos = false;
-      this.mostrarPies = false;
-      this.router.navigate(['/seleccionar-horario']); // O cualquier ruta que desees
-    },
-    (error) => {
-      console.error('Error al registrar tipo de uñas:', error);
-      // Manejar el error según tus necesidades
+  siguientePaso() {
+    if (this.siguienteHabilitado) {
+      const datosCita = {
+        tipoServicio: this.tipoServicioSeleccionado,
+        manicurista: this.manicuristaSeleccionada,
+        ubicacionServicio: this.ubicacionServicio,
+        duracionEnHoras: this.duracionEnHoras
+      };
+      this.cerrarModal();
+      this.abrirCalendarioModal();
     }
-  );
-}
+  }
+  agendarCita() {
+    if (this.siguienteHabilitado) {
+      // Utiliza la fecha seleccionada directamente del método seleccionarFecha
+      const fechaSeleccionada = this.viewDate;  // O utiliza el valor que necesitas
+  
+      // Convierte la fecha al formato que necesitas (ajusta según tus necesidades)
+      const fechaServicio = `${fechaSeleccionada.getFullYear()}-${fechaSeleccionada.getMonth() + 1}-${fechaSeleccionada.getDate()} ${fechaSeleccionada.getHours()}:${fechaSeleccionada.getMinutes()}`;
+  
 
+      const datosCita = {
+        id_usuario: this.usuarioInfo.id,
+        id_manicurista: this.manicuristaSeleccionada.idmanicurista,
+        tipo_servicio: this.tipoServicioSeleccionado,
+        ubicacion_servicio: this.ubicacionServicio,
+        duracion_en_horas: this.duracionEnHoras,
+        favorito: this.manicuristaSeleccionada.favorita || false, // Asignar un valor por defecto
+        fecha_del_servicio: fechaServicio,
+        estado: 'programada'
+      };
+      console.log('Datos de la cita a enviar:', datosCita); // Agrega este log para verificar los datos antes de enviar la solicitud
+      this.usuarioService.createCita(datosCita).subscribe(
+        (response) => {
+          Swal.fire('¡Cita agendada!', 'La cita se ha agendado correctamente.', 'success');
+        },
+        (error) => {
+          Swal.fire('Error', 'Hubo un problema al agendar la cita. Por favor, inténtalo de nuevo.', 'error');
+          console.error('Error al agendar la cita:', error);
+        },
+        () => {
+          this.cerrarModal();
+          this.abrirCalendarioModal();
+        }
+      );
+    }
+  }
+  
+  
 }

@@ -8,9 +8,8 @@
           <span *ngIf="cita.estado === 'programada'" class="programada">Programada</span>
           <span *ngIf="cita.estado === 'cancelada'" class="cancelada">Cancelada</span>
           <br />
-          Usuario: {{ cita.usuario_nombre }} | Manicurista: {{ cita.manicurista_nombre }} | Servicio: {{ cita.servicio_nombre }}
+          Usuario: {{ cita.usuario_nombre }} | Manicurista: {{ cita.manicurista_nombre }} | Servicio: {{ cita.tipo_servicio }} Hora: {{cita.fecha_del_servicio}}
         </li>
       </ul>
     </div>
   </div>
-  
