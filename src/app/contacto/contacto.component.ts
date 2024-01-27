@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from '../service/usuario.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-contacto',
@@ -45,6 +47,13 @@ export class ContactoComponent {
       this.usuarioService.createEmpleadoCandidato(formData).subscribe(
         response => {
           console.log('Empleado candidato creado correctamente', response);
+          // Muestra una alerta de éxito
+          Swal.fire({
+            icon: 'success',
+            title: '¡Datos enviados!',
+            text: 'Los datos se han enviado correctamente.',
+          });
+
           // Llamada para enviar el correo electrónico con los datos
           this.usuarioService.sendEmailWithEmpleadosData(email).subscribe(
             emailResponse => {
@@ -55,19 +64,35 @@ export class ContactoComponent {
             },
             emailError => {
               console.error('Error al enviar el correo electrónico', emailError);
-              this.errorMessage = 'Error al enviar el correo electrónico. Por favor, inténtalo de nuevo.';
+              // Muestra una alerta de error en el envío del correo
+              Swal.fire({
+                icon: 'error',
+                title: 'Error al enviar el correo electrónico',
+                text: 'Por favor, inténtalo de nuevo.',
+              });
               this.processing = false;
             }
           );
         },
         error => {
           console.error('Error al crear el empleado candidato', error);
-          this.errorMessage = 'Error al crear el empleado candidato. Por favor, inténtalo de nuevo.';
+          // Muestra una alerta de error en la creación del empleado candidato
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al crear el empleado candidato',
+            text: 'Por favor, inténtalo de nuevo.',
+          });
           this.processing = false;
         }
       );
     } else {
       console.log('El formulario no es válido');
+      // Muestra una alerta de error si el formulario no es válido
+      Swal.fire({
+        icon: 'error',
+        title: 'Formulario no válido',
+        text: 'Por favor, completa todos los campos correctamente.',
+      });
       this.errorMessage = 'Por favor, completa todos los campos correctamente.';
     }
   }

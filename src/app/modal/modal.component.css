@@ -56,3 +56,43 @@
   .input:focus {
     border: 2px solid var(--input-focus);
   }
+  .cita-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #631878;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.cita-info {
+  flex: 1;
+}
+
+.estado {
+  margin-right: 10px;
+}
+
+.botones-acciones {
+  display: flex;
+  align-items: center;
+}
+
+.boton-realizada,
+.boton-cancelada {
+  margin-left: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.boton-realizada {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.boton-cancelada {
+  background-color: #f44336;
+  color: white;
+}

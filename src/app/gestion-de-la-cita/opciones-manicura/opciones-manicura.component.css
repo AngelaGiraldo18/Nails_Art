@@ -444,7 +444,9 @@
 .opcion-seleccionada {
   background-color: #631878 !important;
 }
-
 .opcionesMoP div.seleccionada {
   background-color: #631878 !important;
+}
+.fecha-seleccionada {
+  background-color: #631878;
 }

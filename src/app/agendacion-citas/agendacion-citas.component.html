@@ -1,8 +1,6 @@
 <app-header></app-header>
 
 <div class="contenedorAgendacion">
-  <h1>Agenda tu cita</h1>
-
   <div *ngIf="usuarioInfo">
     <p>{{ usuarioInfo.nombre }} {{ usuarioInfo.apellido }}</p>
   </div>
@@ -22,15 +20,32 @@
         <i class="fa-solid fa-clock-rotate-left"></i>
         <span>Historial</span>
       </div>
-      <div>
+      <div (click)="seleccionarFavoritos()">
         <i class="fa-regular fa-heart"></i>
         <span>Favoritos</span>
       </div>
+      
     </div>
   </div>
 
   <div class="pociones-manicurista" *ngIf="opcionSeleccionada === 'nuevaCita'">
     <app-opciones-manicura (siguiente)="mostrarSeleccionarHorario()"></app-opciones-manicura>
   </div>
+  <!--
+
+ <div *ngIf="opcionSeleccionada === 'citasAgendadas'">
+    <app-citas-agendadas></app-citas-agendadas>
+  </div>
+  
+  <div *ngIf="opcionSeleccionada === 'historial'">
+    <app-historial></app-historial>
+  </div>
+  
+  --> 
+
+  <div *ngIf="opcionSeleccionada === 'favoritos'">
+    <app-favoritos></app-favoritos>
+  </div>
+  
   
 </div>
