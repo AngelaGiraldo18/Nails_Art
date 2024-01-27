@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/cor
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { CalendarView, CalendarWeekViewComponent } from 'angular-calendar';
 import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-opciones-manicura',
   templateUrl: './opciones-manicura.component.html',
@@ -18,8 +19,9 @@ export class OpcionesManicuraComponent implements OnInit {
   calendarioModalAbierta: boolean = false;
   siguienteHabilitado: boolean = false;
   usuarioInfo: any; 
+  favoritoSeleccionado: boolean = false;
 
-  //otras propiedades de el componente
+  // Otras propiedades del componente
   @ViewChild('calendar') calendar!: CalendarWeekViewComponent;
   view: CalendarView = CalendarView.Week;
   viewDate: Date = new Date();
@@ -27,9 +29,7 @@ export class OpcionesManicuraComponent implements OnInit {
   startHour = 8;
   endHour = 18;
 
-  constructor(
-    private usuarioService: UsuarioService
-  ) {}
+  constructor(private usuarioService: UsuarioService) {}
 
   ngOnInit(): void {
     // Obtén los manicuristas y la información del usuario
@@ -51,10 +51,12 @@ export class OpcionesManicuraComponent implements OnInit {
     const fechaSeleccionada = event.date;
     console.log('Fecha seleccionada:', fechaSeleccionada);  
   }
+
   abrirModal(tipoServicio: string) {
     this.tipoServicioSeleccionado = tipoServicio;
     this.modalAbierta = true;
   }
+
   abrirCalendarioModal() {
     this.calendarioModalAbierta = true;
   }
@@ -71,9 +73,13 @@ export class OpcionesManicuraComponent implements OnInit {
     this.manicuristaSeleccionada = manicurista;
     this.verificarSeleccion();
   }
+
   marcarComoFavorita(manicurista: any) {
-    this.manicuristaSeleccionada.favorita = !this.manicuristaSeleccionada.favorita;
+    manicurista.favorito = !manicurista.favorito;
+    this.favoritoSeleccionado = manicurista.favorito; // Actualizar el valor en la propiedad del componente
+    console.log('Valor de favorito después de hacer clic:', manicurista.favorito);
   }
+
   seleccionarTipoServicio(tipoServicio: string) {
     this.ubicacionServicio = tipoServicio;
     this.calcularDuracionEnHoras();
@@ -81,6 +87,7 @@ export class OpcionesManicuraComponent implements OnInit {
     this.opcionSeleccionada = tipoServicio;
     console.log('Tipo de servicio seleccionado:', tipoServicio);
   }
+
   calcularDuracionEnHoras() {
     if (this.tipoServicioSeleccionado === 'Tradicional') {
       this.duracionEnHoras = (this.ubicacionServicio === 'manos' || this.ubicacionServicio === 'pies') ? 1 : 2;
@@ -109,14 +116,11 @@ export class OpcionesManicuraComponent implements OnInit {
       this.abrirCalendarioModal();
     }
   }
+
   agendarCita() {
     if (this.siguienteHabilitado) {
-      // Utiliza la fecha seleccionada directamente del método seleccionarFecha
-      const fechaSeleccionada = this.viewDate;  // O utiliza el valor que necesitas
-  
-      // Convierte la fecha al formato que necesitas (ajusta según tus necesidades)
-      const fechaServicio = `${fechaSeleccionada.getFullYear()}-${fechaSeleccionada.getMonth() + 1}-${fechaSeleccionada.getDate()} ${fechaSeleccionada.getHours()}:${fechaSeleccionada.getMinutes()}`;
-  
+      const fechaSeleccionada = this.viewDate;
+      const fechaServicio = `${fechaSeleccionada.toISOString().slice(0, 19).replace('T', ' ')}`;
 
       const datosCita = {
         id_usuario: this.usuarioInfo.id,
@@ -124,26 +128,29 @@ export class OpcionesManicuraComponent implements OnInit {
         tipo_servicio: this.tipoServicioSeleccionado,
         ubicacion_servicio: this.ubicacionServicio,
         duracion_en_horas: this.duracionEnHoras,
-        favorito: this.manicuristaSeleccionada.favorita || false, // Asignar un valor por defecto
+        favorito: this.favoritoSeleccionado,
         fecha_del_servicio: fechaServicio,
         estado: 'programada'
       };
-      console.log('Datos de la cita a enviar:', datosCita); // Agrega este log para verificar los datos antes de enviar la solicitud
+
+      console.log('Datos de la cita a enviar:', datosCita);
+
       this.usuarioService.createCita(datosCita).subscribe(
         (response) => {
+          console.log('Respuesta del servidor:', response);
           Swal.fire('¡Cita agendada!', 'La cita se ha agendado correctamente.', 'success');
         },
         (error) => {
-          Swal.fire('Error', 'Hubo un problema al agendar la cita. Por favor, inténtalo de nuevo.', 'error');
           console.error('Error al agendar la cita:', error);
+          Swal.fire('Error', 'Hubo un problema al agendar la cita. Por favor, inténtalo de nuevo.', 'error');
         },
         () => {
           this.cerrarModal();
           this.abrirCalendarioModal();
+
+          this.favoritoSeleccionado = true;
         }
       );
     }
   }
-  
-  
 }

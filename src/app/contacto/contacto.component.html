@@ -1,22 +1,37 @@
 <app-header></app-header>
 <div class="todo">
-  <h1>TRABAJA CON NOSOTROS</h1>
   <section class="parte2">
     <div class="registro-cuadro">
       <h2>Comunícate con Nuestro Equipo</h2><br>
       <!-- Tu formulario HTML -->
       <form (ngSubmit)="onSubmit()" [formGroup]="form" enctype="multipart/form-data">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" formControlName="nombre" required><br><br>
+        <div class="group">
+          <input required="" class="input" type="text" id="nombre" formControlName="nombre" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Ingresa tu Nombre</label>
+        </div>
 
-        <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido" formControlName="apellido" required><br><br>
+        <div class="group">
+          <input required="" type="text" class="input" id="apellido" formControlName="apellido" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Ingresa tu Apellido</label>
+        </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" formControlName="email" required><br><br>
+        <div class="group">
+          <input required="" class="input" type="email" id="email" formControlName="email" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Ingresa tu CorreoE</label>
+        </div>
 
-        <label for="telefono">Teléfono:</label>
-        <input type="number" id="telefono" formControlName="telefono" required><br><br>
+        <div class="group">
+          <input required="" class="input" type="number" id="telefono" formControlName="telefono" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Ingresa tu Telefono</label>
+        </div>
 
         <label for="hojaVidaFile">Adjunta un PDF de tu hoja de vida:</label>
         <input type="file" id="hojaVidaFile" name="hoja_vida_path" (change)="onFileSelected($event)" accept=".pdf" required><br><br>
@@ -25,8 +40,12 @@
           <label for="aceptoPrivacidad">Acepto política y tratamiento de datos</label>
           <input class="CuadroAcepto" type="checkbox" id="aceptoPrivacidad" type="checkbox" formControlName="aceptoPrivacidad" required>
         </div><br>
-
-        <button type="submit" [disabled]="processing">Enviar</button>
+        <button type="submit" [disabled]="processing">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front text">Enviar
+          </span>
+        </button>
       </form>
     </div>
   </section>

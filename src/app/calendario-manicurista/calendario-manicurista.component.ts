@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component ,Inject} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { UsuarioService } from '../service/usuario.service';
@@ -12,8 +12,10 @@ export class CalendarioManicuristaComponent {
   viewDate: Date = new Date();
   selectedDate!: Date;
   availableHours: { hour: number; reserved: boolean }[] = [];
+  mensajesPorDia: { [fecha: string]: string } = {};
 
   constructor(public dialog: MatDialog, private usuarioService: UsuarioService) {}
+
 
   openModal(citas: any[]): void {
     this.dialog.open(ModalComponent, {
