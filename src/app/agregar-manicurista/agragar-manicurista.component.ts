@@ -1,5 +1,7 @@
-import { Component ,OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../service/usuario.service';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-agragar-manicurista',
@@ -18,9 +20,11 @@ export class AgragarManicuristaComponent implements OnInit{
     direccion:'',
     descripcion:'' 
   };
+  nombreABuscar: string = '';
   manicuristas: any[] = [];
   editMode = false;
 
+  private searchTerm$ = new Subject<string>();
   constructor(private usuarioService: UsuarioService) {}
 
   ngOnInit(): void {
@@ -81,8 +85,25 @@ export class AgragarManicuristaComponent implements OnInit{
       }
     );
   }
-  
-  
+  onSearchTermChange(): void {
+    this.searchTerm$.next(this.nombreABuscar);
+  }
+  buscarManicuristas(): void {
+    if (this.nombreABuscar.trim() !== '') {
+      this.usuarioService.buscarManicuristasPorNombre(this.nombreABuscar).subscribe(
+        (manicuristas) => {
+          console.log('Manicuristas encontrados:', manicuristas);
+          this.manicuristas = manicuristas;
+        },
+        (error) => {
+          console.error('Error en la búsqueda de manicuristas:', error);
+        }
+      );
+    } else {
+      this.getManicuristas();
+    }
+  }
+
     
   registrarManicurista(): void {
     console.log("intentando registrar/editar manicurista ", this.manicurista);

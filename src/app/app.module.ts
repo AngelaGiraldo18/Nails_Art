@@ -12,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {UsuarioService}  from './service/usuario.service';
 import { GravatarModule } from 'ngx-gravatar';
 import { AuthInterceptor } from './auth.interceptor';
-import { AgragarManicuristaComponent } from './agragar-manicurista/agragar-manicurista.component';
+import { AgragarManicuristaComponent } from './agregar-manicurista/agragar-manicurista.component';
 import { GaleriaComponent } from './galeria/galeria.component';
 import { AgendacionCitasComponent } from './agendacion-citas/agendacion-citas.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -23,6 +23,8 @@ import { ModalComponent } from './modal/modal.component';
 import { CalendarioManicuristaComponent } from './calendario-manicurista/calendario-manicurista.component';
 import { OpcionesManicuraComponent } from './gestion-de-la-cita/opciones-manicura/opciones-manicura.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { ManicuristasComponent } from './manicuristas/manicuristas.component';
+import { FavoritosComponent } from './favoritos/favoritos.component';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import { ContactoComponent } from './contacto/contacto.component';
     CalendarioManicuristaComponent,
     OpcionesManicuraComponent,
     ContactoComponent,
+    ManicuristasComponent,
+    FavoritosComponent,
   ],
   imports: [
     GravatarModule.forRoot({

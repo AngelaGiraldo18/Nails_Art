@@ -21,6 +21,22 @@ export class AgendacionCitasComponent implements OnInit {
       this.opcionSeleccionada = 'nuevaCita';
       console.log('Opción seleccionada:', this.opcionSeleccionada);
     }
+  
+    seleccionarCitasAgendadas() {
+      this.opcionSeleccionada = 'citasAgendadas';
+      console.log('Opción seleccionada:', this.opcionSeleccionada);
+    }
+  
+    seleccionarHistorial() {
+      this.opcionSeleccionada = 'historial';
+      console.log('Opción seleccionada:', this.opcionSeleccionada);
+    }
+  
+    seleccionarFavoritos() {
+      this.opcionSeleccionada = 'favoritos';
+      console.log('Opción seleccionada:', this.opcionSeleccionada);
+    }
+  
     mostrarSeleccionarHorario() {
       this.opcionSeleccionada = 'seleccionarHorario';
     }    
