@@ -1,35 +1,51 @@
-<!-- En el archivo agendacion-citas.component.html -->
 <app-header></app-header>
+
 <div class="contenedorAgendacion">
-  <h1>Agenda tu cita</h1>
   <div *ngIf="usuarioInfo">
     <p>{{ usuarioInfo.nombre }} {{ usuarioInfo.apellido }}</p>
   </div>
+
   <div class="contenedorH">
+    <!-- Opciones estáticas -->
     <div class="contenedorOpciones">
-      <div (click)="mostrarNuevaCita()">
+      <div (click)="seleccionarNuevaCita()">
         <i class="fa-regular fa-calendar"></i>
         <span>Nueva cita</span>
       </div>
-      <div (click)="mostrarGestionCitas()">
+      <div>
         <i class="fa-solid fa-calendar-days"></i>
-        <span>Gestión de citas</span>
+        <span>citas agendadas</span>
       </div>
-      <div (click)="mostrarHistorial()">
+      <div>
         <i class="fa-solid fa-clock-rotate-left"></i>
         <span>Historial</span>
       </div>
-      <div (click)="mostrarFavoritos()">
+      <div (click)="seleccionarFavoritos()">
         <i class="fa-regular fa-heart"></i>
         <span>Favoritos</span>
       </div>
+      
     </div>
-    <div class="contenido-dinamico">
-      <!-- Mostrar componente según la opción seleccionada -->
-      <app-opciones-manicura *ngIf="mostrarOpcionesManicura"></app-opciones-manicura>
-      <app-seleccionar-horario *ngIf="mostrarSeleccionHorario"></app-seleccionar-horario>
-    </div>
-    <!-- Botones para mostrar las opciones de manicura y horario -->
-    <button (click)="mostrarSeleccionHorario = true" class="botonCambio">siguiente</button>
   </div>
+
+  <div class="pociones-manicurista" *ngIf="opcionSeleccionada === 'nuevaCita'">
+    <app-opciones-manicura (siguiente)="mostrarSeleccionarHorario()"></app-opciones-manicura>
+  </div>
+  <!--
+
+ <div *ngIf="opcionSeleccionada === 'citasAgendadas'">
+    <app-citas-agendadas></app-citas-agendadas>
+  </div>
+  
+  <div *ngIf="opcionSeleccionada === 'historial'">
+    <app-historial></app-historial>
+  </div>
+  
+  --> 
+
+  <div *ngIf="opcionSeleccionada === 'favoritos'">
+    <app-favoritos></app-favoritos>
+  </div>
+  
+  
 </div>

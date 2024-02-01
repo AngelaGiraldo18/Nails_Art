@@ -127,5 +127,12 @@
     height: 50px;
     position: relative;
     top: 400px;
-    
   }
+.pociones-manicurista{
+  margin-top: -35em;
+}
+.pociones-horarios{
+  margin-top: -28em;
+  display: flex;
+  justify-content: center;
+}

@@ -1,65 +1,4 @@
 <app-header></app-header>
-<!--ESTE es el codigo de las tarjetas-->
-<section class="nosotros">
-    <div class="container__card">
-        <div class="card__father">
-            <div class="card">
-                <div class="card__front" style="background-image: url(https://sevilla.abc.es/estilo/bulevarsur/wp-content/uploads/sites/14/2021/06/tendencias-unas-verano-2021-e1624129720213.jpeg);">
-                    <div class="bg"></div>
-                    <div class="body__card_front">
-                        <h1>Contactanos</h1>
-                    </div>
-                </div>
-                <div class="card__back">
-                    <div class="body__card_back">
-                        <h1>Contactanos</h1>
-                        <p>siguenos en nuestras redes sociales y esten pendientes para todas las promociones que tenemos</p>
-                        <a href=""><i class="fa-brands fa-facebook"></i></a>
-                        <a href=""><i class="fa-brands fa-instagram"></i></a>
-                        <a href=""><i class="fa-brands fa-tiktok"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card__father">
-            <div class="card">
-                <div class="card__front" style="background-image: url(https://hips.hearstapps.com/hmg-prod/images/manicura-con-ondas-1622543972.jpg?crop=1.00xw:0.804xh;0,0.163xh&resize=1200:*);">
-                    <div class="bg"></div>
-                    <div class="body__card_front">
-                        <h1>Servicios</h1>
-                    </div>
-                </div>
-                <div class="card__back">
-                    <div class="body__card_back">
-                        <h1>Servicios</h1>
-                        <p>contamos con manicure pedicura en tradicional, semipermanente, acrilicas, poligel, presson, encapsulado, recubrimiento de acrilicas, recubrimiento en gel, </p>
-                        <input type="button" value="registrate como usuario">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card__father">
-            <div class="card">
-                <div class="card__front" style="background-image: url(https://www.clara.es/medio/2023/01/11/unas-moradas-2023_90816d53_1080x1346.jpg);">
-                    <div class="bg"></div>
-                    <div class="body__card_front">
-                        <h1>Trabaja con nosotros</h1>
-                    </div>
-                </div>
-                <div class="card__back">
-                    <div class="body__card_back">
-                        <h1>¿Quieres trabajar con nosotros?</h1>
-                        <p>Si quires trabajar con nosotros registrate en REGISTRO EMPLEADO tenemos muchos veneficios para ti cumplimos con todas las expectativas para ti como emplead@</p>
-                        <input type="button" value="registrate como empleado">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!--ESTE es el codigo de el slider-->
 
 <section class="testimony">
@@ -120,6 +59,66 @@
             </figure>
         </section>
         <img [src]="'./assets/img/' + imagenes[1]" class="testimony__arrow" id="next" (click)="onNextButtonClick()">
+    </div>
+</section>
+<!--ESTE es el codigo de las tarjetas-->
+<section class="nosotros">
+    <div class="container__card">
+        <div class="card__father">
+            <div class="card">
+                <div class="card__front" style="background-image: url(https://sevilla.abc.es/estilo/bulevarsur/wp-content/uploads/sites/14/2021/06/tendencias-unas-verano-2021-e1624129720213.jpeg);">
+                    <div class="bg"></div>
+                    <div class="body__card_front">
+                        <h1>Contactanos</h1>
+                    </div>
+                </div>
+                <div class="card__back">
+                    <div class="body__card_back">
+                        <h1>Contactanos</h1>
+                        <p>siguenos en nuestras redes sociales y esten pendientes para todas las promociones que tenemos</p>
+                        <a href=""><i class="fa-brands fa-facebook"></i></a>
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card__father">
+            <div class="card">
+                <div class="card__front" style="background-image: url(https://hips.hearstapps.com/hmg-prod/images/manicura-con-ondas-1622543972.jpg?crop=1.00xw:0.804xh;0,0.163xh&resize=1200:*);">
+                    <div class="bg"></div>
+                    <div class="body__card_front">
+                        <h1>Servicios</h1>
+                    </div>
+                </div>
+                <div class="card__back">
+                    <div class="body__card_back">
+                        <h1>Servicios</h1>
+                        <p>contamos con manicure pedicura en tradicional, semipermanente, acrilicas, poligel, presson, encapsulado, recubrimiento de acrilicas, recubrimiento en gel, </p>
+                        <input type="button" [routerLink]="['/Login']" value="registrate como usuario">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card__father">
+            <div class="card">
+                <div class="card__front" style="background-image: url(https://www.clara.es/medio/2023/01/11/unas-moradas-2023_90816d53_1080x1346.jpg);">
+                    <div class="bg"></div>
+                    <div class="body__card_front">
+                        <h1>Trabaja con nosotros</h1>
+                    </div>
+                </div>
+                <div class="card__back">
+                    <div class="body__card_back">
+                        <h1>¿Quieres trabajar con nosotros?</h1>
+                        <p>Si quires trabajar con nosotros registrate en REGISTRO EMPLEADO tenemos muchos veneficios para ti cumplimos con todas las expectativas para ti como emplead@</p>
+                        <input type="button" [routerLink]="['/contacto']" value="registrate como empleado">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 <app-footer></app-footer>

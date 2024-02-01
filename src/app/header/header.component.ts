@@ -11,7 +11,7 @@ import { GravatarConfig } from 'ngx-gravatar';
 export class HeaderComponent implements OnInit {
   usuarioInfo: any;
   isMenuOpen = false;
-  gravatarConfig: GravatarConfig; // Agrega esta propiedad
+  gravatarConfig: GravatarConfig; 
 
   constructor(
     private usuarioService: UsuarioService,

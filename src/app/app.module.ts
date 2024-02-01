@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CloudinaryModule } from '@cloudinary/ng';
+import { Cloudinary } from '@cloudinary/url-gen';import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {UsuarioService}  from './service/usuario.service';
 import { GravatarModule } from 'ngx-gravatar';
 import { AuthInterceptor } from './auth.interceptor';
-import { AgragarManicuristaComponent } from './agragar-manicurista/agragar-manicurista.component';
+import { AgragarManicuristaComponent } from './agregar-manicurista/agragar-manicurista.component';
 import { GaleriaComponent } from './galeria/galeria.component';
 import { AgendacionCitasComponent } from './agendacion-citas/agendacion-citas.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -22,7 +23,10 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { ModalComponent } from './modal/modal.component';
 import { CalendarioManicuristaComponent } from './calendario-manicurista/calendario-manicurista.component';
 import { OpcionesManicuraComponent } from './gestion-de-la-cita/opciones-manicura/opciones-manicura.component';
-import { SeleccionarHorarioComponent } from './gestion-de-la-cita/seleccionar-horario/seleccionar-horario.component';
+import { ContactoComponent } from './contacto/contacto.component';
+import { ManicuristasComponent } from './manicuristas/manicuristas.component';
+import { FavoritosComponent } from './favoritos/favoritos.component';
+import { AyudaComponent } from './ayuda/ayuda.component';
 
 
 @NgModule({
@@ -38,7 +42,10 @@ import { SeleccionarHorarioComponent } from './gestion-de-la-cita/seleccionar-ho
     ModalComponent,
     CalendarioManicuristaComponent,
     OpcionesManicuraComponent,
-    SeleccionarHorarioComponent,
+    ContactoComponent,
+    ManicuristasComponent,
+    FavoritosComponent,
+    AyudaComponent,
   ],
   imports: [
     GravatarModule.forRoot({
@@ -46,7 +53,9 @@ import { SeleccionarHorarioComponent } from './gestion-de-la-cita/seleccionar-ho
       size: 100,  // Tamaño predeterminado del avatar
       fallback: 'retro',  // Imagen predeterminada si Gravatar no tiene una asociada al correo electrónico
     }),
+    CloudinaryModule,
     MatDialogModule,
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -54,7 +63,10 @@ import { SeleccionarHorarioComponent } from './gestion-de-la-cita/seleccionar-ho
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    })
   ],
   providers: [
     UsuarioService,
