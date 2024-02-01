@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CloudinaryModule } from '@cloudinary/ng';
+import { Cloudinary } from '@cloudinary/url-gen';import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { OpcionesManicuraComponent } from './gestion-de-la-cita/opciones-manicur
 import { ContactoComponent } from './contacto/contacto.component';
 import { ManicuristasComponent } from './manicuristas/manicuristas.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
+import { AyudaComponent } from './ayuda/ayuda.component';
 
 
 @NgModule({
@@ -43,6 +45,7 @@ import { FavoritosComponent } from './favoritos/favoritos.component';
     ContactoComponent,
     ManicuristasComponent,
     FavoritosComponent,
+    AyudaComponent,
   ],
   imports: [
     GravatarModule.forRoot({
@@ -50,6 +53,7 @@ import { FavoritosComponent } from './favoritos/favoritos.component';
       size: 100,  // Tamaño predeterminado del avatar
       fallback: 'retro',  // Imagen predeterminada si Gravatar no tiene una asociada al correo electrónico
     }),
+    CloudinaryModule,
     MatDialogModule,
     BrowserAnimationsModule,
     BrowserModule,

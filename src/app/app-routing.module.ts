@@ -8,6 +8,7 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { ManicuristasComponent } from './manicuristas/manicuristas.component';
 import { CalendarioManicuristaComponent } from './calendario-manicurista/calendario-manicurista.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
+import { AyudaComponent } from './ayuda/ayuda.component';
 import { from } from 'rxjs';
 const routes: Routes = [
   { path: '', component: PrincipalComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path:'agendarCita',component:AgendacionCitasComponent},
   {path:'contacto',component:ContactoComponent},
   {path:'Manicuristas',component:ManicuristasComponent},
-  {path:'favoritos',component:FavoritosComponent}
+  {path:'favoritos',component:FavoritosComponent},
+  {path:'ayuda',component:AyudaComponent}
 ];
 
 
