@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/cor
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { CalendarView, CalendarWeekViewComponent } from 'angular-calendar';
 import Swal from 'sweetalert2';
-
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-opciones-manicura',
   templateUrl: './opciones-manicura.component.html',
@@ -35,7 +35,8 @@ export class OpcionesManicuraComponent implements OnInit {
     // Obtén los manicuristas y la información del usuario
     this.usuarioService.getManicuristas().subscribe(
       (manicuristas) => {
-        this.manicuristas = manicuristas;
+        this.manicuristas = manicuristas.map(manicurista => ({ ...manicurista, favorito: false }));
+        console.log('Manicuristas cargados:', this.manicuristas);
       },
       (error) => {
         console.error('Error al obtener manicuristas:', error);
@@ -76,9 +77,11 @@ export class OpcionesManicuraComponent implements OnInit {
 
   marcarComoFavorita(manicurista: any) {
     manicurista.favorito = !manicurista.favorito;
-    this.favoritoSeleccionado = manicurista.favorito; // Actualizar el valor en la propiedad del componente
+    console.log('Manicurista después de marcar como favorito:', manicurista);
     console.log('Valor de favorito después de hacer clic:', manicurista.favorito);
   }
+  
+  
 
   seleccionarTipoServicio(tipoServicio: string) {
     this.ubicacionServicio = tipoServicio;
@@ -128,7 +131,7 @@ export class OpcionesManicuraComponent implements OnInit {
         tipo_servicio: this.tipoServicioSeleccionado,
         ubicacion_servicio: this.ubicacionServicio,
         duracion_en_horas: this.duracionEnHoras,
-        favorito: this.favoritoSeleccionado,
+        favorito: this.manicuristaSeleccionada.favorito,
         fecha_del_servicio: fechaServicio,
         estado: 'programada'
       };

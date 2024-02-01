@@ -83,7 +83,7 @@ export class UsuarioService {
     return this.http.post(`${this.apiUrl}/sendEmailWithEmpleadosData`, data);
   }
 
-// UsuarioService
+// UsuarioService consulta de favoritos
 getFavoritaManicuristas(userEmail: string): Observable<any[]> {
   const url = `${this.apiUrl}/manicurista/favorita/${userEmail}`;
   return this.http.get<any[]>(url);

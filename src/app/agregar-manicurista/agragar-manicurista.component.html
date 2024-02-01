@@ -8,13 +8,13 @@
 >
 Agregar Manicurista
 </button>
-<form class="form">
+<form class="form" (submit)="buscarManicuristas(); $event.preventDefault()" novalidate>
   <button class="btn" type="submit">
     <svg class="lupa" width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
       <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
     </svg>
   </button>
-  <input class="input" placeholder="Buscar Manicurista" required="" type="text" [(ngModel)]="nombreABuscar" (ngModelChange)="onSearchTermChange()">
+  <input class="input" placeholder="Buscar Manicurista" required="" type="text" [(ngModel)]="nombreABuscar" (input)="onSearchTermChange()" name="nombreABuscar">
   <button class="reset" type="reset">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
       <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
@@ -29,7 +29,7 @@ Agregar Manicurista
       <h2>{{ editMode ? 'Editar Manicurista' : 'Agregar Manicurista' }}</h2>
       <span class="close" (click)="cerrarModal()">&times;</span>
     </div>
-    <form (ngSubmit)="registrarManicurista()">
+    <form (ngSubmit)="registrarManicurista()" enctype="multipart/form-data">
       <div class="form-group">
         <div class="input-container">
           <div class="form__group field">
@@ -120,7 +120,7 @@ Agregar Manicurista
       <td>{{ manicurista.direccion }}</td>
       <td>{{ manicurista.descripcion }}</td>
       <td>
-        <button class="btn-editar" (click)="editarManicurista(manicurista)">Editar</button>
+        <button class="btn-editar" (click)="editarManicurista(manicurista)">Editar  </button>
         <button class="btn-desactivar" (click)="eliminarManicurista(manicurista.idmanicurista)">eliminar</button>
       </td>
     </tr>

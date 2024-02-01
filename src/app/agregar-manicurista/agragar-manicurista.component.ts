@@ -1,30 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../service/usuario.service';
 import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-agragar-manicurista',
   templateUrl: './agragar-manicurista.component.html',
   styleUrls: ['./agragar-manicurista.component.css']
 })
-export class AgragarManicuristaComponent implements OnInit{
+export class AgragarManicuristaComponent implements OnInit {
   manicurista = {
     idmanicurista: null,
     nombre: '',
-    apellido:'',
-    emailPersonal:'',
-    emailApp:'',
-    contrasenaApp:'',
-    celular:'',
-    direccion:'',
-    descripcion:'' 
+    apellido: '',
+    emailPersonal: '',
+    emailApp: '',
+    contrasenaApp: '',
+    celular: '',
+    direccion: '',
+    descripcion: ''
   };
+
   nombreABuscar: string = '';
   manicuristas: any[] = [];
   editMode = false;
 
   private searchTerm$ = new Subject<string>();
+
   constructor(private usuarioService: UsuarioService) {}
 
   ngOnInit(): void {
@@ -37,8 +40,24 @@ export class AgragarManicuristaComponent implements OnInit{
         console.error('Error al obtener manicuristas:', error);
       }
     );
-  }
 
+    // Suscripción al observable searchTerm$
+    this.searchTerm$
+  .pipe(
+    debounceTime(300),
+    distinctUntilChanged(),
+    switchMap((term) => this.usuarioService.buscarManicuristasPorNombre(term))
+  )
+  .subscribe(
+    (manicuristas) => {
+      console.log('Manicuristas encontrados:', manicuristas);
+      this.manicuristas = manicuristas;
+    },
+    (error) => {
+      console.error('Error en la búsqueda de manicuristas:', error);
+    }
+  );
+ }
   abrirModal() {
     const modal = document.getElementById('myModal');
     if (modal) {
@@ -59,7 +78,6 @@ export class AgragarManicuristaComponent implements OnInit{
     this.manicurista = { ...manicurista };
     this.abrirModal();
   }
-
 
   eliminarManicurista(idmanicurista: number): void {
     this.usuarioService.eliminarManicurista(idmanicurista).subscribe(
@@ -86,9 +104,6 @@ export class AgragarManicuristaComponent implements OnInit{
     );
   }
   onSearchTermChange(): void {
-    this.searchTerm$.next(this.nombreABuscar);
-  }
-  buscarManicuristas(): void {
     if (this.nombreABuscar.trim() !== '') {
       this.usuarioService.buscarManicuristasPorNombre(this.nombreABuscar).subscribe(
         (manicuristas) => {
@@ -100,13 +115,31 @@ export class AgragarManicuristaComponent implements OnInit{
         }
       );
     } else {
+      this.getManicuristas();  // Si el campo está vacío, muestra todos los manicuristas
+    }
+  }
+  
+
+  buscarManicuristas(): void {
+    if (this.nombreABuscar.trim() !== '') {
+      this.usuarioService.buscarManicuristasPorNombre(this.nombreABuscar).subscribe(
+        (manicuristas) => {
+          console.log('Manicuristas encontrados:', manicuristas);
+          this.manicuristas = manicuristas;
+        },
+        (error) => {
+          console.error('Error en la búsqueda de manicuristas:', error);
+          // Agrega lógica para mostrar el mensaje de error al usuario, si es necesario.
+        }
+      );
+    } else {
       this.getManicuristas();
     }
   }
+  
 
-    
   registrarManicurista(): void {
-    console.log("intentando registrar/editar manicurista ", this.manicurista);
+    console.log('Intentando registrar/editar manicurista ', this.manicurista);
     const observable = this.editMode
       ? this.usuarioService.updateManicurista(this.manicurista)
       : this.usuarioService.createManicurista(this.manicurista);
@@ -118,16 +151,16 @@ export class AgragarManicuristaComponent implements OnInit{
         this.manicurista = {
           idmanicurista: null,
           nombre: '',
-          apellido:'',
-          emailPersonal:'',
-          emailApp:'',
-          contrasenaApp:'',
-          celular:'',
-          direccion:'',
-          descripcion:''
+          apellido: '',
+          emailPersonal: '',
+          emailApp: '',
+          contrasenaApp: '',
+          celular: '',
+          direccion: '',
+          descripcion: ''
         };
         this.cerrarModal();
-        this.getManicuristas();  // Corrige esta línea llamando al método en la instancia del servicio
+        this.getManicuristas(); // Corrige esta línea llamando al método en la instancia del servicio
         Swal.fire({
           title: 'Éxito',
           text: 'Operación realizada con éxito.',
