@@ -3,19 +3,12 @@
     <div class="background"></div>
     <div class="card-switch">
         <label class="switch">
-            <input type="checkbox" class="toggle">
+            <input type="checkbox" class="toggle" [(ngModel)]="isChecked">
+
             <span class="slider"></span>
             <span class="card-side"></span>
             <div class="flip-card__inner">
-                <div class="flip-card__front">
-                    <div class="title">inicia sesion</div>
-                    <!-- login.component.html -->
-                    <form class="flip-card__form" (ngSubmit)="iniciarSesion()">
-                    <input class="flip-card__input" name="email" placeholder="Email" [(ngModel)]="usuarioLg.email" type="email" required>
-                    <input class="flip-card__input" name="password" placeholder="Contraseña" [(ngModel)]="usuarioLg.contrasena" type="password" required>
-                    <button class="flip-card__btn" type="submit">Inicia Sesión</button>
-                    </form>
-                </div>
+               
                 <div class="flip-card__back">
                     <div class="title">Registrate</div>
                     <form class="flip-card__form" (ngSubmit)="registrarUsuario()">
@@ -28,6 +21,16 @@
                         </div>
                         <button class="flip-card__btn" type="submit">Registrate</button>
                       </form>                                       
+                </div>
+                <div class="flip-card__front">
+                    
+                    <div class="title">inicia sesion</div>
+                    <!-- login.component.html -->
+                    <form class="flip-card__form" (ngSubmit)="iniciarSesion()">
+                    <input class="flip-card__input" name="email" placeholder="Email" [(ngModel)]="usuarioLg.email" type="email" required>
+                    <input class="flip-card__input" name="password" placeholder="Contraseña" [(ngModel)]="usuarioLg.contrasena" type="password" required>
+                    <button class="flip-card__btn" type="submit">Inicia Sesión</button>
+                    </form>
                 </div>
             </div>
         </label>

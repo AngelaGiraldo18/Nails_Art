@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { UsuarioService } from '../service/usuario.service';
 import { UsuarioSharedServiceService } from '../serviceUsuarioSharedService/usuario-shared-service.service';
 import { GravatarConfig } from 'ngx-gravatar';
+import { AuthService } from '../Auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private usuarioService: UsuarioService,
-    private usuarioSharedService: UsuarioSharedServiceService
+    private usuarioSharedService: UsuarioSharedServiceService,
+    public auth: AuthService 
   ) {
     // Obtén la configuración de Gravatar del servicio compartido
     this.gravatarConfig = this.usuarioSharedService.getGravatarConfig();

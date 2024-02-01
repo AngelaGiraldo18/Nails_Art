@@ -14,7 +14,12 @@ export class UsuarioService {
   private apiUrl = 'http://localhost:4000/api';
 
   // Inyecta el módulo HttpClient en el servicio
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    const storedUsuarioInfo = localStorage.getItem('usuarioInfo');
+    if (storedUsuarioInfo) {
+      this.usuarioInfoSubject.next(JSON.parse(storedUsuarioInfo));
+    }
+  }
 
   private usuarioInfoSubject = new BehaviorSubject<any>(null);
   usuarioInfo$ = this.usuarioInfoSubject.asObservable();
@@ -57,6 +62,13 @@ export class UsuarioService {
   }
   buscarManicuristasPorNombre(nombre: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/buscar-por-nombre/${nombre}`);
+  }
+
+
+  setUsuarioInfo(usuarioInfo: any): void {
+    this.usuarioInfoSubject.next(usuarioInfo);
+  
+    localStorage.setItem('usuarioInfo', JSON.stringify(usuarioInfo));
   }
   
   
