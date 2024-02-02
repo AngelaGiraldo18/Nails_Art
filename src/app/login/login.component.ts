@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { UsuarioService } from '../service/usuario.service';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
-import{ AuthService } from '../Auth/auth.service'
 import { UsuarioSharedServiceService } from '../serviceUsuarioSharedService/usuario-shared-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +10,6 @@ import { UsuarioSharedServiceService } from '../serviceUsuarioSharedService/usua
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  isChecked = false;
   usuario = {
     nombre: '',
     apellido: '',
@@ -24,12 +22,12 @@ export class LoginComponent {
     contrasena: '',
   };
 
-  constructor(private usuarioService: UsuarioService, public auth: AuthService,private usuarioSharedService: UsuarioSharedServiceService,private router: Router) {}
+  constructor(private usuarioService: UsuarioService, private usuarioSharedService: UsuarioSharedServiceService, private router: Router) {}
 
   iniciarSesion() {
     console.log('Intentando iniciar sesión:', this.usuarioLg);
     this.usuarioService.loginUser(this.usuarioLg.email, this.usuarioLg.contrasena).subscribe(
-      (response:any) => {
+      (response) => {
         // Maneja la respuesta exitosa aquí
         console.log('Inicio de sesión exitoso:', response);
         Swal.fire({
@@ -38,11 +36,7 @@ export class LoginComponent {
           icon: 'success',
           confirmButtonText: 'OK'
         });
-
-        this.auth.login(response.token)
-        this.router.navigate(['/'])
-
-
+        this.router.navigate(['/Inicio']);
       },
       (error) => {
         // Maneja el error aquí
@@ -69,15 +63,26 @@ export class LoginComponent {
     this.usuarioService.createUser(this.usuario).subscribe(
       (response) => {
         console.log('Usuario registrado con éxito:', response);
-        Swal.fire({
-          title: 'Registro exitoso',
-          text: 'El usuario se registró correctamente.',
-          icon: 'success',
-          confirmButtonText: 'OK'
-        })
-        
-        
-        this.isChecked = false;},
+        // Después de registrar, inicia sesión
+        this.usuarioService.loginUser(this.usuario.email, this.usuario.contrasena).subscribe(
+          (loginResponse) => {
+            console.log('Inicio de sesión exitoso después del registro:', loginResponse);
+            Swal.fire({
+              title: 'Inicio de sesión exitoso',
+              text: 'El usuario inició sesión automáticamente.',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            });
+  
+            // Redirige al usuario a la página principal
+            this.router.navigate(['/Inicio']);
+          },
+          (loginError) => {
+            console.error('Error al iniciar sesión después del registro:', loginError);
+          }
+        );
+  
+      },
       (error) => {
         console.error('Error al registrar usuario:', error);
         Swal.fire({
@@ -88,5 +93,5 @@ export class LoginComponent {
         });
       }
     );
-  }
+  }  
 }
