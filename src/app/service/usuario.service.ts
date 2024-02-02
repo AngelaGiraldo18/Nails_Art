@@ -33,7 +33,10 @@ export class UsuarioService {
     return this.http.post<LoginResponse>(`${this.apiUrl}/loginUsuario`, { email, contrasena }).pipe(
       tap(response => {
         console.log('Respuesta del inicio de sesión:', response);
+
         this.usuarioInfoSubject.next(response.usuario);
+          localStorage.setItem('usuarioInfo', JSON.stringify(response.usuario)); 
+       
       }),
       catchError((error) => {
         console.error('Error en la solicitud de inicio de sesión:', error);
@@ -68,7 +71,6 @@ export class UsuarioService {
   setUsuarioInfo(usuarioInfo: any): void {
     this.usuarioInfoSubject.next(usuarioInfo);
   
-    localStorage.setItem('usuarioInfo', JSON.stringify(usuarioInfo));
   }
   
   
