@@ -152,7 +152,7 @@
   justify-content: center;
 }
 
-.modal-container {
+.modal-container{
   background-color: #fff;
   max-width: 700px;
   width: 100%;
@@ -441,6 +441,82 @@
   border: 1px solid #ccc;
 }
 
+.horario{
+  display: flex;
+  margin-top: 40px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 50px;
+  width: 100%;
+  padding-bottom: 10px;
+}
+.fecha{
+  width: 200px;
+  height: 30px;
+  border-color: #631878;
+  border-radius: 20px;
+}
+#horario{
+  width: 90px;
+  height: 30px;
+  border-color: #631878;
+  border-radius: 20px;
+}
+.contenedorTiempo{
+  box-shadow:   8px 8px rgba(117, 45, 102, 0.685);
+  border: 1px solid #631878;
+  border-radius: 20px;
+  width: 450px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#minutos{
+  width: 90px;
+  height: 30px;
+  border-color: #631878;
+  border-radius: 20px;
+}
+.contenedorFecha{
+  display: flex;
+  flex-direction: column;
+}
+.contenedorHora{
+display: flex;
+flex-direction: column;
+margin-left: 50px;
+}
+.horasselect{
+  display: flex;
+}
+.contenedor-cliente{
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding-bottom: 10px;
+}
+
+.cliente{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow:   8px 8px rgba(117, 45, 102, 0.685);
+  border: 1px solid #631878;
+  border-radius: 20px;
+  width: 450px;
+  height: 100px;
+}
+.datosDeLaCita{
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
 .opcion-seleccionada {
   background-color: #631878 !important;
 }
@@ -449,4 +525,56 @@
 }
 .fecha-seleccionada {
   background-color: #631878;
+}
+.pasos{
+  display: flex;
+  flex-direction: column;
+}
+.pasos div{
+  font-size: 50px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background: #631878;
+  z-index: 1;
+  position: relative;
+  color: white;
+  padding-top: 50px;
+  justify-content: space-between;
+}
+.fa-solid{
+  font-size: 50px;
+  color: #af40ff;
+  margin-right: 60px;
+  height: 70px;
+  width: 70px;
+  border: 1px solid #631878;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contenedorIcon{
+display: flex;
+justify-content: center;
+}
+.datosCita{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow:   8px 8px rgba(117, 45, 102, 0.685);
+  border: 1px solid #631878;
+  border-radius: 20px;
+  width: 450px;
+  height: 140px;
+}
+.lista{
+  display: flex;
+  justify-content: center;
+}
+.pago{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
 }

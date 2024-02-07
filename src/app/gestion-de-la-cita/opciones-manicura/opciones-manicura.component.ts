@@ -20,6 +20,7 @@ export class OpcionesManicuraComponent implements OnInit {
   usuarioInfo: any; 
   favoritoSeleccionado: boolean = false;
 
+
   // Otras propiedades del componente
   @ViewChild('calendar') calendar!: CalendarWeekViewComponent;
   view: CalendarView = CalendarView.Week;
