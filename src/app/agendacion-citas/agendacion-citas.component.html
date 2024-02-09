@@ -8,18 +8,17 @@
   <div class="contenedorH">
     <!-- Opciones estáticas -->
     <div class="contenedorOpciones">
+
       <div (click)="seleccionarNuevaCita()">
         <i class="fa-regular fa-calendar"></i>
         <span>Nueva cita</span>
       </div>
-      <div>
+
+      <div (click)="seleccionarCitasAgendadas()">
         <i class="fa-solid fa-calendar-days"></i>
         <span>citas agendadas</span>
       </div>
-      <div>
-        <i class="fa-solid fa-clock-rotate-left"></i>
-        <span>Historial</span>
-      </div>
+
       <div (click)="seleccionarFavoritos()">
         <i class="fa-regular fa-heart"></i>
         <span>Favoritos</span>
@@ -31,17 +30,10 @@
   <div class="pociones-manicurista" *ngIf="opcionSeleccionada === 'nuevaCita'">
     <app-opciones-manicura (siguiente)="mostrarSeleccionarHorario()"></app-opciones-manicura>
   </div>
-  <!--
 
- <div *ngIf="opcionSeleccionada === 'citasAgendadas'">
-    <app-citas-agendadas></app-citas-agendadas>
+ <div *ngIf="opcionSeleccionada === 'fechas-agendadas'">
+    <app-fechas-agendadas></app-fechas-agendadas>
   </div>
-  
-  <div *ngIf="opcionSeleccionada === 'historial'">
-    <app-historial></app-historial>
-  </div>
-  
-  --> 
 
   <div *ngIf="opcionSeleccionada === 'favoritos'">
     <app-favoritos></app-favoritos>

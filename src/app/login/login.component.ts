@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { UsuarioService } from '../service/usuario.service';
 import Swal from 'sweetalert2';
-import { AuthService } from '../Auth/auth.service';
-import { UsuarioSharedServiceService } from '../serviceUsuarioSharedService/usuario-shared-service.service';
 import { Router } from '@angular/router';
+import{ AuthService } from '../Auth/auth.service'
+import { UsuarioSharedServiceService } from '../serviceUsuarioSharedService/usuario-shared-service.service';
+
 
 @Component({
   selector: 'app-login',
@@ -24,12 +25,15 @@ export class LoginComponent {
     contrasena: '',
   };
 
-  constructor(private usuarioService: UsuarioService, public auth: AuthService,private usuarioSharedService: UsuarioSharedServiceService,private router: Router) {}
+
+  constructor(private usuarioService: UsuarioService, public auth: AuthService,private usuarioSharedService: UsuarioSharedServiceService,private router: Router) {}
+
 
   iniciarSesion() {
     console.log('Intentando iniciar sesión:', this.usuarioLg);
     this.usuarioService.loginUser(this.usuarioLg.email, this.usuarioLg.contrasena).subscribe(
-      (response: any) => {
+
+      (response:any) => {
         // Maneja la respuesta exitosa aquí
         console.log('Inicio de sesión exitoso:', response);
         Swal.fire({
@@ -38,7 +42,6 @@ export class LoginComponent {
           icon: 'success',
           confirmButtonText: 'OK',
         });
-        
         this.auth.login(response.token)
         this.router.navigate(['/Inicio']);
       },

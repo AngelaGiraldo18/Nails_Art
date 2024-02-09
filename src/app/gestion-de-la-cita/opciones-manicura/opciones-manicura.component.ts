@@ -145,7 +145,7 @@ export class OpcionesManicuraComponent implements OnInit {
       this.abrirCalendarioModal();
     } 
   }
-  
+
   agendarCita() {
     if (this.siguienteHabilitado) {
       // Obtener la fecha seleccionada del input
@@ -186,13 +186,5 @@ export class OpcionesManicuraComponent implements OnInit {
         }
       );
     }
-  }
-  
-  formatDate(date: Date): string {
-    // Formatear la fecha en formato 'yyyy-MM-dd'
-    const year = date.getFullYear();
-    const month = ('0' + (date.getMonth() + 1)).slice(-2); // Agregar 1 al mes porque en JavaScript los meses van de 0 a 11
-    const day = ('0' + date.getDate()).slice(-2);
-    return `${year}-${month}-${day}`;
   }
 }

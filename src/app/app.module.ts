@@ -27,7 +27,8 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { ManicuristasComponent } from './manicuristas/manicuristas.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
-import { ToastrModule } from 'ngx-toastr';
+import { FechasAgendadasComponent } from './fechas-agendadas/fechas-agendadas.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ToastrModule } from 'ngx-toastr';
     ContactoComponent,
     ManicuristasComponent,
     FavoritosComponent,
-    AyudaComponent
+    AyudaComponent,
+    FechasAgendadasComponent,
   ],
   imports: [
     GravatarModule.forRoot({
