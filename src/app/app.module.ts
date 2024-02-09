@@ -27,7 +27,7 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { ManicuristasComponent } from './manicuristas/manicuristas.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
-
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,7 @@ import { AyudaComponent } from './ayuda/ayuda.component';
     ContactoComponent,
     ManicuristasComponent,
     FavoritosComponent,
-    AyudaComponent,
+    AyudaComponent
   ],
   imports: [
     GravatarModule.forRoot({
@@ -62,7 +62,6 @@ import { AyudaComponent } from './ayuda/ayuda.component';
     HttpClientModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,

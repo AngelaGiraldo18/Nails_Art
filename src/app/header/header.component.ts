@@ -9,12 +9,12 @@ import { AuthService } from '../Auth/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
+
 export class HeaderComponent implements OnInit {
   usuarioInfo: any;
   isMenuOpen = false;
   gravatarConfig: GravatarConfig;
   mostrarBotonCerrarSesion = false;
-
 
   constructor(
     private usuarioService: UsuarioService,
@@ -82,4 +82,5 @@ export class HeaderComponent implements OnInit {
     elements.forEach((element) => element.classList.remove('activo'));
     (event.target as HTMLElement).classList.add('activo');
   }
+
 }
