@@ -27,6 +27,7 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { ManicuristasComponent } from './manicuristas/manicuristas.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
+import { FechasAgendadasComponent } from './fechas-agendadas/fechas-agendadas.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { AyudaComponent } from './ayuda/ayuda.component';
     ManicuristasComponent,
     FavoritosComponent,
     AyudaComponent,
+    FechasAgendadasComponent,
   ],
   imports: [
     GravatarModule.forRoot({

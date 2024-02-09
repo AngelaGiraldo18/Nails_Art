@@ -92,8 +92,10 @@
           </div>
         </div>        
       </div>
-      <button [disabled]="!siguienteHabilitado" (click)="abrirCalendarioModal()" class="py-3 px-6 rounded-lg text-white" style="background-image: linear-gradient(135deg, rgb(217, 105, 255) 0%, rgb(190, 10, 255) 100%);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Siguiente</font></font></button>      
-    </div>
+      <button [disabled]="!siguienteHabilitado" (click)="abrirCalendarioModal()" class="py-3 px-6 rounded-lg text-white" style="background-image: linear-gradient(135deg, rgb(217, 105, 255) 0%, rgb(190, 10, 255) 100%);">
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Siguiente</font></font>
+      </button>
+      </div>
   </div>
   <div class="modal-overlay" *ngIf="calendarioModalAbierta">
     <div class="modal-container">
@@ -107,12 +109,12 @@
         <div class="contenedorTiempo">
         <div class="contenedorFecha">
           <label for="">fecha</label>
-        <input class="fecha" type="date" name="fecha" id="">
+          <input class="fecha" type="date" name="fecha" [(ngModel)]="viewDate">
         </div>
         <div class="contenedorHora">
           <label for="horario">Selecciona una hora:</label>
           <div class="horasselect">
-            <select id="horario" name="horario">
+            <select id="horario" name="horario" [(ngModel)]="horaSeleccionada">
               <option value="8:00 am">8:00 am</option>
               <option value="9:00 am">9:00 am</option>
               <option value="10:00 am">10:00 am</option>
@@ -126,7 +128,7 @@
               <option value="6:00 pm">6:00 pm</option>
           </select>
   
-          <select id="minutos" name="minutos">
+          <select id="minutos" name="minutos" [(ngModel)]="minutoSeleccionado">
             <option value="01">01</option>
             <option value="02">02</option>
             <option value="03">03</option>

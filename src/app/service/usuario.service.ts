@@ -1,4 +1,3 @@
-// Servicio (UsuarioService)
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable ,of} from 'rxjs';
@@ -67,9 +66,9 @@ export class UsuarioService {
     return this.http.get<any[]>(`${this.apiUrl}/buscar-por-nombre/${nombre}`);
   }
 
-
   setUsuarioInfo(usuarioInfo: any): void {
     this.usuarioInfoSubject.next(usuarioInfo);
+  
   }
   
   
