@@ -219,8 +219,7 @@
 
         </li>
             <a [routerLink]="['/ayuda']">ayuda</a>
-            <a [routerLink]="['/contacto']">contactos</a>
-            
+            <a [routerLink]="['/contacto']">contactos</a>            
             <li *ngIf="auth.isLoggedIn() | async" class="nav-item active">
                 <a class="nav-link" [routerLink]="['/']" (click)="auth.logout()">Salir<span class="sr-only"></span></a>
             </li>

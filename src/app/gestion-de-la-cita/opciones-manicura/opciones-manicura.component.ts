@@ -59,7 +59,7 @@ export class OpcionesManicuraComponent implements OnInit {
   ngAfterViewInit() {
     this.fechaInput.nativeElement.value = this.formatDate(this.viewDate); // Inicializar el input con la fecha actual
   }
-  
+
   seleccionarFecha(event: any): void {
     const fechaSeleccionadaString = event.target.value; // Obtener la fecha como una cadena de texto
     const fechaSeleccionada = new Date(fechaSeleccionadaString); // Convertir la cadena de texto a un objeto de tipo Date
@@ -90,8 +90,8 @@ export class OpcionesManicuraComponent implements OnInit {
 
   seleccionarManicurista(manicurista: any) {
     this.manicuristaSeleccionada = manicurista;
-    this.verificarSeleccion();
   }
+  
   
   marcarComoFavorita(manicurista: any) {
     manicurista.favorito = !manicurista.favorito;
@@ -104,6 +104,7 @@ export class OpcionesManicuraComponent implements OnInit {
     this.calcularDuracionEnHoras();
     this.verificarSeleccion();
     this.opcionSeleccionada = tipoServicio;
+    console.log('Tipo de servicio seleccionado:', tipoServicio);
   }
 
   calcularDuracionEnHoras() {
@@ -116,9 +117,11 @@ export class OpcionesManicuraComponent implements OnInit {
     }
   }
   verificarSeleccion() {
-    // Verificar si tanto la ubicación como la manicurista han sido seleccionadas y que la manicurista no sea null
-    this.siguienteHabilitado = !!this.tipoServicioSeleccionado && !!this.manicuristaSeleccionada && !!this.ubicacionServicio;
-  }
+    const ubicacionSeleccionada = this.tipoServicioSeleccionado !== '';
+    const manicuristaSeleccionada = this.manicuristaSeleccionada !== null;
+    this.siguienteHabilitado = ubicacionSeleccionada && manicuristaSeleccionada;
+  }  
+  
   
   @Output() siguiente = new EventEmitter<void>();
 

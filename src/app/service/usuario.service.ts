@@ -66,6 +66,7 @@ export class UsuarioService {
     return this.http.get<any[]>(`${this.apiUrl}/buscar-por-nombre/${nombre}`);
   }
 
+
   setUsuarioInfo(usuarioInfo: any): void {
     this.usuarioInfoSubject.next(usuarioInfo);
   

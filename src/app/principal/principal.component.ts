@@ -10,6 +10,9 @@ export class PrincipalComponent {
   @ViewChild('beforeButton') beforeButton!: ElementRef;
   sliders: ElementRef<Element>[] = [];
   value: number = 0;
+  
+  viewDate: Date = new Date();
+
 
   ngAfterViewInit() {
     this.sliders = Array.from(document.querySelectorAll('.testimony__body')).map((element: Element) => {
