@@ -11,10 +11,13 @@ interface LoginResponse {
 })
 export class UsuarioService {
   private apiUrl = 'http://localhost:4000/api';
+  private citasSubject = new BehaviorSubject<any[]>([]);
+  citas$ = this.citasSubject.asObservable();
 
   // Inyecta el módulo HttpClient en el servicio
   constructor(private http: HttpClient) {
     const storedUsuarioInfo = localStorage.getItem('usuarioInfo');
+    
     if (storedUsuarioInfo) {
       this.usuarioInfoSubject.next(JSON.parse(storedUsuarioInfo));
     }
@@ -100,6 +103,14 @@ export class UsuarioService {
 getFavoritaManicuristas(userEmail: string): Observable<any[]> {
   const url = `${this.apiUrl}/manicurista/favorita/${userEmail}`;
   return this.http.get<any[]>(url);
+}
+
+//cambio de estado 
+cambiarEstadoCita(idCita: number, nuevoEstado: string): Observable<any> {
+return this.http.put<any>(`${this.apiUrl}/cambioDeEstado`, { id_cita: idCita, nuevo_estado: nuevoEstado });
+}
+obtenerCitasPorId(idCita: number): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/citas/${idCita}`);
 }
 
 

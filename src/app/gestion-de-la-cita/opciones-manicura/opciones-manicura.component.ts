@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { CalendarView, CalendarWeekViewComponent } from 'angular-calendar';
 import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-opciones-manicura',
@@ -9,37 +11,29 @@ import Swal from 'sweetalert2';
   styleUrls: ['./opciones-manicura.component.css']
 })
 export class OpcionesManicuraComponent implements OnInit {
+  // Propiedades del componente
   manicuristas: any[] = [];
   tipoServicioSeleccionado: string = '';
-  
   manicuristaSeleccionada: { idmanicurista: number, nombre: string, favorito: boolean } | null = null;
   ubicacionServicio: string = '';
   duracionEnHoras: number = 0;
-  opcionSeleccionada: string = ''; 
+  opcionSeleccionada: string = '';
   modalAbierta: boolean = false;
   calendarioModalAbierta: boolean = false;
   siguienteHabilitado: boolean = false;
-  usuarioInfo: any; 
+  usuarioInfo: any;
   favoritoSeleccionado: boolean = false;
-  horaSeleccionada: string = ''; 
-  minutoSeleccionado: string = '';
-
+  fechaHoraSeleccionada: string = ''; // Cambiar a string para manejar fecha y hora juntas
 
   // Otras propiedades del componente
   @ViewChild('calendar') calendar!: CalendarWeekViewComponent;
   @ViewChild('fechaInput', { static: true }) fechaInput!: ElementRef;
 
-  view: CalendarView = CalendarView.Week;
-  viewDate: Date = new Date();
-  
-  daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-  startHour = 8;
-  endHour = 18;
 
-  constructor(private usuarioService: UsuarioService) {}
+  constructor(private usuarioService: UsuarioService, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
-    // Obtén los manicuristas y la información del usuario
+    // Obtener los manicuristas y la información del usuario
     this.usuarioService.getManicuristas().subscribe(
       (manicuristas) => {
         this.manicuristas = manicuristas.map(manicurista => ({ ...manicurista, favorito: false }));
@@ -49,28 +43,11 @@ export class OpcionesManicuraComponent implements OnInit {
         console.error('Error al obtener manicuristas:', error);
       }
     );
-    this.viewDate = new Date();
-    
     this.usuarioService.usuarioInfo$.subscribe(usuario => {
       this.usuarioInfo = usuario;
     });
   }
 
-  ngAfterViewInit() {
-    this.fechaInput.nativeElement.value = this.formatDate(this.viewDate); // Inicializar el input con la fecha actual
-  }
-
-  seleccionarFecha(event: any): void {
-    const fechaSeleccionadaString = event.target.value; // Obtener la fecha como una cadena de texto
-    const fechaSeleccionada = new Date(fechaSeleccionadaString); // Convertir la cadena de texto a un objeto de tipo Date
-    if (isNaN(fechaSeleccionada.getTime())) {
-      console.error('La fecha seleccionada no es válida:', fechaSeleccionadaString);
-      // Manejar el caso en que la fecha no sea válida, por ejemplo, mostrando un mensaje de error
-      return;
-    }
-    this.viewDate = fechaSeleccionada; // Asignar la fecha seleccionada como un objeto de tipo Date
-  }  
-  
   abrirModal(tipoServicio: string) {
     this.tipoServicioSeleccionado = tipoServicio;
     this.modalAbierta = true;
@@ -87,18 +64,22 @@ export class OpcionesManicuraComponent implements OnInit {
   cerrarCalendarioModal() {
     this.calendarioModalAbierta = false;
   }
+  cerrarTodasModales() {
+    this.modalAbierta = false;
+    this.calendarioModalAbierta = false;
+  }
 
   seleccionarManicurista(manicurista: any) {
     this.manicuristaSeleccionada = manicurista;
+    this.verificarSeleccion();
   }
-  
-  
+
   marcarComoFavorita(manicurista: any) {
     manicurista.favorito = !manicurista.favorito;
     console.log('Manicurista después de marcar como favorito:', manicurista);
     console.log('Valor de favorito después de hacer clic:', manicurista.favorito);
   }
-  
+
   seleccionarTipoServicio(tipoServicio: string) {
     this.ubicacionServicio = tipoServicio;
     this.calcularDuracionEnHoras();
@@ -116,15 +97,14 @@ export class OpcionesManicuraComponent implements OnInit {
       this.duracionEnHoras = (this.ubicacionServicio === 'manos') ? 3 : 2.5;
     }
   }
-  verificarSeleccion() {
-    const ubicacionSeleccionada = this.tipoServicioSeleccionado !== '';
-    const manicuristaSeleccionada = this.manicuristaSeleccionada !== null;
-    this.siguienteHabilitado = ubicacionSeleccionada && manicuristaSeleccionada;
-  }  
-  
-  
-  @Output() siguiente = new EventEmitter<void>();
 
+  verificarSeleccion() {
+    // Verificar si tanto la ubicación como la manicurista han sido seleccionadas y que la manicurista no sea null
+    this.siguienteHabilitado = !!this.tipoServicioSeleccionado && !!this.manicuristaSeleccionada && !!this.ubicacionServicio;
+  }
+  
+
+  @Output() siguiente = new EventEmitter<void>();
   siguientePaso() {
     if (this.siguienteHabilitado) {
       if (!this.manicuristaSeleccionada || !('idmanicurista' in this.manicuristaSeleccionada)) {
@@ -132,49 +112,39 @@ export class OpcionesManicuraComponent implements OnInit {
         return;
       }
       const datosCita = {
-        id_usuario: this.usuarioInfo.id, // Asegúrate de obtener el ID de usuario correctamente
-        id_manicurista: this.manicuristaSeleccionada.idmanicurista, // Asignar correctamente el ID del manicurista seleccionado
+        id_usuario: this.usuarioInfo.id,
+        id_manicurista: this.manicuristaSeleccionada.idmanicurista,
         tipo_servicio: this.tipoServicioSeleccionado,
         ubicacion_servicio: this.ubicacionServicio,
         duracion_en_horas: this.duracionEnHoras,
         favorito: this.manicuristaSeleccionada.favorito,
-        fecha_del_servicio: '', // Esto se establecerá más adelante
+        fecha_del_servicio: this.fechaHoraSeleccionada, // Usar la fecha y hora seleccionadas
         estado: 'programada'
       };
-  
+
       console.log('Datos de la cita:', datosCita);
-  
+
       this.cerrarModal();
       this.abrirCalendarioModal();
-    } 
+    }
   }
-  
-  
 
   agendarCita() {
     if (this.siguienteHabilitado) {
-      // Obtener la fecha seleccionada del input
-      const fechaSeleccionada = new Date(this.viewDate);
-      
-      // Obtener la hora y el minuto seleccionados
-      const horaSeleccionada = this.horaSeleccionada ? parseInt(this.horaSeleccionada) : 0;
-      const minutoSeleccionado = this.minutoSeleccionado ? parseInt(this.minutoSeleccionado) : 0;
-      
-      // Establecer la hora y el minuto en la fecha seleccionada
-      fechaSeleccionada.setHours(horaSeleccionada, minutoSeleccionado);
+      // Obtener la fecha y hora seleccionadas del input
+      const fechaHoraSeleccionada = new Date(this.fechaHoraSeleccionada);
       const datosCita = {
         id_usuario: this.usuarioInfo.id,
-        id_manicurista: this.manicuristaSeleccionada?.idmanicurista, // Acceso seguro a la propiedad
+        id_manicurista: this.manicuristaSeleccionada?.idmanicurista,
         tipo_servicio: this.tipoServicioSeleccionado,
         ubicacion_servicio: this.ubicacionServicio,
         duracion_en_horas: this.duracionEnHoras,
-        favorito: this.manicuristaSeleccionada?.favorito, // Acceso seguro a la propiedad
-        fecha_del_servicio: fechaSeleccionada.toISOString(),
+        favorito: this.manicuristaSeleccionada?.favorito,
+        fecha_del_servicio: this.formatDateTime(fechaHoraSeleccionada), // Formatear fecha y hora seleccionadas
         estado: 'programada'
       };
-  
       console.log('Datos de la cita a enviar:', datosCita);
-  
+
       this.usuarioService.createCita(datosCita).subscribe(
         (response) => {
           console.log('Respuesta del servidor:', response);
@@ -187,17 +157,19 @@ export class OpcionesManicuraComponent implements OnInit {
         () => {
           this.cerrarModal();
           this.abrirCalendarioModal();
+          this.cerrarTodasModales();
           this.favoritoSeleccionado = true;
         }
       );
     }
   }
-  
-  formatDate(date: Date): string {
-    // Formatear la fecha en formato 'yyyy-MM-dd'
-    const year = date.getFullYear();
-    const month = ('0' + (date.getMonth() + 1)).slice(-2); // Agregar 1 al mes porque en JavaScript los meses van de 0 a 11
-    const day = ('0' + date.getDate()).slice(-2);
-    return `${year}-${month}-${day}`;
+
+  formatDateTime(date: any): string {
+    if (!(date instanceof Date)) {
+      console.error('El valor proporcionado no es una instancia de Date:', date);
+      return ''; // O manejar el error de otra manera
+    }
+    const formattedDate = this.datePipe.transform(date, 'yyyy-MM-ddTHH:mm', 'America/Bogota');
+    return formattedDate ? formattedDate : '';
   }
 }

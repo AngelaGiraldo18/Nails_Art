@@ -28,6 +28,7 @@ import { ManicuristasComponent } from './manicuristas/manicuristas.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
 import { FechasAgendadasComponent } from './fechas-agendadas/fechas-agendadas.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { FechasAgendadasComponent } from './fechas-agendadas/fechas-agendadas.co
   ],
   providers: [
     UsuarioService,
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
