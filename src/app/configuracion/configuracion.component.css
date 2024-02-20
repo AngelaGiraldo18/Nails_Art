@@ -1,0 +1,301 @@
+section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.botonagg{
+  margin-left: 100px;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.modal-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+  max-width: 80%;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.close-icon {
+  cursor: pointer;
+  font-size: 20px;
+  color: #999;
+}
+
+.modal-body form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-body label {
+  margin-bottom: 5px;
+}
+
+.modal-body input[type="text"],
+input[type="number"] {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal-body button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #631878; /* Color del botón */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-body button[type="submit"]:hover {
+  background-color: #85339c; /* Color del botón al pasar el ratón */
+}
+
+.configuracionMaster{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow:   8px 8px rgba(117, 45, 102, 0.685);
+    border: 1px solid #631878;
+    border-radius: 20px;
+    width: 85%;
+    margin-top: 20px;
+}
+
+.contenedor2{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    flex-direction: column;
+}
+
+ul{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+ul li{
+  padding: 20px 20px;
+  display: flex;
+}
+.label{
+  color: #631878;
+  font-weight: 1000;
+  padding-left: 20px;
+}
+button {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    margin-left: 10px;
+    outline-offset: 4px;
+    transition: filter 250ms;
+    user-select: none;
+    touch-action: manipulation;
+   }
+   
+   .shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: hsl(0deg 0% 0% / 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition: transform
+       600ms
+       cubic-bezier(.3, .7, .4, 1);
+   }
+   
+   .edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient(
+       to left,
+       hsla(300, 69%, 26%, 0.685) 0%,
+       hsl(305, 50%, 28%) 8%,
+       hsl(305, 26%, 41%) 92%,
+       hsl(310, 68%, 21%) 100%
+     );
+   }
+   
+   .front {
+    display: block;
+    position: relative;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: white;
+    background: #631878;
+    will-change: transform;
+    transform: translateY(-4px);
+    transition: transform
+       600ms
+       cubic-bezier(.3, .7, .4, 1);
+   }
+   
+   button:hover {
+    filter: brightness(110%);
+   }
+   
+   button:hover .front {
+    transform: translateY(-6px);
+    transition: transform
+       250ms
+       cubic-bezier(.3, .7, .4, 1.5);
+   }
+   
+   button:active .front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+   }
+   
+   button:hover .shadow {
+    transform: translateY(4px);
+    transition: transform
+       250ms
+       cubic-bezier(.3, .7, .4, 1.5);
+   }
+   
+   button:active .shadow {
+    transform: translateY(1px);
+    transition: transform 34ms;
+   }
+   
+   button:focus:not(:focus-visible) {
+    outline: none;
+   }
+   .precio{
+    display: flex;
+    height: 30px;
+    align-items: center;
+    margin-top: 20px;
+   }
+   .input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  } 
+  .form-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .input-container {
+    width: calc(48% - 10px);
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+  }
+  
+  .input-container label {
+    margin-bottom: 5px;
+  }
+  
+  .form__group {
+    position: relative;
+    padding: 20px 0 0;
+    width: 100%;
+    max-width: 180px;
+  }
+  
+  .form__field {
+    font-family: inherit;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #a14bb9;
+    outline: 0;
+    font-size: 17px;
+    color: black;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+  
+  .form__field::placeholder {
+    color: transparent;
+  }
+  
+  .form__field:placeholder-shown ~ .form__label {
+    font-size: 17px;
+    cursor: text;
+    top: 20px;
+  }
+  
+  .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 17px;
+    color: #a14bb9;
+    pointer-events: none;
+  }
+  
+  .form__field:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #85339c, #a14bb9);
+    border-image-slice: 1;
+  }
+  
+  .form__field:focus ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 17px;
+    color: #a14bb9;;
+    font-weight: 700;
+  }
+  
+  /* reset input */
+  .form__field:required, .form__field:invalid {
+    box-shadow: none;
+  }
+  
+  .button-container {
+    text-align: end;
+    margin-right: 30px;
+  }
+
+  .py-3 {
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background-image: linear-gradient(135deg, rgb(217, 105, 255) 0%, rgb(190, 10, 255) 100%);
+  }

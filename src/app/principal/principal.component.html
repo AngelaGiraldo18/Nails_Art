@@ -1,0 +1,124 @@
+<app-header></app-header>
+<!--ESTE es el codigo de el slider-->
+
+<section class="testimony">
+    <div class="testimony__container container">
+        <img [src]="'./assets/img/' + imagenes[0]" class="testimony__arrow" id="before" (click)="onBeforeButtonClick()">
+
+        <section class="testimony__body testimony__body--show" [attr.data-id]="1">
+            <div class="testimony__texts">
+                <h2 class="subtitle">Mi nombre es Milton parra londoño, <span class="testimony__course">Manicurista
+                        de Nails Art.</span></h2>
+                <p class="testimony__review">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut est
+                    esse, asperiores eaque totam nulla repudiandae quasi, deserunt culpa exercitationem
+                    blanditiis laborum veniam laboriosam saepe reiciendis dolorem. Cum, ratione voluptatum!</p>
+            </div>
+
+            <figure class="testimony__picture">
+                <img [src]="'./assets/img/' + imagenes[2]"  class="testimony__img">
+            </figure>
+        </section>
+
+        <section class="testimony__body" [attr.data-id]="2">
+            <div class="testimony__texts">
+                <h2 class="subtitle">Mi nombre es Carlos sanchez, <span class="testimony__course">Manicurista de
+                        Nails Art.</span></h2>
+                <p class="testimony__review">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut est
+                    esse, asperiores eaque laborum veniam laboriosam saepe reiciendis dolorem. Cum, ratione
+                    voluptatum!</p>
+            </div>
+
+            <figure class="testimony__picture">
+                <img [src]="'./assets/img/' + imagenes[4]" alt="" class="testimony__img">
+            </figure>
+        </section>
+
+        <section class="testimony__body" [attr.data-id]="3">
+            <div class="testimony__texts">
+                <h2 class="subtitle">Mi nombre es Angela Maria Giraldo <span class="testimony__course">Manicurista de
+                        Nails Art.</span></h2>
+                <p class="testimony__review">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut est
+                    esse, niam laboriosam saepe reiciendis dolorem. Cum, ratione voluptatum!</p>
+            </div>
+
+            <figure class="testimony__picture">
+                <img src="" class="testimony__img">
+            </figure>
+        </section>
+
+        <section class="testimony__body" [attr.data-id]="4">
+            <div class="testimony__texts">
+                <h2 class="subtitle">Mi nombre es Sergio riko, <span class="testimony__course">Manicurista de
+                        Nails Art.</span></h2>
+                <p class="testimony__review">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut est
+                    esse, niam laboriosam saepe reiciendis dolorem. Cum, ratione voluptatum!</p>
+            </div>
+
+            <figure class="testimony__picture">
+                <img [src]="'./assets/img/' + imagenes[5]" alt="" class="testimony__img">
+            </figure>
+        </section>
+        <img [src]="'./assets/img/' + imagenes[1]" class="testimony__arrow" id="next" (click)="onNextButtonClick()">
+    </div>
+</section>
+<!--ESTE es el codigo de las tarjetas-->
+<section class="nosotros">
+    <div class="container__card">
+        <div class="card__father">
+            <div class="card">
+                <div class="card__front" style="background-image: url(https://sevilla.abc.es/estilo/bulevarsur/wp-content/uploads/sites/14/2021/06/tendencias-unas-verano-2021-e1624129720213.jpeg);">
+                    <div class="bg"></div>
+                    <div class="body__card_front">
+                        <h1>Contactanos</h1>
+                    </div>
+                </div>
+                <div class="card__back">
+                    <div class="body__card_back">
+                        <h1>Contactanos</h1>
+                        <p>siguenos en nuestras redes sociales y esten pendientes para todas las promociones que tenemos</p>
+                        <a href=""><i class="fa-brands fa-facebook"></i></a>
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card__father">
+            <div class="card">
+                <div class="card__front" style="background-image: url(https://hips.hearstapps.com/hmg-prod/images/manicura-con-ondas-1622543972.jpg?crop=1.00xw:0.804xh;0,0.163xh&resize=1200:*);">
+                    <div class="bg"></div>
+                    <div class="body__card_front">
+                        <h1>Servicios</h1>
+                    </div>
+                </div>
+                <div class="card__back">
+                    <div class="body__card_back">
+                        <h1>Servicios</h1>
+                        <p>contamos con manicure pedicura en tradicional, semipermanente, acrilicas, poligel, presson, encapsulado, recubrimiento de acrilicas, recubrimiento en gel, </p>
+                        <input type="button" [routerLink]="['/Login']" value="registrate como usuario">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card__father">
+            <div class="card">
+                <div class="card__front" style="background-image: url(https://staticnew-prod.topdoctors.com.ar/article/7516/image/large/unas-de-acrilico-belleza-y-moda-vs-salud-1628705692.jpg);">
+                    <div class="bg"></div>
+                    <div class="body__card_front">
+                        <h1>Trabaja con nosotros</h1>
+                    </div>
+                </div>
+                <div class="card__back">
+                    <div class="body__card_back">
+                        <h1>¿Quieres trabajar con nosotros?</h1>
+                        <p>Si quires trabajar con nosotros registrate en REGISTRO EMPLEADO tenemos muchos veneficios para ti cumplimos con todas las expectativas para ti como emplead@</p>
+                        <input type="button" [routerLink]="['/contacto']" value="registrate como empleado">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

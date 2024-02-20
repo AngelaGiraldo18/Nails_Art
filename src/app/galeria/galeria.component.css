@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    margin-left: 109px;
+    margin-right: 109px;
+    background: linear-gradient(29deg, #ffff, #ea4bff, #ffc850);
+    height: 100vh;
+}
+
+h1{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 50px;
+    color: rgb(158, 10, 243)
+}
+.gallery {
+    display: grid;
+    padding: 10px 10px;
+    grid-template-columns: repeat(3, 1fr); 
+    float: left;
+    width: 311px;
+}
+
+.image {
+    border: 2px solid #fff;
+    border-radius: 18px;
+    padding: 5px;
+    background: linear-gradient(180deg, #ffe600, #631878);
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    color: #ffe600;
+}
+
+.image2 {
+    border: 2px solid #fff;
+    border-radius: 18px;
+    padding: 5px;
+    background: linear-gradient(180deg,  #ff9100, #631878);
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    color: #ff9100;
+}
+
+.image3 {
+    border: 2px solid #fff;
+    border-radius: 18px;
+    padding: 5px;
+    background: linear-gradient(180deg,   #ff0000, #631878);
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    color: #ff0000;
+}
+
+.image4 {
+    border: 2px solid #fff;
+    border-radius: 18px;
+    padding: 5px;
+    background: linear-gradient(180deg,  #f89cab, #631878);
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    color: #f89cab;
+}
+
+.image5 {
+    border: 2px solid #fff;
+    border-radius: 18px;
+    padding: 5px;
+    background: linear-gradient(180deg,  #59c2ff, #631878);
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    color: #59c2ff;
+}
+
+.image6 {
+    border: 2px solid #fff;
+    border-radius: 18px;
+    padding: 5px;
+    background: linear-gradient(180deg,  #5cffa5, #631878);
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    color: #f8b0ff;
+}
+
+.image7 {
+    border: 2px solid #fff;
+    border-radius: 18px;
+    padding: 5px;
+    background: linear-gradient(180deg,  #f719ff, #631878);
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    color: #f719ff;
+}
+
+.image8 {
+    border: 2px solid #fff;
+    border-radius: 18px;
+    padding: 5px;
+    background: linear-gradient(180deg,  #ff008c, #631878);
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    color: #ff008c;
+}
+
+img {
+    padding-top: 15px;
+    width: 250px;
+    height: 200px;
+}
+
