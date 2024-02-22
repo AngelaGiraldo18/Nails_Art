@@ -29,17 +29,18 @@ Agregar Manicurista
       <h2>{{ editMode ? 'Editar Manicurista' : 'Agregar Manicurista' }}</h2>
       <span class="close" (click)="cerrarModal()">&times;</span>
     </div>
-    <form (ngSubmit)="registrarManicurista()" enctype="multipart/form-data">
+    <form (ngSubmit)="registrarManicurista()" #form="ngForm" enctype="multipart/form-data">
+
       <div class="form-group">
         <div class="input-container">
           <div class="form__group field">
-            <input class="form__field" placeholder="Nombre" [(ngModel)]="manicurista.nombre" type="text" id="nombre" name="nombre" required>
+            <input class="form__field" placeholder="Nombre" [(ngModel)]="form.value.nombre" type="text" id="nombre" name="nombre" required>
             <label for="name" class="form__label">Nombre</label>
         </div>
         </div>
         <div class="input-container">
           <div class="form__group field">
-            <input class="form__field" placeholder="Apellido" [(ngModel)]="manicurista.apellido" type="text" id="apellido" name="apellido" required>
+            <input class="form__field" placeholder="Apellido" [(ngModel)]="form.value.apellido" type="text" id="apellido" name="apellido" required>
             <label for="name" class="form__label">Apellido</label>
         </div>
         </div>
@@ -47,13 +48,13 @@ Agregar Manicurista
       <div class="form-group">
         <div class="input-container">
           <div class="form__group field">
-            <input class="form__field" placeholder="Email Personal" [(ngModel)]="manicurista.emailPersonal" type="email" id="email" name="email" required>
+            <input class="form__field" placeholder="Email Personal" [(ngModel)]="form.value.emailPersonal" type="email" id="email" name="emailPersonal" required>
             <label for="name" class="form__label">Email Personal</label>
         </div>
         </div>
         <div class="input-container">
           <div class="form__group field">
-            <input class="form__field" placeholder="Email de la app" [(ngModel)]="manicurista.emailApp" type="email" id="email" name="email" required>
+            <input class="form__field" placeholder="Email de la app" [(ngModel)]="form.value.emailApp" type="email" id="email" name="emailApp" required>
             <label for="name" class="form__label">Email de la app</label>
         </div>
         </div>
@@ -61,13 +62,13 @@ Agregar Manicurista
       <div class="form-group">
         <div class="input-container">
           <div class="form__group field">
-            <input class="form__field" placeholder="Contraseña" [(ngModel)]="manicurista.contrasenaApp" type="password" id="contrasena" name="contrasena" required>
+            <input class="form__field" placeholder="Contraseña" [(ngModel)]="form.value.contrasenaApp" type="password" id="contrasena" name="contrasena" required>
             <label for="name" class="form__label">Contraseña</label>
         </div>
         </div>
         <div class="input-container">
           <div class="form__group field">
-            <input class="form__field" placeholder="Celular" [(ngModel)]="manicurista.celular" type="text" id="celular" name="celular" required>
+            <input class="form__field" placeholder="Celular" [(ngModel)]="form.value.celular" type="text" id="celular" name="celular" required>
             <label for="name" class="form__label">Celular</label>
         </div>
         </div>
@@ -75,16 +76,20 @@ Agregar Manicurista
       <div class="form-group">
         <div class="input-container">
           <div class="form__group field">
-            <input class="form__field" placeholder="Dirección" [(ngModel)]="manicurista.direccion" type="text" id="direccion" name="direccion">
+            <input class="form__field" placeholder="Dirección" [(ngModel)]="form.value.direccion" type="text" id="direccion" name="direccion">
             <label for="name" class="form__label">Dirección</label>
         </div>
         </div>
         <div class="input-container">
           <div class="form__group field">
             <label for="descripcion" class="form__label">Descripción:</label>
-          <textarea class="form__field" [(ngModel)]="manicurista.descripcion" id="descripcion" name="descripcion" rows="4" required></textarea>
+            <textarea class="form__field" [(ngModel)]="form.value.descripcion" id="descripcion" name="descripcion" rows="4" required></textarea>
+          </div>
         </div>
-        </div>
+      </div>
+      <div class="form-group">
+        <!-- Añade el campo para cargar la imagen aquí -->
+        <input type="file" (change)="onFileSelected($event)" name="imagen" accept="image/*">
       </div>
       <div class="button-container">
         <button
@@ -97,7 +102,6 @@ Agregar Manicurista
     </form>
   </div>
 </div>
-
 
 <table>
   <thead>

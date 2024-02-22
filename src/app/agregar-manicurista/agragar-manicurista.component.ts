@@ -3,66 +3,65 @@ import { UsuarioService } from '../service/usuario.service';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-agragar-manicurista',
   templateUrl: './agragar-manicurista.component.html',
   styleUrls: ['./agragar-manicurista.component.css']
 })
-export class AgragarManicuristaComponent implements OnInit {
-  manicurista = {
-    idmanicurista: null,
-    nombre: '',
-    apellido: '',
-    emailPersonal: '',
-    emailApp: '',
-    contrasenaApp: '',
-    celular: '',
-    direccion: '',
-    descripcion: ''
-  };
-
-  nombreABuscar: string = '';
-  manicuristas: any[] = [];
+export class AgragarManicuristaComponent {
+  form: FormGroup;
   editMode = false;
-
+  manicuristas: any[] = [];
+  nombreABuscar: string = '';
   private searchTerm$ = new Subject<string>();
 
-  constructor(private usuarioService: UsuarioService) {}
+  constructor(private usuarioService: UsuarioService, private fb: FormBuilder) {
+    this.form = this.fb.group({
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      emailPersonal: ['', Validators.required],
+      emailApp: ['', Validators.required],
+      contrasenaApp: ['', Validators.required],
+      celular: ['', Validators.required],
+      direccion: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      imagen: [null, Validators.required]
+    });
+  }
 
   ngOnInit(): void {
-    this.usuarioService.getManicuristas().subscribe(
-      (manicuristas) => {
-        this.manicuristas = manicuristas;
-        debugger; // Establece un punto de interrupción aquí
-      },
-      (error) => {
-        console.error('Error al obtener manicuristas:', error);
-      }
-    );
+    this.getManicuristas(); // Obtener manicuristas al iniciar el componente
 
     // Suscripción al observable searchTerm$
     this.searchTerm$
-  .pipe(
-    debounceTime(300),
-    distinctUntilChanged(),
-    switchMap((term) => this.usuarioService.buscarManicuristasPorNombre(term))
-  )
-  .subscribe(
-    (manicuristas) => {
-      console.log('Manicuristas encontrados:', manicuristas);
-      this.manicuristas = manicuristas;
-    },
-    (error) => {
-      console.error('Error en la búsqueda de manicuristas:', error);
-    }
-  );
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((term) => this.usuarioService.buscarManicuristasPorNombre(term))
+      )
+      .subscribe(
+        (manicuristas) => {
+          console.log('Manicuristas encontrados:', manicuristas);
+          this.manicuristas = manicuristas;
+        },
+        (error) => {
+          console.error('Error en la búsqueda de manicuristas:', error);
+        }
+      );
  }
   abrirModal() {
     const modal = document.getElementById('myModal');
     if (modal) {
       modal.style.display = 'block';
     }
+  }
+
+   onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    this.form.patchValue({ imagen: file });
+    this.form.get('imagen')?.updateValueAndValidity();
   }
 
   cerrarModal() {
@@ -75,7 +74,7 @@ export class AgragarManicuristaComponent implements OnInit {
   editarManicurista(manicurista: any): void {
     // Lógica para abrir un modal o navegar a la página de edición
     this.editMode = true;
-    this.manicurista = { ...manicurista };
+    this.manicuristas = { ...manicurista };
     this.abrirModal();
   }
 
@@ -144,47 +143,48 @@ export class AgragarManicuristaComponent implements OnInit {
     }
   }
   
-
   registrarManicurista(): void {
-    console.log('Intentando registrar/editar manicurista ', this.manicurista);
-    const observable = this.editMode
-      ? this.usuarioService.updateManicurista(this.manicurista)
-      : this.usuarioService.createManicurista(this.manicurista);
+    if (this.form.valid) {
+      const formData = new FormData();
+      Object.keys(this.form.value).forEach(key => {
+        formData.append(key, this.form.value[key]);
+      });
 
-    observable.subscribe(
-      (response) => {
-        console.log('Manicurista registrado/editado con éxito:', response);
-        this.editMode = false;
-        this.manicurista = {
-          idmanicurista: null,
-          nombre: '',
-          apellido: '',
-          emailPersonal: '',
-          emailApp: '',
-          contrasenaApp: '',
-          celular: '',
-          direccion: '',
-          descripcion: ''
-        };
-        this.cerrarModal();
-        this.getManicuristas(); // Corrige esta línea llamando al método en la instancia del servicio
-        Swal.fire({
-          title: 'Éxito',
-          text: 'Operación realizada con éxito.',
-          icon: 'success',
-          confirmButtonText: 'OK'
-        });
-      },
-      (error) => {
-        console.error('Error al registrar/editar manicurista:', error);
-        Swal.fire({
-          title: 'Error',
-          text: 'Hubo un error al realizar la operación. Por favor, inténtalo de nuevo.',
-          icon: 'error',
-          confirmButtonText: 'OK'
-        });
-      }
-    );
+      const observable = this.editMode
+        ? this.usuarioService.updateManicurista(formData)
+        : this.usuarioService.createManicurista(formData);
+
+      observable.subscribe(
+        (response) => {
+          console.log('Manicurista registrado/editado con éxito:', response);
+          this.editMode = false;
+          this.form.reset();
+          this.cerrarModal();
+          this.getManicuristas(); // Lógica para actualizar la lista de manicuristas
+          Swal.fire({
+            title: 'Éxito',
+            text: 'Operación realizada con éxito.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          });
+        },
+        (error) => {
+          console.error('Error al registrar/editar manicurista:', error);
+          Swal.fire({
+            title: 'Error',
+            text: 'Hubo un error al realizar la operación. Por favor, inténtalo de nuevo.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
+      );
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Formulario no válido',
+        text: 'Por favor, completa todos los campos correctamente.',
+      });
+    }
   }
 
   private getManicuristas(): void {
