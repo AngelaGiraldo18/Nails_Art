@@ -4,7 +4,6 @@ import { CalendarView, CalendarWeekViewComponent } from 'angular-calendar';
 import Swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
 
-
 @Component({
   selector: 'app-opciones-manicura',
   templateUrl: './opciones-manicura.component.html',
@@ -13,6 +12,8 @@ import { DatePipe } from '@angular/common';
 export class OpcionesManicuraComponent implements OnInit {
   // Propiedades del componente
   manicuristas: any[] = [];
+  servicios: any[] = [];
+  filas: any[] = [];
   tipoServicioSeleccionado: string = '';
   manicuristaSeleccionada: { id_manicurista: number, nombre: string, favorito: boolean } | null = null;
   ubicacionServicio: string = '';
@@ -23,7 +24,7 @@ export class OpcionesManicuraComponent implements OnInit {
   siguienteHabilitado: boolean = false;
   usuarioInfo: any;
   favoritoSeleccionado: boolean = false;
-  fechaHoraSeleccionada: string = ''; // Cambiar a string para manejar fecha y hora juntas
+  fechaHoraSeleccionada: string = '';
 
   // Otras propiedades del componente
   @ViewChild('calendar') calendar!: CalendarWeekViewComponent;
@@ -31,7 +32,7 @@ export class OpcionesManicuraComponent implements OnInit {
 
 
   constructor(private usuarioService: UsuarioService, private datePipe: DatePipe) {}
-
+  
   ngOnInit(): void {
     // Obtener los manicuristas y la información del usuario
     this.usuarioService.getManicuristas().subscribe(
@@ -46,6 +47,31 @@ export class OpcionesManicuraComponent implements OnInit {
     this.usuarioService.usuarioInfo$.subscribe(usuario => {
       this.usuarioInfo = usuario;
     });
+    
+    this.usuarioService.getConfiguracion().subscribe(
+      (response) => {
+        console.log('Response:', response);
+        if (Array.isArray(response.servicios)) {
+          this.servicios = response.servicios;
+          console.log('Servicios cargados:', this.servicios);
+          // Dividir los servicios en filas
+          this.filas = this.chunkArray(this.servicios, 4);
+          console.log('Filas:', this.filas);
+        } else {
+          console.error('La propiedad servicios de la respuesta de getConfiguracion no es un arreglo:', response.servicios);
+        }
+      },
+      (error) => {
+        console.error('Error al obtener servicios:', error);
+      }
+    );    
+  }
+  chunkArray(arr: any[], size: number): any[] {
+    const newArr = [];
+    for (let i = 0; i < arr.length; i += size) {
+      newArr.push(arr.slice(i, i + size));
+    }
+    return newArr;
   }
 
   abrirModal(tipoServicio: string) {
@@ -147,8 +173,13 @@ export class OpcionesManicuraComponent implements OnInit {
 
       this.usuarioService.createCita(datosCita).subscribe(
         (response) => {
-          console.log('Respuesta del servidor:', response);
-          Swal.fire('¡Cita agendada!', 'La cita se ha agendado correctamente.', 'success');
+          Swal.fire({
+            title: '¡Cita agendada!',
+            text: 'La cita se ha agendado correctamente.',
+            icon: 'success',
+            iconColor: '#631878'
+          });
+          
         },
         (error) => {
           console.error('Error al agendar la cita:', error);

@@ -1,43 +1,19 @@
-<div class="contenerdor-opciones">
-  <div class="e-card playing" (click)="abrirModal('Tradicional')">
-    <div class="image"></div>
-    <div class="wave"></div>
-    <div class="wave"></div>
-    <div class="wave"></div>
-    <div class="infotop">
-      <img src="../../../assets/img/NailsArt/manicura (1).png" class="icon" alt="Acrílicas"><br>
-      Tradicional
-      <br>
-      <div class="name">descrip</div>
+<div *ngIf="servicios" class="contenedor-opciones">
+  <div class="fila" *ngFor="let fila of filas">
+    <div class="e-card playing" *ngFor="let servicio of fila" (click)="abrirModal(servicio.tipo_servicio)">
+      <div class="image"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="infotop">
+        {{ servicio.tipo_servicio }}
+        <br>
+        <div class="name">{{ servicio.precio }}</div>
+      </div>
     </div>
-  </div>
-  <div class="e-card playing" (click)="abrirModal('Semipermanente')">
-    <div class="image"></div>
-
-    <div class="wave"></div>
-    <div class="wave"></div>
-    <div class="wave"></div>
-    <div class="infotop">
-      <img src="../../../assets/img/NailsArt/manicura.png" class="icon" alt="Acrílicas"><br>
-      Semipermanente
-      <br>
-      <div class="name">descrip</div>
     </div>
   </div>
 
-  <div class="e-card playing" (click)="abrirModal('Acrilicas')">
-    <div class="image"></div>
-
-    <div class="wave"></div>
-    <div class="wave"></div>
-    <div class="wave"></div>
-    <div class="infotop">
-      <img src="../../../assets/img/NailsArt/unas.png" class="icon" alt="Acrílicas"><br>
-      Acrilicas
-      <br>
-      <div class="name">descrip</div>
-    </div>
-  </div>
 
   <!-- Modal -->
   <div class="modal-overlay" *ngIf="modalAbierta">
@@ -131,21 +107,18 @@
           <p>Nombre de la manicurista: {{ manicuristaSeleccionada?.nombre }}</p>
           <p>Tipo de servicio: {{ tipoServicioSeleccionado }}</p>
           <p>Ubicación del servicio: {{ ubicacionServicio }}</p>
+    
         </div>
       </div>  
       <div class="pago">
-        <div class="iconopago">
-          <i class="fa-solid fa-money-bill"></i>
-        </div>
         
-        <h3>pago</h3>
       </div>    
     <button
     class="py-3 px-6 rounded-lg text-white"
     style="background-image: linear-gradient(135deg, rgb(217, 105, 255) 0%, rgb(190, 10, 255) 100%);"
     (click)="agendarCita()"
   >
-    Agendar cita
+    <a href="https://biz.payulatam.com/B0f4ff0470F5655">agendar cita</a>
   </button>
     </div>
   </div>

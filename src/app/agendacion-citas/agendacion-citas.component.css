@@ -4,8 +4,6 @@
 }
 .contenedorH{
     display: flex;
-    border: 5px solid #631878;
-    border-radius: 30px;
     justify-content: center;
     height: 500px;
 }
@@ -32,7 +30,6 @@
   
   .contenedorH {
     display: flex;
-    border: 5px solid #631878;
     border-radius: 30px;
     justify-content: center;
     height: 500px;

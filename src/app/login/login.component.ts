@@ -31,32 +31,20 @@ export class LoginComponent {
     console.log('Intentando iniciar sesión:', this.usuarioLg);
     this.usuarioService.loginUser(this.usuarioLg.email, this.usuarioLg.contrasena).subscribe(
       (response:any) => {
-        // Maneja la respuesta exitosa aquí
-        console.log('Inicio de sesión exitoso:', response);
-        Swal.fire({
-          title: 'Registro exitoso',
-          text: 'El usuario inicio sesión correctamente.',
-          icon: 'success',
-          confirmButtonText: 'OK'
-        });
         this.auth.login(response.token)
         this.router.navigate(['/Inicio']);
       },
       (error) => {
-        // Maneja el error aquí
         console.error('Error al iniciar sesión:', error);
         if (error.status === 401) {
-          // Puedes mostrar un mensaje específico para errores de autenticación
           console.error('Correo o contraseña incorrectos');
           Swal.fire({
             title: 'Error',
             text: 'Hubo un error al iniciar sesión el usuario. Por favor, inténtalo de nuevo.',
             icon: 'error',
-            confirmButtonText: 'OK'
+            iconColor: '#631878',
+            confirmButtonColor: '#631878'
           });
-        } else {
-          // Otro manejo de errores
-          console.error('Error desconocido al iniciar sesión');
         }
       }
     );
@@ -71,14 +59,6 @@ export class LoginComponent {
         this.usuarioService.loginUser(this.usuario.email, this.usuario.contrasena).subscribe(
           (loginResponse) => {
             console.log('Inicio de sesión exitoso después del registro:', loginResponse);
-            Swal.fire({
-              title: 'Inicio de sesión exitoso',
-              text: 'El usuario inició sesión automáticamente.',
-              icon: 'success',
-              confirmButtonText: 'OK'
-            });
-  
-            // Redirige al usuario a la página principal
             this.router.navigate(['/Inicio']);
           },
           (loginError) => {
@@ -93,7 +73,6 @@ export class LoginComponent {
           title: 'Error',
           text: 'Hubo un error al registrar el usuario. Por favor, inténtalo de nuevo.',
           icon: 'error',
-          confirmButtonText: 'OK'
         });
       }
     );

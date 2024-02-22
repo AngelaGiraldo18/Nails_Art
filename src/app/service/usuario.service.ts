@@ -117,15 +117,19 @@ obtenerCitasUsuario(): Observable<any> {
 }
 
 //configuracion
-getConfiguracion(): Observable<any[]> {
-  return this.http.get<any[]>(`${this.apiUrl}/Configuracion`);
+getConfiguracion(): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/Configuracion`);
 }
+
 createServicio(data: any): Observable<any> {
   return this.http.post(`${this.apiUrl}/CrearServicio`, data);
 }
 actualizarPrecioServicio(idServicio: number, nuevoPrecio: number): Observable<any> {
   const url = `${this.apiUrl}/ActualizarPrecio/${idServicio}`;
   return this.http.put(url, { precio: nuevoPrecio });
+}
+eliminarServicio(id_servicio: number): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/eliminarServicio/${id_servicio}`);
 }
 
   authenticatedRequest(endpoint: string, data: any): Observable<any> {
