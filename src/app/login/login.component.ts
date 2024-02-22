@@ -32,6 +32,7 @@ export class LoginComponent {
     this.usuarioService.loginUser(this.usuarioLg.email, this.usuarioLg.contrasena).subscribe(
       (response:any) => {
         this.auth.login(response.token)
+        
         this.router.navigate(['/Inicio']);
       },
       (error) => {
@@ -57,8 +58,11 @@ export class LoginComponent {
         console.log('Usuario registrado con éxito:', response);
         // Después de registrar, inicia sesión
         this.usuarioService.loginUser(this.usuario.email, this.usuario.contrasena).subscribe(
-          (loginResponse) => {
-            console.log('Inicio de sesión exitoso después del registro:', loginResponse);
+          (response:any) => {
+            console.log('Inicio de sesión exitoso después del registro:', response);
+
+            this.auth.login(response.token)
+            
             this.router.navigate(['/Inicio']);
           },
           (loginError) => {
