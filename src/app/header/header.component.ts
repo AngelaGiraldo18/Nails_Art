@@ -9,6 +9,7 @@ import { GravatarConfig } from 'ngx-gravatar';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  ocultarTitulo:any = true;
   usuarioInfo: any;
   isMenuOpen = false;
   gravatarConfig: GravatarConfig; 
@@ -50,4 +51,5 @@ export class HeaderComponent implements OnInit {
     elements.forEach((element) => element.classList.remove('activo'));
     (event.target as HTMLElement).classList.add('activo');
   }
+  
 }

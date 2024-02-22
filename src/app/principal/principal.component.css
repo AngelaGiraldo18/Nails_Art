@@ -1,17 +1,22 @@
 /*este es el codigo de css para las tarjetas*/
+.header {
+    font-size: 24px; /* Default font size */
+  }
 .nosotros{
  
     display: flex;
     justify-content: space-around;
 }
 .container__card{
+    overflow: scroll;
+    flex-wrap: wrap;
     max-width: 1200px;
     margin: auto;
     margin-top: 100px;
     perspective: 1000px;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: space-around;
+    
 }
 
 .card__father{
@@ -272,6 +277,15 @@
 }
 /*Este es el codigo de el slider */
 
+.h2.subtitle{
+    object-position: 50% 30%;
+    justify-content: center;
+    margin-left: 12%;
+    margin-top: 5%;
+
+}
+
+
 .testimony{
     background-color: #e5e5f7;
     width: 80%;
@@ -295,6 +309,9 @@
     grid-template-columns: 50px 1fr 50px;
     gap: 1em;
     align-items: center;
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan cuando no haya suficiente espacio */
+    justify-content: space-around; /* Distribuir los elementos de manera uniforme */
+    gap: 20px; /* Espacio entre los elementos */
 }
 
 .testimony__body{
@@ -307,6 +324,8 @@
     grid-row: 1/2;
     opacity: 0;
     pointer-events: none;
+    flex-direction: column;
+
 }
 
 
@@ -323,12 +342,17 @@
     object-fit: cover;
     object-position: 50% 30%;
 }
-
 .testimony__texts{
     max-width: 700px;
+    object-fit: cover;
+    object-position: 50% 30%;
+
+
 }
 
 .testimony__course{
+    object-fit: cover;
+
     background-color: #631878;
     color: #fff;
     display: inline-block;
@@ -336,6 +360,8 @@
 }
 
 .testimony__arrow{
+    object-fit: cover;
+
     width: 90%;
     cursor: pointer;
 }
@@ -379,3 +405,39 @@
 .image__about img{
     width: 300px;
 }
+
+#before{
+
+}
+
+
+@media screen and (max-width: 768px) {
+    .container__card {
+        justify-content: center;
+    }
+    .h1 {
+        color: black;
+    }
+    .h2 {
+        color: black;
+    }
+    body{
+        background-color: #000;
+    }
+    .header {
+        font-size: 18px; /* Font size for screens smaller than 600px */
+      }
+    .testimony__container{
+        flex-direction: column; /* Apilar los elementos en dispositivos móviles */
+        align-items: center; /* Centrar los elementos en el eje transversal */
+     
+    }
+    /* Media Query para dispositivos móviles */
+  
+  }
+    
+
+
+
+
+

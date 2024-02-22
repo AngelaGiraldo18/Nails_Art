@@ -11,7 +11,7 @@ import { FavoritosComponent } from './favoritos/favoritos.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
 import { from } from 'rxjs';
 const routes: Routes = [
-  { path: '', component: PrincipalComponent },
+  { path: '', redirectTo: '/Inicio', pathMatch: 'full' },
   {path:'Inicio',component:PrincipalComponent},
   { path: 'Login', component: LoginComponent },
   { path:'AgrManicurista', component:AgragarManicuristaComponent},
@@ -20,7 +20,9 @@ const routes: Routes = [
   {path:'contacto',component:ContactoComponent},
   {path:'Manicuristas',component:ManicuristasComponent},
   {path:'favoritos',component:FavoritosComponent},
-  {path:'ayuda',component:AyudaComponent}
+  {path:'ayuda',component:AyudaComponent},
+  { path: '**', redirectTo: 'Inicio' } 
+  
 ];
 
 

@@ -1,6 +1,8 @@
 .contenerdorAgendacion{
     width: 90%;
     margin-left: 100px;
+    display: flex;
+    flex-direction: column;
 }
 .contenedorH{
     display: flex;
@@ -10,12 +12,20 @@
     height: 500px;
 }
 .contenedorOpciones{
+    flex-wrap: wrap;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 400px;
     height: 50px;
     border-radius: 20px;
     border-bottom: 1px solid;
     color:#631878 ;
+    justify-content: space-around;
+    gap: 20px;
+}
+.contenedorOpciones div i {
+  margin-bottom: 10px;
 }
 .contenedorOpciones div{
     display: flex;
@@ -29,37 +39,40 @@
     width: 90%;
     margin-left: 100px;
   }
-  
+
   .contenedorH {
     display: flex;
     border: 5px solid #631878;
     border-radius: 30px;
     justify-content: center;
-    height: 500px;
-  }
-  
-  .contenedorOpciones {
-    display: flex;
-    width: 400px;
-    height: 50px;
-    border-radius: 20px;
-    border-bottom: 1px solid;
-    color: #631878;
-  }
-  
-  .contenedorOpciones div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-left: 20px;
-    cursor: pointer;
-    transition: border-bottom 0.3s ease-in-out;
-  }
-  
-  .contenedorOpciones div:hover {
-    border-bottom: 3px solid #631878;
-  }
+    height: 500px; /* Altura fija para escritorio */
+}
+
+
+.contenedorOpciones {
+  display: flex;
+  width: 100%; /* Ancho completo para adaptarse al contenedor padre */
+  max-width: 400px; /* Ancho máximo para dispositivos de escritorio */
+  height: 50px;
+  border-radius: 20px;
+  border-bottom: 1px solid;
+  color: #631878;
+  margin: 0 initial; /* Centrar horizontalmente */
+}
+
+.contenedorOpciones div {
+  display: flex;
+  flex: 1; /* Para que cada div ocupe el mismo espacio */
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+  cursor: pointer;
+  transition: border-bottom 0.3s ease-in-out;
+}
+
+.contenedorOpciones div:hover {
+  border-bottom: 3px solid #631878;
+}
   
   .contenido-dinamico {
     margin-top: 20px;
@@ -136,3 +149,19 @@
   display: flex;
   justify-content: center;
 }
+
+@media screen and (max-width: 768px) {
+
+  .contenedorH {
+    height: auto; /* Altura automática en dispositivos móviles */
+    margin-top: 20px; /* Añade un margen superior para separar del elemento anterior */
+  }
+  .contenedor-Opciones div {
+    flex-basis: 100%; /* Los elementos ocuparán todo el ancho disponible */
+    max-width: none; /* Eliminar el ancho máximo para dispositivos móviles */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width:min-content;/* Ancho máximo removido para dispositivos móviles */
+   }
+  }

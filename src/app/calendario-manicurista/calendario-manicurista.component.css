@@ -1,8 +1,24 @@
 .calendar {
-    width: 650px;
-    border: 1px solid #631878;
-    margin-left: 400px;
-    } 
-    .calendar-month{
-        color: #631878;
+    max-width: 100%; /* Establece el ancho máximo del calendario */
+    width: 90%; /* Ancho relativo para dispositivos de escritorio */
+    margin: 0 auto; /* Centra el calendario horizontalmente */
+}
+
+.calendar-month {
+    color: #631878;
+}
+
+/* Media query para dispositivos de escritorio */
+@media screen and (min-width: 768px) {
+    .calendar {
+        width: 80%; /* Reducir el ancho relativo para dispositivos de escritorio */
     }
+}
+
+/* Media query para dispositivos grandes */
+@media screen and (min-width: 1200px) {
+    .calendar {
+        max-width: 1200px; /* Establecer un ancho máximo aún mayor para dispositivos grandes */
+        width: 70%; /* Reducir el ancho relativo para dispositivos grandes */
+    }
+}
