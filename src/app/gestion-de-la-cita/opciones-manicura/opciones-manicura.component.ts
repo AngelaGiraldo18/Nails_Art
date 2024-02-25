@@ -25,7 +25,9 @@ export class OpcionesManicuraComponent implements OnInit {
   usuarioInfo: any;
   favoritoSeleccionado: boolean = false;
   fechaHoraSeleccionada: string = '';
-
+  horaSeleccionada: string = ''; 
+  horasDisponibles: string[] = [];
+  
   // Otras propiedades del componente
   @ViewChild('calendar') calendar!: CalendarWeekViewComponent;
   @ViewChild('fechaInput', { static: true }) fechaInput!: ElementRef;
@@ -65,7 +67,19 @@ export class OpcionesManicuraComponent implements OnInit {
         console.error('Error al obtener servicios:', error);
       }
     );    
+    this.actualizarHorasDisponibles();
+
   }
+  actualizarHorasDisponibles() {
+    const horasDisponibles = [];
+    for (let i = 9; i <= 17; i++) {
+      const hora = i < 10 ? `0${i}:00` : `${i}:00`; // Formato HH:00
+      horasDisponibles.push(hora);
+    }
+    this.horasDisponibles = horasDisponibles;
+    this.horaSeleccionada = this.horasDisponibles[0];
+  }
+
   chunkArray(arr: any[], size: number): any[] {
     const newArr = [];
     for (let i = 0; i < arr.length; i += size) {

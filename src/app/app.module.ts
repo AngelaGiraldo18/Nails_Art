@@ -30,7 +30,10 @@ import { AyudaComponent } from './ayuda/ayuda.component';
 import { FechasAgendadasComponent } from './fechas-agendadas/fechas-agendadas.component';
 import { DatePipe } from '@angular/common';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
-
+import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ChatBootComponent } from './chat-boot/chat-boot.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,7 @@ import { ConfiguracionComponent } from './configuracion/configuracion.component'
     AyudaComponent,
     FechasAgendadasComponent,
     ConfiguracionComponent,
+    ChatBootComponent,
   ],
   imports: [
     GravatarModule.forRoot({
@@ -68,6 +72,9 @@ import { ConfiguracionComponent } from './configuracion/configuracion.component'
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,

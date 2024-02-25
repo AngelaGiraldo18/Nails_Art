@@ -1,0 +1,22 @@
+<div class="contenerdor-chat" (click)="abrirModal()">
+    <i class="fa-solid fa-comment" style="color: #ffffff;"></i>
+</div>
+
+<div class="cuerpo-chat" *ngIf="AbrirChat">
+    <div class="header-Chat">
+        <h2>Chat Nails</h2>
+        <span class="close-icon" (click)="cerrarModal()">&times;</span>
+
+    </div>
+    <div class="body-Chat">
+
+    </div>
+    <div class="footer-Chat">
+        <input type="text" placeholder="   dime tu peticion">
+        <button class="botonagg" type="button">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front text">Enviar</span>
+          </button>
+    </div>
+</div>

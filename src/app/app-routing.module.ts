@@ -24,7 +24,8 @@ const routes: Routes = [
   {path:'favoritos',component:FavoritosComponent},
   {path:'ayuda',component:AyudaComponent},
   {path:'fechas-agendadas',component:FechasAgendadasComponent},
-  {path:'Configuracion',component:ConfiguracionComponent}
+  {path:'Configuracion',component:ConfiguracionComponent},
+
 ];
 
 

@@ -9,6 +9,10 @@
             {{ cita.estado }}
             <br />
             Usuario: {{ cita.usuario_nombre }} | Manicurista: {{ cita.manicurista_nombre }} | Servicio: {{ cita.tipo_servicio }} Hora: {{cita.fecha_del_servicio | date:'HH:mm'}}
+            <!-- Agregar detalles específicos de la cita para la manicurista -->
+            <!-- Por ejemplo, puedes mostrar la ubicación del servicio, la duración, etc. -->
+            <br />
+            Ubicación del servicio: {{ cita.ubicacion_servicio }} | Duración: {{ cita.duracion_en_horas }} horas
           </div>
           <div class="botones-acciones">
             <button class="boton-realizada" (click)="cambiarEstado(cita.id_cita, 'realizada', i)">Realizada</button>

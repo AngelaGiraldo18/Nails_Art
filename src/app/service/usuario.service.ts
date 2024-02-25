@@ -11,8 +11,8 @@ interface LoginResponse {
 })
 export class UsuarioService {
   private apiUrl = 'http://localhost:4000/api';
-    private citasSubject = new BehaviorSubject<any[]>([]);
-    citas$ = this.citasSubject.asObservable();
+  private citasSubject = new BehaviorSubject<any[]>([]);
+  citas$ = this.citasSubject.asObservable();
 
   // Inyecta el módulo HttpClient en el servicio
   constructor(private http: HttpClient) {
@@ -64,11 +64,10 @@ export class UsuarioService {
   }
   eliminarManicurista(idmanicurista: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/eliminarManicurista/${idmanicurista}`);
-}
+  }
   buscarManicuristasPorNombre(nombre: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/buscar-por-nombre/${nombre}`);
-  }
-
+  } 
 
   setUsuarioInfo(usuarioInfo: any): void {
     this.usuarioInfoSubject.next(usuarioInfo);
@@ -77,16 +76,19 @@ export class UsuarioService {
   
   
   //estas son las peticiones de la agendacion de citas
-  createCita(data: any): Observable<any> {
+createCita(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/crearCita`, data, { headers: { 'Content-Type': 'application/json' } });
 }
-
 obtenerCitasPorFecha(fecha: string): Observable<any[]> {
     console.log('Fecha antes de la solicitud HTTP:', fecha);
     return this.http.get<any[]>(`${this.apiUrl}/citas/${fecha}`).pipe(
         tap(citas => console.log('Citas después de la solicitud HTTP:', citas))
     );
 }
+obtenerCitasPorManicurista(idManicurista: number, fecha: string): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/citas/manicurista/${idManicurista}/${fecha}`);
+}
+
 //petiiones de el empleado candidato 
   createEmpleadoCandidato(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/createEmpleadoCandidato`, data);
@@ -132,6 +134,7 @@ eliminarServicio(id_servicio: number): Observable<any> {
   return this.http.delete(`${this.apiUrl}/eliminarServicio/${id_servicio}`);
 }
 
+//chat 
   authenticatedRequest(endpoint: string, data: any): Observable<any> {
     const token = localStorage.getItem('token');
     console.log(token);

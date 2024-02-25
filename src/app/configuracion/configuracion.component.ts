@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../service/usuario.service';
 import Swal from 'sweetalert2';
-import { response } from 'express';
+
 @Component({
   selector: 'app-configuracion',
   templateUrl: './configuracion.component.html',
@@ -14,11 +14,33 @@ export class ConfiguracionComponent implements OnInit {
   nuevoPrecio: number | undefined;
   otraModal: boolean = false;
   servicioSeleccionado: any;
+  selected: Date = new Date(); // Define la propiedad y asigna un valor inicial
+  citasPorFecha: any[] = [];
+  fechaSeleccionada: string = '';
 
   constructor(private miServicio: UsuarioService) { }
 
   ngOnInit(): void {
     this.obtenerServicios();
+    this.obtenerCitasPorFecha();
+  }
+
+  onDateSelected(selectedDate: Date) {
+    this.selected = selectedDate; // Actualiza la fecha seleccionada
+    this.fechaSeleccionada = this.formatDate(selectedDate); // Formatea la fecha para la consulta
+    this.obtenerCitasPorFecha(); // Obtiene las citas para la fecha seleccionada
+  }
+
+  obtenerCitasPorFecha() {
+    this.miServicio.obtenerCitasPorFecha(this.fechaSeleccionada).subscribe(
+      (citas: any[]) => {
+        this.citasPorFecha = citas;
+      },
+      error => {
+        console.error('Error al obtener citas por fecha:', error);
+        // Manejo de errores aquí
+      }
+    );
   }
   
   abrirModal() {
@@ -34,7 +56,6 @@ export class ConfiguracionComponent implements OnInit {
     this.nuevoPrecio = servicio.precio;
     this.otraModal = true;
   }
-  
   
   cerrarOtraModal() {
     this.otraModal = false;
@@ -64,7 +85,6 @@ export class ConfiguracionComponent implements OnInit {
       console.error('El nuevo precio es undefined o no se ha seleccionado un servicio');
     }
   }
-  
   
   obtenerServicios() {
     this.miServicio.getConfiguracion().subscribe(
@@ -128,5 +148,13 @@ export class ConfiguracionComponent implements OnInit {
       }
     )
     
+  }
+
+  formatDate(date: Date): string {
+    // Formatea la fecha a 'YYYY-MM-DD' (formato esperado por el backend)
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
   }
 }
