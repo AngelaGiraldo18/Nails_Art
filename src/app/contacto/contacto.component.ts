@@ -4,6 +4,7 @@ import { UsuarioService } from '../service/usuario.service';
 import Swal from 'sweetalert2';
 
 
+
 @Component({
   selector: 'app-contacto',
   templateUrl: './contacto.component.html',

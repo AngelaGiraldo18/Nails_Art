@@ -2,7 +2,7 @@ import { Component ,Inject} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { UsuarioService } from '../service/usuario.service';
-
+import { AuthService } from '../Auth/auth.service';
 @Component({
   selector: 'app-calendario-manicurista',
   templateUrl: './calendario-manicurista.component.html',
@@ -14,7 +14,7 @@ export class CalendarioManicuristaComponent {
   availableHours: { hour: number; reserved: boolean }[] = [];
   mensajesPorDia: { [fecha: string]: string } = {};
 
-  constructor(public dialog: MatDialog, private usuarioService: UsuarioService) {}
+  constructor(public dialog: MatDialog, private usuarioService: UsuarioService, public auth:AuthService) {}
 
 
   openModal(citas: any[]): void {
@@ -30,8 +30,9 @@ export class CalendarioManicuristaComponent {
   onDayClick(day: any): void {
     this.selectedDate = day.date;
     console.log('Fecha seleccionada:', this.formatoFecha(this.selectedDate));
-
-    this.usuarioService.obtenerCitasPorFecha(this.formatoFecha(this.selectedDate)).subscribe(
+    const id_manicurista: number = this.auth.id();
+    
+    this.usuarioService.obtenerCitasPorFecha(this.formatoFecha(this.selectedDate),id_manicurista).subscribe(
         (citas) => {
             console.log('Citas para la fecha seleccionada:', citas);
             this.openModal(citas);

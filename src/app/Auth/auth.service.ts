@@ -41,6 +41,8 @@ export class AuthService {
 
     return false;
   }
+
+  
   private checkClienteStatus() : boolean {
     const token = this.getToken();
   
@@ -52,6 +54,14 @@ export class AuthService {
     return false;
   }
 
+   id(){
+    const token = this.getToken();
+
+    if(token){
+      const decodedToken = this.decodeToken(token);
+      return decodedToken.usuarioId;
+    }
+  }
 
   login(token:string) : void {
     
@@ -103,7 +113,7 @@ export class AuthService {
 
 
 
-  private decodeToken(token: string): any | null {
+ public decodeToken(token: string): any | null {
     try {
       const base64Url = token.split('.')[1];
       const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -115,5 +125,7 @@ export class AuthService {
       return null;
     }
   }
+
+  
   
 }

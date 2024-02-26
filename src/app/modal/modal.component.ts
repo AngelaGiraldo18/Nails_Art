@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UsuarioService } from '../service/usuario.service';
+import { AuthService } from '../Auth/auth.service';
 
 @Component({
   selector: 'app-modal',
@@ -12,7 +13,8 @@ export class ModalComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    public auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -21,16 +23,22 @@ export class ModalComponent implements OnInit {
 
   obtenerCitas(): void {
     const fecha: string = this.data.selectedDate.toISOString().split('T')[0];
-    this.usuarioService.obtenerCitasPorFecha(fecha).subscribe(
+    const id_usuario: number = this.auth.id(); 
+    console.log("idmanicurista",id_usuario);
+    
+    // Obtener el ID de la manicurista que ha iniciado sesión
+    this.usuarioService.obtenerCitasPorFecha(fecha, id_usuario).subscribe(
       (citas) => {
         this.citas = citas.map(cita => ({ ...cita, canceladaVisible: true }));
+        console.log(citas);
+        
       },
       (error) => {
         console.error('Error al obtener las citas:', error);
       }
     );
   }
-
+  
   cambiarEstado(idCita: number, nuevoEstado: string, index: number): void {
     this.usuarioService.cambiarEstadoCita(idCita, nuevoEstado).subscribe(
       (response) => {

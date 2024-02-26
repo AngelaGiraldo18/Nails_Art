@@ -160,7 +160,7 @@ export class OpcionesManicuraComponent implements OnInit {
       // Obtener la fecha y hora seleccionadas del input
       const fechaHoraSeleccionada = new Date(this.fechaHoraSeleccionada);
       const datosCita = {
-        id_usuario: this.usuarioInfo.id,
+        id_usuario: this.usuarioInfo.id                                                                       ,
         id_manicurista: this.manicuristaSeleccionada?.id_manicurista,
         tipo_servicio: this.tipoServicioSeleccionado,
         ubicacion_servicio: this.ubicacionServicio,

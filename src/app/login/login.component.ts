@@ -57,8 +57,11 @@ export class LoginComponent {
         console.log('Usuario registrado con éxito:', response);
         // Después de registrar, inicia sesión
         this.usuarioService.loginUser(this.usuario.email, this.usuario.contrasena).subscribe(
-          (loginResponse) => {
+          (loginResponse:any) => {
             console.log('Inicio de sesión exitoso después del registro:', loginResponse);
+            
+
+            this.auth.login(loginResponse.token)
             this.router.navigate(['/Inicio']);
           },
           (loginError) => {

@@ -81,9 +81,9 @@ export class UsuarioService {
     return this.http.post(`${this.apiUrl}/crearCita`, data, { headers: { 'Content-Type': 'application/json' } });
 }
 
-obtenerCitasPorFecha(fecha: string): Observable<any[]> {
+obtenerCitasPorFecha(fecha: string,id_usuario: number): Observable<any[]> {
     console.log('Fecha antes de la solicitud HTTP:', fecha);
-    return this.http.get<any[]>(`${this.apiUrl}/citas/${fecha}`).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}/citas/${fecha}/${id_usuario}`).pipe(
         tap(citas => console.log('Citas después de la solicitud HTTP:', citas))
     );
 }
