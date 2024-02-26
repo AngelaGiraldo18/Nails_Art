@@ -134,7 +134,13 @@ eliminarServicio(id_servicio: number): Observable<any> {
   return this.http.delete(`${this.apiUrl}/eliminarServicio/${id_servicio}`);
 }
 
-//chat 
+//chat  
+apiUrl2 = 'http://localhost:4000/chat'; // La URL de tu endpoint en el servidor Node.js
+
+sendMessage(history: any[], question: string): Observable<any> {
+  const body = { history, question };
+  return this.http.post<any>(this.apiUrl2, body);
+  }
   authenticatedRequest(endpoint: string, data: any): Observable<any> {
     const token = localStorage.getItem('token');
     console.log(token);
