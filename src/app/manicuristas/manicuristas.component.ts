@@ -16,6 +16,8 @@ export class ManicuristasComponent implements OnInit {
     this.usuarioService.getManicuristas().subscribe(
       (manicuristas) => {
         this.manicuristas = manicuristas;
+        console.log("foto",manicuristas);
+        
         debugger; // Punto de interrupción
       },
       (error) => {

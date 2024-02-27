@@ -25,6 +25,7 @@ export class AgragarManicuristaComponent implements OnInit {
   nombreABuscar: string = '';
   manicuristas: any[] = [];
   editMode = false;
+  selectedFile: File | null = null; 
 
   private searchTerm$ = new Subject<string>();
 
@@ -144,12 +145,28 @@ export class AgragarManicuristaComponent implements OnInit {
     }
   }
   
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0]; 
+  }
 
-  registrarManicurista(): void {
+   registrarManicurista(): void {
     console.log('Intentando registrar/editar manicurista ', this.manicurista);
+    const formData = new FormData();
+    formData.append('nombre', this.manicurista.nombre);
+    formData.append('apellido', this.manicurista.apellido);
+    formData.append('emailPersonal', this.manicurista.emailPersonal);
+    formData.append('emailApp', this.manicurista.emailApp);
+    formData.append('contrasenaApp', this.manicurista.contrasenaApp);
+    formData.append('celular', this.manicurista.celular);
+    formData.append('direccion', this.manicurista.direccion);
+    formData.append('descripcion', this.manicurista.descripcion);
+    if (this.selectedFile) {
+      formData.append('imagen', this.selectedFile); // Agrega la imagen al FormData si está seleccionada
+    }
+
     const observable = this.editMode
-      ? this.usuarioService.updateManicurista(this.manicurista)
-      : this.usuarioService.createManicurista(this.manicurista);
+      ? this.usuarioService.updateManicurista(formData)
+      : this.usuarioService.createManicurista(formData);
 
     observable.subscribe(
       (response) => {
@@ -167,7 +184,7 @@ export class AgragarManicuristaComponent implements OnInit {
           descripcion: ''
         };
         this.cerrarModal();
-        this.getManicuristas(); // Corrige esta línea llamando al método en la instancia del servicio
+        this.getManicuristas();
         Swal.fire({
           title: 'Éxito',
           text: 'Operación realizada con éxito.',

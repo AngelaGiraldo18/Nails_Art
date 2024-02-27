@@ -1,4 +1,5 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { UsuarioService } from '../service/usuario.service';
 
 @Component({
   selector: 'app-principal',
@@ -6,20 +7,23 @@ import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
   styleUrls: ['./principal.component.css']
 })
 export class PrincipalComponent {
-  @ViewChild('nextButton') nextButton!: ElementRef;
-  @ViewChild('beforeButton') beforeButton!: ElementRef;
-  sliders: ElementRef<Element>[] = [];
   value: number = 0;
-  
-  viewDate: Date = new Date();
+  manicuristas: any[] = [];
+  imagenes: string[] = ['leftarrow.svg', 'rightarrow.svg', 'IMG_20230418_142518.jpg', 'JuanEsteban.jpeg','foto-jesus.jpg','sergio.jpg','carlos.jpg'];
 
+  constructor(private usuarioService: UsuarioService) {}
 
-  ngAfterViewInit() {
-    this.sliders = Array.from(document.querySelectorAll('.testimony__body')).map((element: Element) => {
-      return {
-        nativeElement: element
-      } as ElementRef<Element>;
-    });
+  ngOnInit(): void {
+    this.usuarioService.getManicuristas().subscribe(
+      (manicuristas) => {
+        this.manicuristas = manicuristas;
+        console.log("manicuristas", manicuristas);
+        this.value = 1; // Inicializar el valor para mostrar el primer testimonio
+      },
+      (error) => {
+        console.error('Error al obtener manicuristas:', error);
+      }
+    );
   }
 
   onNextButtonClick() {
@@ -31,20 +35,12 @@ export class PrincipalComponent {
   }
 
   changePosition(add: number) {
-    const currentTestimony = document.querySelector('.testimony__body--show') as HTMLElement;
-    this.value = Number(currentTestimony.dataset['id']) || 0;
     this.value += add;
 
-    currentTestimony.classList.remove('testimony__body--show');
-
-    if (this.value === this.sliders.length + 1 || this.value === 0) {
-      this.value = this.value === 0 ? this.sliders.length : 1;
+    if (this.value > this.manicuristas.length) {
+      this.value = 1;
+    } else if (this.value < 1) {
+      this.value = this.manicuristas.length;
     }
-
-    this.sliders[this.value - 1].nativeElement.classList.add('testimony__body--show');
   }
-
-  imagenes: string[] = ['leftarrow.svg', 'rightarrow.svg', 'IMG_20230418_142518.jpg', 'JuanEsteban.jpeg','foto-jesus.jpg','sergio.jpg','carlos.jpg'];
-
-
 }

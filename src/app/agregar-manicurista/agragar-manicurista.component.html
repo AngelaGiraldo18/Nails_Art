@@ -94,6 +94,11 @@ Agregar Manicurista
         type="submit">{{ editMode ? 'Editar' : 'Agregar' }}
       </button>
       </div>
+      <div class="form-group">
+        <div class="input-container">
+          <input type="file" (change)="onFileSelected($event)" accept="image/*">
+        </div>
+      </div>
     </form>
   </div>
 </div>
