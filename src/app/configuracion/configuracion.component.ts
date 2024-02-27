@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../service/usuario.service';
 import Swal from 'sweetalert2';
-
+import { AuthService } from '../Auth/auth.service';
 @Component({
   selector: 'app-configuracion',
   templateUrl: './configuracion.component.html',
@@ -18,7 +18,7 @@ export class ConfiguracionComponent implements OnInit {
   citasPorFecha: any[] = [];
   fechaSeleccionada: string = '';
 
-  constructor(private miServicio: UsuarioService) { }
+  constructor(private miServicio: UsuarioService, public auth:AuthService) { }
 
   ngOnInit(): void {
     this.obtenerServicios();
@@ -31,8 +31,10 @@ export class ConfiguracionComponent implements OnInit {
     this.obtenerCitasPorFecha(); // Obtiene las citas para la fecha seleccionada
   }
 
-  obtenerCitasPorFecha() {
-    this.miServicio.obtenerCitasPorFecha(this.fechaSeleccionada).subscribe(
+  obtenerCitasPorFecha() {  
+    const id_usuario: number = this.auth.id(); 
+    const rol: string=this.auth.rol()
+    this.miServicio.obtenerCitasPorFecha(this.fechaSeleccionada,id_usuario,rol).subscribe(
       (citas: any[]) => {
         this.citasPorFecha = citas;
       },

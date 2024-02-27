@@ -99,9 +99,28 @@ export class AuthService {
 
   isClienteStatus(): Observable<boolean> {
     return this.isCliente.asObservable();
+
   }
 
 
+  id(){
+    const token = this.getToken();
+
+    if(token){
+      const decodedToken = this.decodeToken(token);
+      return decodedToken.usuarioId;
+    }
+  }
+
+  rol(){
+const token =this.getToken()
+
+if(token){
+  const decodedToken = this.decodeToken(token);
+  return decodedToken.rol;
+}
+
+  }
 
   private decodeToken(token: string): any | null {
     try {

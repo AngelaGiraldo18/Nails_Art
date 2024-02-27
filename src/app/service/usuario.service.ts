@@ -79,11 +79,11 @@ export class UsuarioService {
 createCita(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/crearCita`, data, { headers: { 'Content-Type': 'application/json' } });
 }
-obtenerCitasPorFecha(fecha: string): Observable<any[]> {
+obtenerCitasPorFecha(fecha: string, id_usuario:number, rol: string): Observable<any[]> {
     console.log('Fecha antes de la solicitud HTTP:', fecha);
-    return this.http.get<any[]>(`${this.apiUrl}/citas/${fecha}`).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}/citas/${fecha}/${id_usuario}/${rol}`).pipe(
         tap(citas => console.log('Citas después de la solicitud HTTP:', citas))
-    );
+    );  
 }
 obtenerCitasPorManicurista(idManicurista: number, fecha: string): Observable<any[]> {
   return this.http.get<any[]>(`${this.apiUrl}/citas/manicurista/${idManicurista}/${fecha}`);
@@ -133,8 +133,13 @@ actualizarPrecioServicio(idServicio: number, nuevoPrecio: number): Observable<an
 eliminarServicio(id_servicio: number): Observable<any> {
   return this.http.delete(`${this.apiUrl}/eliminarServicio/${id_servicio}`);
 }
+//chat  
+apiUrl2 = 'http://localhost:4000/chat'; // La URL de tu endpoint en el servidor Node.js
 
-//chat 
+sendMessage(history: any[], question: string): Observable<any> {
+  const body = { history, question };
+  return this.http.post<any>(this.apiUrl2, body);
+  }
   authenticatedRequest(endpoint: string, data: any): Observable<any> {
     const token = localStorage.getItem('token');
     console.log(token);
