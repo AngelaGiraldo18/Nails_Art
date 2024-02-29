@@ -1,0 +1,10 @@
+<div class="contenedorPrincipal">
+  <div class="card">
+    <h2>Tus citas</h2>
+    <ul>
+      <li *ngFor="let cita of citas">
+        Fecha y hora de la cita: <span>{{ cita.fecha_del_servicio | date:'dd/MM/yyyy HH:mm' }}</span>
+      </li>
+    </ul>
+  </div>
+</div>

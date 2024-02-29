@@ -1,0 +1,13 @@
+<!-- favoritos.component.html -->
+<section>
+  <h1>Estas son tus manicuristas favoritas</h1>
+
+  <div class="contenedorFavoritos" *ngIf="favoritasManicuristas.length > 0; else loading">
+    <div *ngFor="let favorita of favoritasManicuristas" class="card">
+      <img [src]="favorita.fotoManicurista" alt="{{ favorita.nombre_manicurista }}">
+      <h2>{{ favorita.nombre_manicurista }}</h2>
+      <p>{{ favorita.descripcion }}</p>
+    </div>
+  </div>
+  <ng-template #loading>No tienes manicuristas favoritas</ng-template>
+</section>
