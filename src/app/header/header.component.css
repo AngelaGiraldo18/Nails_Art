@@ -1,0 +1,476 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style:none;
+  font-family: 'Open Sans', sans-serif;
+}
+.icon{
+  filter: invert(1);
+}
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.material-symbols-outlined {
+font-variation-settings:
+'FILL' 0,
+'wght' 400,
+'GRAD' 0,
+'opsz' 48
+}
+svg{
+  margin-right: 20px;
+}
+.icono{
+  font-size: 20px;
+  color: white;
+}
+header{
+  width: 100%;
+  height: 80px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #631878;
+  z-index: 200;
+  position: relative;
+  top: -20px;
+}
+/* Agrega estas clases en tu archivo CSS */
+.usuarioNotificacion {
+position: relative;
+display: flex;
+align-items: center;
+}
+
+.usuarioInfoContainer {
+display: flex;
+align-items: center;
+position: relative;
+}
+
+.boton-cerrar-sesion {
+background-color: #631878; 
+color: #fff; 
+padding: 10px 15px; 
+border: none;
+border-radius: 5px; 
+cursor: pointer;
+width: 200px;
+transition: background-color 0.3s ease; 
+z-index: 1;
+position: absolute;
+top: 35px;
+right: 80px;
+opacity: 0; /* Inicialmente oculto */
+pointer-events: none; /* No es interactivo inicialmente */
+}
+.usuarioNotificacion:hover .boton-cerrar-sesion {
+opacity: 1; /* Mostrar el botón al pasar el ratón sobre el contenedor */
+pointer-events: auto; /* Hacerlo interactivo al pasar el ratón */
+}
+
+.boton-cerrar-sesion:hover {
+background-color: #631878; 
+}
+
+.redes-header i{
+  font-size: 20px;
+  margin-left: 20px;
+}
+.usuarioNotificacion{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.usuarioNotificacion p{
+  margin-left: 10px;
+}
+.buscador{
+  border-radius: 20px;
+  height: 30px;
+  border-color: #631878;
+}
+.usuarioNotificacion img{
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid;
+}
+i:hover {-webkit-transform:scale(0.7);transform:scale(0.7);}
+i{overflow:hidden;}
+/* From uiverse.io by @satyamchaudharydev */
+/* removing default style of button */
+
+.form button {
+  border: none;
+  background: none;
+  color: #8b8ba7;
+}
+/* styling of whole input container */
+.form {
+  --timing: 0.3s;
+  --width-of-input: 200px;
+  --height-of-input: 40px;
+  --border-height: 2px;
+  --input-bg: #fff;
+  --border-color: #2f2ee9;
+  --border-radius: 30px;
+  --after-border-radius: 1px;
+  position: relative;
+  width: var(--width-of-input);
+  height: var(--height-of-input);
+  display: flex;
+  align-items: center;
+  padding-inline: 0.8em;
+  border-radius: var(--border-radius);
+  transition: border-radius 0.5s ease;
+  background: var(--input-bg,#fff);
+}
+/* styling of Input */
+.input {
+  font-size: 0.9rem;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+}
+/* styling of animated border */
+.form:before {
+  content: "";
+  position: absolute;
+  background: var(--border-color);
+  transform: scaleX(0);
+  transform-origin: center;
+  width: 100%;
+  height: var(--border-height);
+  left: 0;
+  bottom: 0;
+  border-radius: 1px;
+  transition: transform var(--timing) ease;
+}
+/* Hover on Input */
+.form:focus-within {
+  border-radius: var(--after-border-radius);
+}
+
+input:focus {
+  outline: none;
+}
+/* here is code of animated border */
+.form:focus-within:before {
+  transform: scale(1);
+}
+/* styling of close button */
+/* == you can click the close button to remove text == */
+.reset {
+  border: none;
+  background: none;
+  opacity: 0;
+  visibility: hidden;
+}
+/* close button shown when typing */
+input:not(:placeholder-shown) ~ .reset {
+  opacity: 1;
+  visibility: visible;
+}
+/* sizing svg icons */
+.form svg {
+  width: 17px;
+  margin-top: 3px;
+}
+
+.icon__menu{
+  width: 50px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(50px);
+}
+.closeHeader svg{
+  font-size: 30px;
+  transform: translateX(50px);
+  position: relative;
+}
+.contacnails{
+  margin-right: 50px;
+}
+.text{
+  margin-top: -3px;
+}
+.clone{
+  margin-top: -4px;
+}
+
+.icon__menu svg{
+  font-size: 20px;
+  cursor: pointer;
+  position: absolute;
+}
+
+.menu__side{
+  width: 80px;
+  height: 100%;
+  background: #631878;
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: white;
+  font-size: 18px;
+  z-index: 300;
+  overflow: hidden;
+  overflow-y: scroll;
+  border-right: 20px solid #631878;
+  transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+/*Ocultar scroll para chrome, safari y opera*/
+.menu__side::-webkit-scrollbar{
+  display: none;
+}
+#manicuristaBorder{
+  background: rgb(92, 89, 89);
+  border-radius: 10px;
+}
+
+/*Ocultar scroll para IE, Edge y Firefox*/
+.menu__side{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+.name__page{
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.name__page i{
+  width: 20px;
+  margin-right: 20px;
+}
+.name__page img{
+  height: 80px;
+  position: relative;
+  right: 30px;
+}
+
+.options__menu{
+  padding: 20px 30px;
+  position: absolute;
+  top: 80px;
+}
+
+.options__menu a{
+  color: #ffffffb2;
+  cursor: default;
+  display: block;
+  position: relative;
+  transition: color 300ms;
+}
+
+.options__menu a:hover{
+  color: white;
+}
+.CategotiasHeader{
+  border-bottom: 2px solid white;
+}
+
+.options__menu .option{
+  padding: 20px 0px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.options__menu .option i{
+  width: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.options__menu .option h4{
+  font-weight: 300;
+  cursor: pointer;
+}
+
+a.selected{
+  color: #fff;
+}
+.body_move{
+  margin-left: 250px;
+}
+
+.menu__side_move{
+  width: 250px;
+}
+
+.animacionBtn {
+  width: 140px;
+  height: 56px;
+  overflow: hidden;
+  border: none;
+  color: #fff;
+  background: none;
+  position: relative;
+  padding-bottom: 2em;
+}
+
+.animacionBtn > div,.animacionBtn > svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.animacionBtn:before {
+  content: "";
+  position: absolute;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  background: currentColor;
+  transition: transform 0.25s ease-out;
+}
+
+.animacionBtn:hover:before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.animacionBtn .clone > *,.animacionBtn .text > * {
+  opacity: 1;
+  font-size: 1.3rem;
+  transition: 0.2s;
+  margin-left: 4px;
+}
+
+.animacionBtn .clone > * {
+  transform: translateY(60px);
+}
+
+.animacionBtn:hover .clone > * {
+  opacity: 1;
+  transform: translateY(0px);
+  transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+.animacionBtn:hover .text > * {
+  opacity: 1;
+  transform: translateY(-60px);
+  transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+.animacionBtn:hover .clone > :nth-child(1) {
+  transition-delay: 0.15s;
+}
+
+.animacionBtn:hover .clone > :nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.animacionBtn:hover .clone > :nth-child(3) {
+  transition-delay: 0.25s;
+}
+
+.animacionBtn:hover .clone > :nth-child(4) {
+  transition-delay: 0.3s;
+}
+/* icon style and hover */
+.animacionBtn svg {
+  width: 20px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(-50deg);
+  transition: 0.2s ease-out;
+}
+
+.animacionBtn:hover svg {
+  transform: translateY(-50%) rotate(-90deg);
+}
+.contenedorDatosHeader{
+  display: flex;
+  justify-content:center space-around;
+  flex-direction: column;
+  margin-top: 60px;
+}
+.IniciaSecionHeader{
+  display: flex;
+  margin-bottom: 20px;
+}
+@media screen and (max-width: 760px){
+  .body_move{
+      margin-left: 0px;
+  }
+  header{
+      width: 100%;
+      
+  }
+
+  .menu__side_move{
+      width: 80px;
+      left: -80px;
+  }
+}
+@media only screen and (max-width: 600px) {
+body {
+  font-size: 14px;
+}
+
+header {
+  height: 60px;
+  display: flex;
+  justify-content: center ;
+  align-items: center;
+}
+.saludo{
+  font-size: 10px;
+  margin-top: 30px;
+  position: relative;
+  right: 60px;
+}
+.saludo span{
+  display: none;
+}
+.icon__menu{
+  position: relative;
+  right: 100px;
+}
+.saludo h1{
+  width: 300px;
+  position: relative;
+  top: -5px;
+}
+.form{
+  display: none;
+}
+.menu__side {
+  width: 250px;
+  font-size: 16px;
+  border-right: 10px solid #631878;
+}
+
+.menu__side_move {
+  width: 60px;
+  left: -60px;
+}
+
+.body_move {
+  margin-left: 0;
+}
+}
