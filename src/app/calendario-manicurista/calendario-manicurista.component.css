@@ -6,3 +6,31 @@
     .calendar-month{
         color: #631878;
     }
+
+    .calendar {
+        max-width: 100%;  
+        border: 1px solid #631878;
+        margin: 0 auto;  
+        box-sizing: border-box;  
+    }
+    
+    .calendar-month {
+        color: #631878;
+    }
+    
+    @media screen and (max-width: 767px) {
+ 
+        .calendar {
+            width: 90%;  
+            margin: 0 auto;  
+        }
+    }
+    
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+
+        .calendar {
+            width: 70%;  
+            margin: 0 auto; 
+        }
+    }
+    

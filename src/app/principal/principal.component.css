@@ -21,7 +21,7 @@
 
 
 .card{
-    width: 350px;
+    width: 320px;
     height: 400px;
     transform-style: preserve-3d;
     transition: all 600ms;
@@ -379,3 +379,58 @@
 .image__about img{
     width: 300px;
 }
+
+
+/* Estilos generales */
+
+/* Estilos para pantallas grandes */
+@media screen and (min-width: 1200px) {
+    .testimony {
+        width: 80%;
+        margin-left: 10%;
+    }
+    .container__card {
+        max-width: 1200px;
+    }
+    .card__father {
+        margin: 20px;
+    }
+    .cards {
+        width: 300px;
+    }
+}
+
+/* Estilos para pantallas medianas */
+@media screen and (max-width: 1199px) {
+    .testimony {
+        width: 90%;
+        margin-left: 5%;
+    }
+    .container__card {
+        max-width: 900px;
+    }
+    .card__father {
+        margin: 15px;
+    }
+    .cards {
+        width: calc(33.333% - 30px);
+    }
+}
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 767px) {
+    .testimony {
+        width: 95%;
+        margin-left: 2.5%;
+    }
+    .container__card {
+        max-width: 95%;
+    }
+    .card__father {
+        margin: 10px;
+    }
+    .cards {
+        width: calc(50% - 20px);
+    }
+}
+

@@ -1,23 +1,27 @@
-.title{
+.title {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.ContenedorPadre{
-display: flex;
-align-items: center;
-margin-left: 20px;
-justify-content: space-around;
+
+.ContenedorPadre {
+    display: flex;
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan en múltiples líneas si no caben */
+    margin-left: 20px;
+    justify-content: space-around;
 }
-.contenerdor_cards{
-width: 300px;
-height: 350px;
-display: flex;
-flex-direction: column;
-align-items: center;
-margin-left: 20px;
+
+.contenerdor_cards {
+    width: calc(33.33% - 40px); /* Ajustar el ancho de cada tarjeta para que quepa en dispositivos de tamaño variable */
+    max-width: 300px; /* Establecer un ancho máximo para mantener la consistencia */
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
 }
-.header{
+
+.header {
     background: #631878;
     width: 100%;
     border-bottom: none;
@@ -30,16 +34,25 @@ margin-left: 20px;
     align-items: center;
     justify-content: center;
 }
-.main img{
-    height: 200px;
-    width: 240px;
-    margin-top: 12px;
-}
-video{
-    width: 300px;
-    position: relative;
-    top: -100px;
+
+video {
+    width: 100%; /* Ajustar el ancho del video al 100% del contenedor */
     border-radius: 20px;
-}p{
+}
+
+p {
     font-size: 20px;
+}
+
+/* Media queries para dispositivos móviles y tabletas */
+@media screen and (max-width: 768px) {
+    .contenerdor_cards {
+        width: calc(50% - 40px); /* Ajustar el ancho de cada tarjeta para dispositivos más pequeños */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .contenerdor_cards {
+        width: calc(100% - 40px); /* Ajustar el ancho de cada tarjeta para dispositivos móviles pequeños */
+    }
 }

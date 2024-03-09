@@ -125,3 +125,48 @@
   display: flex;
   justify-content: center;
 }
+
+/* Estilos generales que se aplican independientemente del tamaño de la pantalla */
+.contenedorAgendacion {
+  width: 90%;
+  margin: 0 auto; 
+}
+
+.contenedorH {
+  display: flex;
+  border-radius: 30px;
+  justify-content: center;
+  height: auto; 
+}
+
+.contenedorOpciones {
+  display: flex;
+  justify-content: space-around; 
+  width: 90%; 
+  max-width: 600px; 
+  margin: 0 auto; 
+}
+
+.contenedorOpciones div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  transition: border-bottom 0.3s ease-in-out;
+  flex: 1; 
+}
+
+@media only screen and (max-width: 768px) {
+  .contenedorOpciones {
+    flex-direction: column; 
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .contenedorOpciones div {
+    padding: 5px; 
+  }
+}
