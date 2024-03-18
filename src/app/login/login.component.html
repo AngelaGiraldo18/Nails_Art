@@ -1,0 +1,40 @@
+<app-header></app-header>
+<div class="wrapper">
+  <div class="background"></div>
+  <div class="card-switch">
+      <label class="switch">
+          <input type="checkbox" class="toggle" [(ngModel)]="isChecked">
+          <span class="slider"></span>
+          <span class="card-side"></span>
+          <div class="flip-card__inner">
+              <div class="flip-card__front">
+                  <div class="title">Iniciar sesión</div>
+                  <form class="flip-card__form" (ngSubmit)="iniciarSesion()">
+                    <div class="missing-field-message" *ngIf="registrando && !usuarioLg.email">Falta el email</div>
+                    <input class="flip-card__input" name="email" placeholder="Email" [(ngModel)]="usuarioLg.email" type="email" required [ngClass]="{'missing-field': registrando && !usuarioLg.email}">
+                    <div class="missing-field-message" *ngIf="registrando && !usuarioLg.contrasena">Falta la contraseña</div>
+                    <input class="flip-card__input" name="password" placeholder="Contraseña" [(ngModel)]="usuarioLg.contrasena" type="password" required [ngClass]="{'missing-field': registrando && !usuarioLg.contrasena}">
+                    <button class="flip-card__btn" type="submit">Iniciar Sesión</button>
+                  </form>
+                </div>
+                <div class="flip-card__back">
+                    <div class="title">Registrate</div>
+                    <form class="flip-card__form" (ngSubmit)="registrarUsuario()">
+                      <div class="missing-field-message" *ngIf="registrando && !usuario.nombre">Falta el nombre</div>
+                      <input class="flip-card__input" placeholder="Nombres" type="text" name="nombre" [(ngModel)]="usuario.nombre" required [ngClass]="{'missing-field': registrando && !usuario.nombre}">
+                      <div class="missing-field-message" *ngIf="registrando && !usuario.apellido">Falta el apellido</div>
+                      <input class="flip-card__input" placeholder="Apellidos" type="text" name="apellido" [(ngModel)]="usuario.apellido" required [ngClass]="{'missing-field': registrando && !usuario.apellido}">
+                      <div class="missing-field-message" *ngIf="registrando && !usuario.email">Falta el email</div>
+                      <input class="flip-card__input" name="email" placeholder="Email" type="email" [(ngModel)]="usuario.email" required [ngClass]="{'missing-field': registrando && !usuario.email}">
+                      <div class="missing-field-message" *ngIf="registrando && !usuario.contrasena">Falta la contraseña</div>
+                      <input class="flip-card__input" name="password" placeholder="Contraseña" type="password" [(ngModel)]="usuario.contrasena" required [ngClass]="{'missing-field': registrando && !usuario.contrasena}">
+                      <div *ngIf="usuario.contrasena.length < 8" class="password-message">
+                        La contraseña debe tener al menos 8 caracteres.
+                      </div>
+                      <button class="flip-card__btn" type="submit">Registrate</button>
+                    </form>
+                </div>
+            </div>
+        </label>
+    </div>
+</div>

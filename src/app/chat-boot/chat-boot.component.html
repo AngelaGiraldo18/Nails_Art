@@ -1,0 +1,23 @@
+<div class="contenerdor-chat" (click)="abrirModal()">
+    <i class="fa-solid fa-comment" style="color: #ffffff;"></i>
+</div>
+
+<div class="cuerpo-chat" *ngIf="AbrirChat">
+    <div class="header-Chat">
+        <h2>Chat Nails</h2>
+        <span class="close-icon" (click)="cerrarModal()">&times;</span>
+    </div>
+    <div class="body-Chat">
+        <div *ngFor="let item of history" class="message" [ngClass]="{'user-message': item.role === 'user', 'model-message': item.role === 'model'}">
+            {{ item.parts }}
+        </div>
+    </div>
+    <div class="footer-Chat">
+        <input type="text" [(ngModel)]="question" placeholder="   dime tu peticion">
+        <button class="botonagg" type="button" (click)="sendMessage()">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front text">Enviar</span>
+        </button>
+    </div>
+</div>
