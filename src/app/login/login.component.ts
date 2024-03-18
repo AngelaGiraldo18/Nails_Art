@@ -25,7 +25,15 @@ export class LoginComponent {
     contrasena: '',
   };
 
+  confirmPassword = '';
+
   constructor(private usuarioService: UsuarioService, public auth: AuthService,private usuarioSharedService: UsuarioSharedServiceService,private router: Router) {}
+  
+  googleAuth(){
+    this.usuarioService.googleAuth();
+  }
+  
+
 
   iniciarSesion() {
     console.log('Intentando iniciar sesión:', this.usuarioLg);
@@ -52,6 +60,18 @@ export class LoginComponent {
   
   registrarUsuario() {
     console.log('Intentando registrar usuario:', this.usuario);
+
+    if (this.usuario.contrasena !== this.confirmPassword) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Las contraseñas no coinciden.',
+        icon: 'error',
+        iconColor: '#631878',
+        confirmButtonColor: '#631878'
+      });
+      return;
+    }
+
     this.usuarioService.createUser(this.usuario).subscribe(
       (response) => {
         console.log('Usuario registrado con éxito:', response);

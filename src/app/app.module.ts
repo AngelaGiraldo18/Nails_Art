@@ -35,6 +35,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ChatBootComponent } from './chat-boot/chat-boot.component';
 import { HistorialComponent } from './historial/historial.component';
+import {AngularFireModule} from '@angular/fire/compat';
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
+import { environment } from '../environments/environment.prod';
 
 @NgModule({
   declarations: [
@@ -76,6 +79,8 @@ import { HistorialComponent } from './historial/historial.component';
     BrowserAnimationsModule,
     MatCardModule,
     MatDatepickerModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     MatNativeDateModule,
     CalendarModule.forRoot({
       provide: DateAdapter,

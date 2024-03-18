@@ -13,7 +13,9 @@
                     <form class="flip-card__form" (ngSubmit)="iniciarSesion()">
                     <input class="flip-card__input" name="email" placeholder="Email" [(ngModel)]="usuarioLg.email" type="email" required>
                     <input class="flip-card__input" name="password" placeholder="Contraseña" [(ngModel)]="usuarioLg.contrasena" type="password" required>
+                    <a routerLink="/recuperar-contrasena" class="forgot-password-link">¿Olvidaste tu contraseña?</a>
                     <button  class="flip-card__btn" type="submit">Inicia Sesión</button>
+                    <button (click)="googleAuth()">Iniciar sesión con Google</button>
                     </form>
                 </div>
                 <div class="flip-card__back">
@@ -23,6 +25,11 @@
                         <input class="flip-card__input" placeholder="Apellidos" type="text" name="apellido" [(ngModel)]="usuario.apellido" required>
                         <input class="flip-card__input" name="email" placeholder="Email" type="email" [(ngModel)]="usuario.email" required>
                         <input class="flip-card__input" name="password" placeholder="Contraseña" type="password" [(ngModel)]="usuario.contrasena" required>
+                        <input class="flip-card__input" name="confirmPassword" placeholder="Confirmar contraseña" type="password" [(ngModel)]="confirmPassword" required>
+
+                        <div *ngIf="usuario.contrasena !== confirmPassword" class ="password-message">
+                            Las contraseñas no coinciden
+                        </div>
                         <div *ngIf="usuario.contrasena.length < 8" class="password-message">
                           La contraseña debe tener al menos 8 caracteres.
                         </div>
