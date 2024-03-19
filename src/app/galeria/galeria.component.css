@@ -116,3 +116,28 @@ img {
     height: 200px;
 }
 
+@media screen and (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .image {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .image {
+        width: 130px;
+        height: 130px;
+    }
+
+    .image h2 {
+        font-size: 1rem;
+    }
+}

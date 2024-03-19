@@ -131,6 +131,91 @@
             </div>
         </div>
 
+    <section class="Expli-Pagina">
+        <img class="IMG-1" src="../../assets/img2/img-1.jpg"alt="imagen1">
+            <h1 class="text1" >Si buscas un gran servicio de arreglo de uñas esta es tu mejor 
+                opción para ello. En esta aplicación podrás no solo agendar tus
+                citas según el día y la hora de tu preferencia si no que también
+                podrás el ver los perfiles y los trabajos de las manicuristas de tu
+                preferencia y también los estilos que quieres.</h1>
+    </section>
+    
+<section class="Estilos">
+      <p class="text2">Los Estilos que más te gusten</p>
+            <img class="imgstyle" src="../../assets/img2/Estilos1.jpg"alt="">
+            <img class="imgstyle" src="../../assets/img2/Estilos2.jpg"alt="">
+            <img class="imgstyle" src="../../assets/img2/Estilos3.jpg" alt="">
+            <img class="imgstyle" src="../../assets/img2/Estilos4.jpg" alt="">
+    <div id="imagenesOcultas" style="display:none;">
+              <img class="imgstyle" src="../../assets/img2/Estilos5.jpg" alt="">
+              <img class="imgstyle" src="../../assets/img2/Estilos6.jpg" alt="">
+              <img class="imgstyle" src="../../assets/img2/Estilos7.jpg" alt="">
+              <img class="imgstyle" src="../../assets/img2/Estilos8.jpg" alt="">
+              <img class="imgstyle" src="../../assets/img2/Estilos9.jpg" alt="">
+              <img class="imgstyle" src="../../assets/img2/Estilos10.jpg" alt="">
+              <img class="imgstyle" src="../../assets/img2/Estilos11.jpg" alt="">
+              <img class="imgstyle" src="../../assets/img2/Estilos12.jpg" alt="">
+    </div>
+        <button id="mostrarMas" class="mostrar-mas-btn">
+            <img class="img" id="firstImage" src="https://cdn-icons-png.flaticon.com/512/626/626013.png" alt="">
+        </button>
+     <h2 class="text3">Los estilos que el cliente más le gusten se podrán realizar</h2>
+</section>
+    
+<section class="work">
+      <h1>Esta pagina es tambien una gran oportunidad para aquellos manicuristas que desean dar sus servicios<br>
+            de trabajo. La aplicacion permite tambien el ingreso de manicuristas para que puedan trabajor en dicho<br>
+            servicio ya sea a en un salon o a domicilio, ademas tambien pueden publicar los trabajos que han echo<br>
+            para los clientes pudan verlor y decidir el que mas les guste.</h1>
+</section>
+    
+<div class="carousel-container">
+     <div class="carousel-images">
+            <img class="carousel-image" src="../../assets/img2/carru1.jpg" alt="Image 1">
+            <img class="carousel-image" src="../../assets/img2/carru2.jpg" alt="Image 2">
+            <img class="carousel-image" src="../../assets/img2/carru3.jpg" alt="Image 3">
+            <img class="carousel-image" src="../../assets/img2/carru4.jpg" alt="Image 1">
+            <img class="carousel-image" src="../../assets/img2/carru5.jpg" alt="Image 2">
+            <img class="carousel-image" src="../../assets/img2/carru6.jpg" alt="Image 3">
+            <img class="carousel-image" src="../../assets/img2/carru7.jpg" alt="Image 1">
+            <img class="carousel-image" src="../../assets/img2/carru8.jpg" alt="Image 2">
+            <img class="carousel-image" src="../../assets/img2/carru9.jpg" alt="Image 3">            
+     </div>
+       <div class="carousel-button carousel-button-left" onclick="moveLeft()">&#10094;</div>
+       <div class="carousel-button carousel-button-right" onclick="moveRight()">&#10095;</div>
+    </div>
+    <script>
+            document.getElementById("mostrarMas").addEventListener("click", function() {
+        var imagenesOcultas = document.getElementById("imagenesOcultas");
+        if (imagenesOcultas.style.display === "none") {
+            imagenesOcultas.style.display = "block";
+        } else {
+            imagenesOcultas.style.display = "none"; 
+        }
+    })
+
+    let currentIndex = 0;
+  const images = document.querySelectorAll('.carousel-image');
+  const totalImages = images.length;
+
+  function moveLeft() {
+    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+    updateCarousel();
+  }
+
+  function moveRight() {
+    currentIndex = (currentIndex + 1) % totalImages;
+    updateCarousel();
+  }
+
+  function updateCarousel() {
+    const offset = -currentIndex * 300;
+    document.querySelector('.carousel-images').style.transform = `translateX(${offset}px)`;
+  }
+
+  setInterval(moveRight, 3000);
+    </script>
+
     </div>
 
 </section>

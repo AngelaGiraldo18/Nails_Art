@@ -587,3 +587,24 @@ justify-content: center;
   margin-top: 10px;
 }
 
+@media only screen and (max-width: 768px) {
+  .e-card {
+    margin: 20px auto; 
+    width: 180px; 
+    height: 250px;
+  }
+
+  .opcionesMoP div {
+    height: 120px;
+    width: 120px; 
+  }
+
+  .cliente,
+  .datosCita {
+    width: 100%; 
+  }
+
+  .modal-container {
+    width: 90%; 
+  }
+}

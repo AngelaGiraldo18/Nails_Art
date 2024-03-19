@@ -49,3 +49,17 @@ section {
     align-items: center;
     justify-content: space-between;
   }
+
+  @media screen and (min-width: 768px) {
+    /* Estilos para tablets y dispositivos similares */
+    .contenedorFavoritos {
+      justify-content: space-between; /* Distribución en fila */
+    }
+  }
+  
+  @media screen and (min-width: 1024px) {
+    /* Estilos para pantallas más grandes (computadoras) */
+    .contenedorFavoritos {
+      justify-content: space-around; /* Distribución en fila con espacio entre tarjetas */
+    }
+  }

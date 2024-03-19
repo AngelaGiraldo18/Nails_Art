@@ -228,3 +228,38 @@ h2{
     height: 22px;
     width: 20px;
 }
+
+@media only screen and (max-width: 600px) {
+    .todo {
+      margin-top: 0; 
+      margin-bottom: 0; 
+      padding-bottom: 0; 
+    }
+    
+    .registro-cuadro {
+      width: 80%; 
+      height: auto; 
+      margin-top: 30px; 
+      padding: 20px; 
+    }
+  
+    .group {
+      margin-top: 15px; 
+      top: 0; 
+    }
+  
+    .input {
+      width: 100%; 
+    }
+  
+    .label {
+      left: 5px; 
+      top: -10px; 
+      font-size: 12px;
+    }
+  
+    .aceptacion-Privacidad {
+      margin-top: -15px; 
+    }
+  }
+  

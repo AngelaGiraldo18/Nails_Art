@@ -249,3 +249,48 @@
     margin-top: 20px;
   }
   
+  @media screen and (max-width: 768px) {
+    .card-container {
+      grid-template-columns: repeat(2, minmax(200px, 1fr));
+      margin-left: 50px;
+    }
+  
+    .card {
+      width: 180px;
+      height: 180px;
+      border-radius: 20px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .card-container {
+      grid-template-columns: repeat(1, minmax(150px, 1fr));
+      margin-left: 20px;
+    }
+  
+    .card {
+      width: 140px;
+      height: 140px;
+      border-radius: 15px;
+    }
+  
+    .card .bottom .content {
+      height: auto;
+    }
+  
+    .card .bottom .content .name,
+    .card .bottom .content .about-me {
+      font-size: 0.8rem;
+    }
+  
+    .card .bottom .bottom-bottom .button {
+      font-size: 0.5rem;
+      padding: 0.3rem 0.5rem;
+    }
+  
+    .modal-content {
+      width: 90%;
+      margin: 10% auto;
+    }
+  }
+  

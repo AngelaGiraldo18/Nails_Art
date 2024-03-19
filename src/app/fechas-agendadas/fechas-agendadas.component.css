@@ -25,3 +25,15 @@ span{
     font-weight: 1000;
     padding-left: 20px;
 }
+
+@media (max-width: 768px) {
+    .contenedorPrincipal {
+      flex-direction: column; /* Cambia la dirección de la columna en dispositivos pequeños */
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .card {
+      width: 90%; /* Ajusta el ancho de la tarjeta para pantallas más pequeñas */
+    }
+  }
