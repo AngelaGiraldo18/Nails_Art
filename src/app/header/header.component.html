@@ -16,11 +16,12 @@
     </div>  
       <div class="usuarioNotificacion" *ngIf="usuarioInfo">
         <div  class="usuarioInfoContainer">
-            <span>{{ usuarioInfo.nombre }} {{ usuarioInfo.apellido }} </span>
+            <span class="NombreUsu">{{ usuarioInfo.nombre }} {{ usuarioInfo.apellido }} </span>
             <span  class="verPerfil" (click)="abrirModal()">Ver tu Perfil</span>
             <img  [src]="usuarioInfo.fotoUsuario" [alt]="'foto ' + usuarioInfo.nombre">
         </div>
     </div>
+
 
     <div class="menu__side" (click)="openCloseMenu()"  [ngClass]="{'menu__side_move': isMenuOpen}">
         <div class="name__page">
@@ -88,9 +89,34 @@
                     </button>
                 </div>
             </a>
-    
-    
         </li>
+        <li *ngIf="(auth.isManicuristaStatus() | async)|| (auth.isAdminStatus() | async)" class="nav-item active">  
+            <a [routerLink]="[ '/catalogo']">
+              <div class="option">
+                <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                class="icono"
+                height="24" 
+                width="25"
+                  fill="white"
+                  cursor="pointer"
+                viewBox="0 0 448 512">
+                    <path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
+                  <button class="animacionBtn">
+                      <div class="text">
+                          <a>
+                              <span>Catalogo</span>
+                          </a>
+                      </div>
+                      <div class="clone">
+                          <a>
+                              <span>Catalogo</span>
+                          </a>
+                      </div>
+                  </button>
+              </div>
+          </a>
+      </li>
         <li *ngIf="(auth.isLoggedIn() | async) === false" class="nav-item active">
                 <a [routerLink]="[ '/Login']">
                     <div class="option">

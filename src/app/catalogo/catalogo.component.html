@@ -1,0 +1,26 @@
+<app-header></app-header>
+<div class="contenedorPrincipal">
+  <div>
+    <img class="imgUñas" [src]="manicurista.fotoUsuario" [alt]="'foto ' + manicurista.nombre">
+    <h2>Agrega tu arte , {{ manicurista.nombre }}</h2>
+  </div>
+  <div class="container">
+    <label class="custom-file-upload">
+      <input type="file" (change)="onFileSelected($event)" accept="image/*">
+      Seleccionar archivo
+    </label>
+    <img class="imgUñas" *ngIf="imagenSeleccionadaURL" [src]="imagenSeleccionadaURL" alt="Imagen seleccionada">
+    <button (click)="subirImagen()">Subir Imagen al Catálogo</button>
+  </div>
+</div>
+<div class="imagenesCatalogo">
+  <h2>Imágenes en el catálogo</h2>
+  <div *ngIf="imagenesCatalogo.length === 0">
+    <p>No hay imágenes en el catálogo.</p>
+  </div>
+  <div class="grid-container" *ngIf="imagenesCatalogo.length > 0">
+    <div class="grid-item" *ngFor="let imagen of imagenesCatalogo">
+      <img [src]="imagen.imagen_una" [alt]="'imagen ' + imagen.id_una">
+    </div>
+  </div>
+</div>

@@ -11,6 +11,7 @@ import { FavoritosComponent } from './favoritos/favoritos.component';
 import { FechasAgendadasComponent } from './fechas-agendadas/fechas-agendadas.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
+import { CatalogoComponent } from './catalogo/catalogo.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'ayuda', component: AyudaComponent, canActivate: [AuthGuard] },
   { path: 'fechas-agendadas', component: FechasAgendadasComponent, canActivate: [AuthGuard] },
   { path: 'Configuracion', component: ConfiguracionComponent, canActivate: [AuthGuard] },
+  {path: 'catalogo',component:CatalogoComponent ,canActivate: [AuthGuard]}
 ];
 
 @NgModule({

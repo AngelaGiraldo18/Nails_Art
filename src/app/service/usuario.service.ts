@@ -172,8 +172,21 @@ obtenerServiciosConPreciosActualizados(ultimaConsulta: Date): Observable<any[]> 
 obtenerDetallesTransaccion(idServicio: number, idUsuario: number): Observable<any> {
   return this.http.get<any>(`${this.apiUrl}/detalles/${idServicio}/${idUsuario}`);
 }
-//chat  obtenerCitasPorFecha
+//agregar imagen podiamos hacerlo aca
+agregarImagenCatalogo(idUsuario: number, formData: FormData): Observable<any> {
+  const url = `${this.apiUrl}/catalogo/${idUsuario}`;
+  console.log('URL de la solicitud:', url);
 
+  return this.http.post(url, formData);
+}
+
+obtenerImagenesPorUsuario(idUsuario: number): Observable<any> {
+  const url = `${this.apiUrl}/catalogo/usuario/${idUsuario}`;
+  console.log('URL de la solicitud:', url);
+
+  return this.http.get(url);
+}
+//chat  obtenerCitasPorFecha
 sendMessage(history: any[], question: string): Observable<any> {
   const body = { history, question };
   const apiUrl = this.apiUrl + '/chat'; // Concatenar la ruta correcta

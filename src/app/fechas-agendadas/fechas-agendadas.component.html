@@ -1,11 +1,10 @@
 <div class="contenedorPrincipal">
-    <div class="card">
-      <h2>Tus citas</h2>
-      <ul>
-        <li *ngFor="let cita of citas">
-            Usuario: {{ cita.usuario_nombre }} | Manicurista: {{ cita.manicurista_nombre }} | Servicio: {{ cita.tipo_servicio }} Hora: {{cita.fecha_del_servicio | date:'HH:mm'}}
-        </li>
-      </ul>
-    </div>
+  <div class="card">
+    <h2>Tus citas</h2>
+    <ul>
+      <li *ngFor="let cita of citas">
+        Usuario: {{ cita.usuario_nombre }} | Manicurista: {{ cita.manicurista_nombre }} | Servicio: {{ cita.tipo_servicio }} Hora: {{ cita.fecha_del_servicio | date:'h:mm a' }}
+      </li>
+    </ul>
   </div>
-  
+</div>

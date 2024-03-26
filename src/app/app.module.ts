@@ -35,6 +35,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ChatBootComponent } from './chat-boot/chat-boot.component';
 import { AuthGuard } from './auth.guard';
+import { CatalogoComponent } from './catalogo/catalogo.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { AuthGuard } from './auth.guard';
     FechasAgendadasComponent,
     ConfiguracionComponent,
     ChatBootComponent,
+    CatalogoComponent,
   ],
   imports: [
     GravatarModule.forRoot({

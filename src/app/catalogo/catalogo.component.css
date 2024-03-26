@@ -1,0 +1,117 @@
+/* catalogo.component.css */
+.contenedorPrincipal{
+  margin: 20px;
+  padding: 20px;
+  margin-left: 100px;
+  width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Estilos para el contenedor principal */
+.container {
+  margin: 20px;
+  padding: 20px;
+  margin-left: 100px;
+  width: 80%;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100px;
+}
+
+/* Estilos para el input de archivo */
+/* Estilos para el input de archivo personalizado */
+.custom-file-upload {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #631878;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-file-upload input[type="file"] {
+  display: none;
+}
+
+
+/* Estilos para el botón */
+button {
+  display: block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #631878;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Estilos para la imagen seleccionada */
+.imgUñas {
+  display: block;
+  width: 200px;
+  height: 200px;
+  margin-top: 10px;
+  border-radius: 10%;
+}
+/* Contenedor principal */
+.imagenesCatalogo {
+  max-width: 800px; /* Ancho máximo del contenedor */
+  margin: 0 auto; /* Centrar el contenedor horizontalmente */
+  padding: 20px; /* Espacio interno alrededor del contenido */
+}
+
+/* Cuadrícula de imágenes */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Columnas flexibles que se ajustan automáticamente */
+  grid-gap: 20px; /* Espacio entre las imágenes */
+}
+
+/* Estilo de cada imagen */
+.grid-item {
+  position: relative; /* Posición relativa para alinear elementos secundarios */
+  overflow: hidden; /* Ocultar el desbordamiento de las imágenes */
+  border-radius: 10px; /* Borde redondeado */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.grid-item img {
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Altura completa */
+  object-fit: cover; /* Cubrir completamente el contenedor */
+  transition: transform 0.3s ease; /* Transición suave al hacer hover */
+}
+
+/* Efecto hover */
+.grid-item:hover img {
+  transform: scale(1.05); /* Aumentar ligeramente el tamaño al hacer hover */
+}
+
+/* Texto de superposición */
+.overlay {
+  position: absolute; /* Posición absoluta */
+  bottom: 0; /* Alinear el texto en la parte inferior */
+  left: 0; /* Alinear el texto en la parte izquierda */
+  right: 0; /* Alinear el texto en la parte derecha */
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+  color: white; /* Color del texto */
+  padding: 10px; /* Espacio interno */
+  font-size: 14px; /* Tamaño de fuente */
+  text-align: center; /* Alinear el texto al centro */
+  opacity: 0; /* Ocultar inicialmente el texto */
+  transition: opacity 0.3s ease; /* Transición suave */
+}
+
+/* Mostrar texto de superposición al hacer hover */
+.grid-item:hover .overlay {
+  opacity: 1;
+}

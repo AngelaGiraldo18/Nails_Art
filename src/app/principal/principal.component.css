@@ -416,3 +416,79 @@
     width: 100%;
     justify-content: space-around;
 }
+
+@media screen and (max-width: 768px) {   
+    .testimony{
+        width: 90%;
+    }
+    .testimony__course{
+        height: 100%;
+    }
+    .subtitle{
+        font-size: 18px;
+    }
+    .card__father {
+        width: calc(50% - 10px); /* El 10px es el espacio entre las tarjetas */
+        margin-bottom: 20px; 
+    }
+    .testimony__img{
+        height: 150px;
+        width: 150px;
+    }
+    .testimony__review{
+        width: 200px;
+    }
+    .body__card_back p{
+        height: 100px;
+    }
+    .card {
+        width: 300px; 
+        height: 350px;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .testimony{
+        width: 120%;
+    }
+
+    .testimony__img{
+        height: 150px;
+        width: 150px;
+    }
+    .testimony__review{
+        width: 200px;
+    }
+
+    .container__card {
+        margin-top: 50px; 
+    }
+    .body__card_back p{
+        position: relative;
+        top: -30px;
+        height: 90px;
+        font-size: 15px;
+    }
+    .card {
+        width: 320px; 
+        height: 255px;
+    }
+    a{
+        position: relative;
+        top: -30px;
+        font-size: 14px;
+    }
+    .body__card_back{
+        width: 290px;
+    }
+    .trabajaConNosotros{
+        font-size: 15px;
+        position: relative;
+        top: -40px;
+    }
+    .body__card_front h1{
+        font-size: 18px;
+    }
+
+}
