@@ -137,13 +137,15 @@ export class OpcionesManicuraComponent implements OnInit {
   }
 
   calcularDuracionEnHoras() {
-    if (this.tipoServicioSeleccionado === 'Tradicional') {
+    if (this.tipoServicioSeleccionado === 'tradicional') {
       this.duracionEnHoras = (this.ubicacionServicio === 'manos' || this.ubicacionServicio === 'pies') ? 1 : 2;
-    } else if (this.tipoServicioSeleccionado === 'Semipermanente') {
+    } else if (this.tipoServicioSeleccionado === 'semipermanente') {
       this.duracionEnHoras = (this.ubicacionServicio === 'manos') ? 2 : 1.5;
-    } else if (this.tipoServicioSeleccionado === 'Acrilicas') {
+    } else if (this.tipoServicioSeleccionado === 'acrilicas') {
       this.duracionEnHoras = (this.ubicacionServicio === 'manos') ? 3 : 2.5;
     }
+
+    return this.duracionEnHoras;
   }
 
   verificarSeleccion() {
@@ -161,55 +163,92 @@ export class OpcionesManicuraComponent implements OnInit {
       this.abrirCalendarioModal();
     }
   }
+agendarCita() {
+  if (this.siguienteHabilitado) {
 
-  agendarCita() {
-    if (this.siguienteHabilitado) {
-      const fechaHoraSeleccionada = new Date(this.fechaHoraSeleccionada);
-      const datosCita = {
-        id_usuario: this.usuarioInfo.id,
-        id_manicurista: this.manicuristaSeleccionada?.id_manicurista,
-        tipo_servicio: this.tipoServicioSeleccionado,
-        ubicacion_servicio: this.ubicacionServicio,
-        duracion_en_horas: this.duracionEnHoras,
-        favorito: this.manicuristaSeleccionada?.favorito,
-        fecha_del_servicio: this.formatDateTime(fechaHoraSeleccionada),
-        estado: 'programada'
-      };
-  
-      console.log('Datos de la cita a enviar:', datosCita);
-  
-      // Realizar el pago
-      this.usuarioService.obtenerDetallesTransaccion(this.idServicio, this.usuarioInfo.id).subscribe(
-        (data) => {
-          console.log('Detalles de la transacción:', data);
-          this.iniciarProcesoDePago(data, this.idServicio);
-          // Marcar la cita como agendada después de completar el pago
-          this.usuarioService.createCita(datosCita).subscribe(
-            (response) => {
-              Swal.fire({
-                title: '¡Cita agendada!',
-                text: 'La cita se ha agendado correctamente.',
-                icon: 'success',
-                iconColor: '#631878'
-              });
-            },
-            (error) => {
-              console.error('Error al agendar la cita:', error);
-              Swal.fire('Error', 'Hubo un problema al agendar la cita. Por favor, inténtalo de nuevo.', 'error');
-            },
-            () => {
-              this.cerrarTodasModales();
-              this.favoritoSeleccionado = true;
-            }
-          );
-        },
-        (error) => {
-          console.error('Error al obtener detalles de la transacción:', error);
-        }
-      );
-    }
+    console.log(this.siguienteHabilitado);
+    
+    const fechaHoraSeleccionada = new Date(this.fechaHoraSeleccionada);
+    const fechaHoraFin = new Date(fechaHoraSeleccionada.getTime() + this.duracionEnHoras * 60 * 60 * 1000);
+    const fechaFinFormated=this.formatDateTime(fechaHoraFin)
+ 
+ 
+
+    const datosCita = {
+      id_usuario: this.usuarioInfo.id,
+      id_manicurista: this.manicuristaSeleccionada?.id_manicurista,
+      tipo_servicio: this.idServicio,
+      ubicacion_servicio: this.ubicacionServicio,
+      duracion_en_horas: this.calcularDuracionEnHoras(),
+      favorito: this.manicuristaSeleccionada?.favorito,
+      fecha_del_servicio: this.formatDateTime(fechaHoraSeleccionada),
+      estado: 'programada'
+      
+    };
+
+  const fechaInicio=datosCita.fecha_del_servicio.toString()
+  const fechaFin=fechaFinFormated.toString()
+    console.log("fechainicio", fechaInicio);
+    console.log("fechafin", fechaFin);
+    
+    
+console.log("duracion",this.duracionEnHoras);
+
+
+    console.log('Datos de la cita a enviar:', datosCita);
+    
+    this.usuarioService.verificarDisponibilidadCita(fechaInicio,fechaFin).subscribe(
+      (response) => {
+        if (response.disponible) {
+
+          
+console.log("siii");
+
+this.usuarioService.obtenerDetallesTransaccion(this.idServicio, this.usuarioInfo.id).subscribe(
+  (data) => {
+    console.log('Detalles de la transacción:', data);
+    this.iniciarProcesoDePago(data, this.idServicio);
+    // Marcar la cita como agendada después de completar el pago
+    this.usuarioService.createCita(datosCita).subscribe(
+      (response) => {
+        Swal.fire({
+          title: '¡Cita agendada!',
+          text: 'La cita se ha agendado correctamente.',
+          icon: 'success',
+          iconColor: '#631878'
+        });
+      },
+      (error) => {
+        console.error('Error al agendar la cita:', error);
+        Swal.fire('Error', 'Hubo un problema al agendar la cita. Por favor, inténtalo de nuevo.', 'error');
+      },
+      () => {
+        this.cerrarTodasModales();
+        this.favoritoSeleccionado = true;
+      }
+    );
+  },
+  (error) => {
+    console.error('Error al obtener detalles de la transacción:', error);
   }
-  
+);
+
+
+
+
+          
+        } else {
+          Swal.fire('Error', 'La fecha y hora seleccionadas ya están ocupadas. Por favor, elige otro horario.', 'error');
+        }
+      },
+      (error) => {
+        console.error('Error al verificar la disponibilidad de citas:', error);
+        Swal.fire('Error', 'Hubo un problema al verificar la disponibilidad de citas. Por favor, inténtalo de nuevo.', 'error');
+      }
+    );
+  }
+}
+
   
 
   formatDateTime(date: any): string {

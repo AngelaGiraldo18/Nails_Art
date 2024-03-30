@@ -3,8 +3,11 @@
     <h2>Tus citas</h2>
     <ul>
       <li *ngFor="let cita of citas">
-        Usuario: {{ cita.usuario_nombre }} | Manicurista: {{ cita.manicurista_nombre }} | Servicio: {{ cita.tipo_servicio }} Hora: {{ cita.fecha_del_servicio | date:'h:mm a' }}
+        <p>usuario: {{ cita.usuario_nombre }} | Manicurista: {{ cita.manicurista_nombre }} | Servicio: {{ cita.tipo_servicio }} Hora: {{ cita.fecha_del_servicio | date:'h:mm a' }}</p>
+        <div class="line"></div>
       </li>
+
     </ul>
+   
   </div>
 </div>

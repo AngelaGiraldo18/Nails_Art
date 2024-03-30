@@ -81,7 +81,7 @@ export class CatalogoComponent implements OnInit {
               console.error('Error al agregar la imagen al catálogo:', error);
               Swal.fire({
                 title: 'Error',
-                text: 'Ha ocurrido un error al agregar la imagen al catálogo. Por favor, intenta de nuevo más tarde.',
+                text: 'imagen no valida. Por favor, intenta con una imagen que corresponda a diseños de uñas.',
                 icon: 'error',
                 confirmButtonText: 'OK'
               });

@@ -54,9 +54,21 @@
           <p>{{selectedManicurista.descripcion}}</p>
         </div>
         <div class="modal-portfolio">
-          <h3>Portafolio</h3>
-          <!-- Aquí puedes mostrar los trabajos del manicurista -->
+          <h3>Mira algunos de mis diseños!</h3>
+          <div class="carousel-container" (mouseenter)="pauseCarousel()" (mouseleave)="startCarousel()">
+            <div class="carousel-inner" #carouselInner>
+              <div class="carousel-item" *ngFor="let imagen of imagenesCatalogoSubject | async">
+                <img [src]="imagen.imagen_una" alt="Imagen de catálogo">
+              </div>
+            </div>
+          </div>
+          
+        
+        
         </div>
+         
+        
+        
       </div>
     </div>
   </div>

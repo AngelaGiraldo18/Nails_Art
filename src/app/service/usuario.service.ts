@@ -130,8 +130,11 @@ cambiarEstadoCita(idCita: number, nuevoEstado: string): Observable<any> {
 obtenerCitasPorId(idCita: number): Observable<any> {
   return this.http.get<any>(`${this.apiUrl}/citas/${idCita}`);
 }
-obtenerCitasUsuario(): Observable<any> {
-  return this.http.get<any>(`${this.apiUrl}/citasUsuario`);
+verificarDisponibilidadCita(fechaHoraInicio: string, fechaFin:string): Observable<{ disponible: boolean }> {
+  return this.http.get<{ disponible: boolean }>(`${this.apiUrl}/verificarDisponibilidad/${fechaHoraInicio}/${fechaFin}`);
+}
+obtenerCitasUsuario(id:number): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/citasUsuario/${id}`);
 }
 eliminarCita(idCita: number): Observable<any> {
   return this.http.delete<any>(`${this.apiUrl}/eliminarCita/${idCita}`);

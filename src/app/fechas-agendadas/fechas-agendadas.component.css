@@ -16,9 +16,20 @@
 }
 ul{
     list-style: none;
+    padding-bottom: 15  px;
+}
+p{
+    color: #631878;
+    font-size: 17px;
+    width: 450px;
+}
+.line{
+    border-bottom: 1px solid #631878 ;
+    margin-bottom: 5px;
 }
 li{
-    padding-top: 10px;
+    
+    text-align: center;
 }
 span{
     color: #631878;
