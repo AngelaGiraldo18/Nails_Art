@@ -1,0 +1,75 @@
+  <app-header></app-header>
+  <section class="card-container">
+    <div class="card" *ngFor="let manicurista of manicuristas">
+        <button class="mail">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+        </button>
+      <div class="profile-pic" *ngIf="manicurista.fotoManicurista">
+        <img src="{{manicurista.fotoManicurista}}" alt="{{manicurista.nombre}}">
+    </div>
+
+        <div class="bottom">
+            <div class="content">
+                <span class="name">Mi Nombre es {{manicurista.nombre}}</span>
+                <span class="about-me">{{manicurista.descripcion}} </span>
+            </div>
+           <div class="bottom-bottom">
+            <div class="social-links-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15.999" viewBox="0 0 16 15.999">
+                    <path id="Subtraction_4" data-name="Subtraction 4" d="M6-582H-2a4,4,0,0,1-4-4v-8a4,4,0,0,1,4-4H6a4,4,0,0,1,4,4v8A4,4,0,0,1,6-582ZM2-594a4,4,0,0,0-4,4,4,4,0,0,0,4,4,4,4,0,0,0,4-4A4.005,4.005,0,0,0,2-594Zm4.5-2a1,1,0,0,0-1,1,1,1,0,0,0,1,1,1,1,0,0,0,1-1A1,1,0,0,0,6.5-596ZM2-587.5A2.5,2.5,0,0,1-.5-590,2.5,2.5,0,0,1,2-592.5,2.5,2.5,0,0,1,4.5-590,2.5,2.5,0,0,1,2-587.5Z" transform="translate(6 598)"></path>
+                </svg>
+                <span class="name">{{manicurista.nombre}}</span>
+            </div>
+            <button class="button" (click)="openModal(manicurista)">mira mis trabajos</button>
+           </div>
+        </div>
+    </div>
+  </section>  
+ <!-- Modal -->
+<div class="modal" *ngIf="selectedManicurista">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <div class="modal-header">
+        <h2>Hoja de Vida de {{selectedManicurista.nombre}}</h2>
+      </div>
+      <div class="modal-body">
+        <div class="modal-img">
+          <img src="{{selectedManicurista.fotoManicurista}}" alt="{{selectedManicurista.nombre}}">
+        </div>
+        <div class="modal-info">
+          <div>
+            <p><strong>Nombre:</strong> {{selectedManicurista.nombre}}</p>
+            <p><strong>Apellido:</strong> {{selectedManicurista.apellido}}</p>
+            <p><strong>Email:</strong> {{selectedManicurista.emailPersonal}}</p>
+            <!-- Agregar más campos según sea necesario -->
+          </div>
+          <div>
+            <p><strong>Celular:</strong> {{selectedManicurista.celular}}</p>
+            <p><strong>Dirección:</strong> {{selectedManicurista.direccion}}</p>
+            <!-- Agregar más campos según sea necesario -->
+          </div>
+        </div>
+        <div class="modal-description">
+          <p><strong>Descripción:</strong></p>
+          <p>{{selectedManicurista.descripcion}}</p>
+        </div>
+        <div class="modal-portfolio">
+          <h3>Mira algunos de mis diseños!</h3>
+          <div class="carousel-container" (mouseenter)="pauseCarousel()" (mouseleave)="startCarousel()">
+            <div class="carousel-inner" #carouselInner>
+              <div class="carousel-item" *ngFor="let imagen of imagenesCatalogoSubject | async">
+                <img [src]="imagen.imagen_una" alt="Imagen de catálogo">
+              </div>
+            </div>
+          </div>
+          
+        
+        
+        </div>
+         
+        
+        
+      </div>
+    </div>
+  </div>
+  <app-header-responsive></app-header-responsive>

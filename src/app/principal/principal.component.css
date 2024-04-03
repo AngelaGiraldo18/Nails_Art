@@ -1,0 +1,494 @@
+/*este es el codigo de css para las tarjetas*/
+.nosotros{
+ 
+    display: flex;
+    justify-content: space-around;
+}
+.container__card{
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 100px;
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card__father{
+    margin: 20px;
+    perspective: 1000px;
+}
+
+
+.card{
+    width: 350px;
+    height: 400px;
+    transform-style: preserve-3d;
+    transition: all 600ms;
+}
+
+.card__front{
+    background-size: cover;
+    background-position: center;
+}
+
+
+.card__front,
+.card__back{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    border-radius: 20px;
+}
+
+.card__back{
+    transform: rotateY(180deg);
+    background: white;
+}
+
+.body__card_front{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    transform: translateZ(60px);
+}
+
+.bg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.4);
+    border-radius: 20px;
+}
+
+.body__card_back{
+    padding: 40px;
+    text-align: center;
+    transform: translateZ(60px);
+}
+.body__card_back a{
+    padding: 10px 30px;
+    position: relative;
+    top: 30px;
+    margin-top: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background: #631878;
+    box-shadow: 1px 1px 30px -5px #631878;
+    border-radius: 10px;
+    transition: box-shadow 600ms;
+}
+
+.body__card_back p{
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.body__card_back input{
+    padding: 10px 40px;
+    margin-top: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background: #631878;
+    box-shadow: 1px 1px 30px -5px #631878;
+    border-radius: 10px;
+    transition: box-shadow 600ms;
+}
+
+.body__card_back input:hover{
+    box-shadow: 1px 1px 30px 0px #631878;
+}
+.container_cards{
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.cards{
+    width: 300px;
+    margin: 10px;
+    transition: all 300ms;
+}
+.cards:hover{
+    width: 350px;
+}solo_whatsapp
+.cards .covers{
+    width: 100%;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+}
+.cards .covers img{
+    width: 250px;
+    display: block;
+    margin: auto;
+    position: relative;
+    top: 40px;
+    z-index: 1;
+    filter: drop-shadow(5px 5px 4px rgba(0,0,0,0.5));
+    transition: all 400ms;
+}
+.cards:hover .covers img{
+    top: 0px;
+    filter: none;
+}
+.cards .img_back{
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    bottom: -80px;
+    left: 0;
+    background-size: cover;
+    border-radius: 20px;
+    transition: all 300ms;
+}
+
+.cards .description{
+    background: white;
+    margin-top: -10px;
+    padding: 20px;
+    border-radius: 0px 0px 20px 20px;
+    transition: all 300ms;
+}
+
+.cards:hover .description{
+    padding: 40px;
+}
+
+.cards .description h2{
+    margin-top: 10px;
+}
+
+.cards .description p{
+    margin-top: 10px;
+}
+
+
+.card__father:hover .card{
+    transform: rotateY(180deg);
+    transition: 1s;
+}
+
+
+.card{
+    width: 350px;
+    height: 400px;
+    transform-style: preserve-3d;
+    transition: all 600ms;
+}
+
+.card__front{
+    background-size: cover;
+    background-position: center;
+}
+
+
+.card__front,
+.card__back{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    border-radius: 20px;
+}
+
+.card__back{
+    transform: rotateY(180deg);
+    background: white;
+}
+
+.body__card_front{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    transform: translateZ(60px);
+}
+
+.body__card_back{
+    padding: 40px;
+    text-align: center;
+    transform: translateZ(60px);
+}
+.body__card_back a{
+    padding: 10px 30px;
+    position: relative;
+    top: 30px;
+    margin-top: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background: #631878;
+    box-shadow: 1px 1px 30px -5px #631878;
+    border-radius: 10px;
+    transition: box-shadow 600ms;
+}
+
+.body__card_back p{
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.body__card_back input{
+    padding: 10px 40px;
+    margin-top: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background: #631878;
+    box-shadow: 1px 1px 30px -5px #631878;
+    border-radius: 10px;
+    transition: box-shadow 600ms;
+}
+
+.body__card_back input:hover{
+    box-shadow: 1px 1px 30px 0px #631878;
+}
+/*Este es el codigo de el slider */
+
+.testimony{
+    background-color: #e5e5f7;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 12%;
+    margin-top: 5%;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+  }
+
+.testimony__container{
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    gap: 1em;
+    align-items: center;
+}
+
+.testimony__body{
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2em;
+    grid-column: 2/3;
+    grid-row: 1/2;
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+.testimony__body--show{
+    pointer-events: unset;
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.testimony__img{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 30%;
+}
+
+.testimony__texts{
+    max-width: 700px;
+}
+
+.testimony__course{
+    background-color: #631878;
+    color: #fff;
+    display: inline-block;
+    padding: 5px;
+}
+
+.testimony__arrow{
+    width: 90%;
+    cursor: pointer;
+}
+
+.container__about{
+    padding: 100px 0px;
+    background: var(--background-color);
+    margin-top: 100px;
+}
+
+.about{
+    max-width: 1200px;
+    margin: auto;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text__about{
+    width: 100%;
+    padding-right: 40px;
+}
+
+.text__about h1{
+    color: var(--color_text-secundary);
+    font-weight: 600;
+}
+
+.text__about p{
+    font-size: var(--text_paragraph);
+    margin-top: 40px;
+    color: var(--color_text-tertiary);
+}
+
+.image__about{
+    width: 100%;
+    display: flex;
+}
+
+.image__about img{
+    width: 300px;
+}
+.contenedorManicuristaUsers{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #631878;
+    color: white;
+    flex-direction: column;
+    width: 70%;
+    position: relative;
+    left: 17%;
+    border-radius: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+}
+.contenedorManicuristaUsers h2{
+    background: white;
+    color: #631878;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin-right: 600px;
+}
+.contenedorManicuristaUsers img{
+    border-radius: 50%;
+    background: gray;
+    width: 80px;
+    height: 80px;
+}
+.contenedorAtributosManicurista{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+}
+
+@media screen and (max-width: 768px) {   
+    .testimony{
+        width: 90%;
+    }
+    .testimony__course{
+        height: 100%;
+    }
+    .subtitle{
+        font-size: 18px;
+    }
+    .card__father {
+        width: calc(50% - 10px); /* El 10px es el espacio entre las tarjetas */
+        margin-bottom: 20px; 
+    }
+    .testimony__img{
+        height: 150px;
+        width: 150px;
+    }
+    .testimony__review{
+        width: 200px;
+    }
+    .body__card_back p{
+        height: 100px;
+    }
+    .card {
+        width: 300px; 
+        height: 350px;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .testimony{
+        width: 120%;
+    }
+
+    .testimony__img{
+        height: 150px;
+        width: 150px;
+    }
+    .testimony__review{
+        width: 200px;
+    }
+
+    .container__card {
+        margin-top: 50px; 
+    }
+    .body__card_back p{
+        position: relative;
+        top: -30px;
+        height: 90px;
+        font-size: 15px;
+    }
+    .card {
+        width: 320px; 
+        height: 255px;
+    }
+    a{
+        position: relative;
+        top: -30px;
+        font-size: 14px;
+    }
+    .body__card_back{
+        width: 290px;
+    }
+    .trabajaConNosotros{
+        font-size: 15px;
+        position: relative;
+        top: -40px;
+    }
+    .body__card_front h1{
+        font-size: 18px;
+    }
+
+}

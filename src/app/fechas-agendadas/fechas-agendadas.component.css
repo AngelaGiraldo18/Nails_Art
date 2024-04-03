@@ -1,0 +1,38 @@
+.contenedorPrincipal{
+    position: relative;
+    top: -400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.card{
+    box-shadow:   8px 8px rgba(117, 45, 102, 0.685);
+    border-radius: 20px;
+    width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+ul{
+    list-style: none;
+    padding-bottom: 15  px;
+}
+p{
+    color: #631878;
+    font-size: 17px;
+    width: 450px;
+}
+.line{
+    border-bottom: 1px solid #631878 ;
+    margin-bottom: 5px;
+}
+li{
+    
+    text-align: center;
+}
+span{
+    color: #631878;
+    font-weight: 1000;
+    padding-left: 20px;
+}

@@ -1,0 +1,27 @@
+<header>
+    <h2>Nails Art</h2>
+    <a [routerLink]="['/Inicio']"><i class="fa-solid fa-house"></i></a>
+    <a *ngIf="(auth.isManicuristaStatus() | async) || (auth.isAdminStatus() | async)" [routerLink]="['/Calendario']"><i class="fa-regular fa-calendar"></i></a>
+    <a *ngIf="(auth.isManicuristaStatus() | async) || (auth.isAdminStatus() | async)"  [routerLink]="['/AgrManicurista']"><i class="fa-solid fa-chart-simple"></i></a>
+    <a *ngIf="(auth.isLoggedIn() | async) === false" [routerLink]="['/Login']"><i class="fa-solid fa-user-plus"></i></a>
+    <a *ngIf="auth.isAdminStatus() | async"  [routerLink]="['/catalogo']"><i class="fa-solid fa-book"></i></a>
+    <a *ngIf="(auth.isClienteStatus() | async) || (auth.isAdminStatus() | async)" [routerLink]="['/Manicuristas']"><i class="fa-solid fa-address-book"></i></a>
+    <a *ngIf="(auth.isClienteStatus() | async) || (auth.isAdminStatus() | async)" [routerLink]="['/agendarCita']"><i class="fa-solid fa-layer-group"></i></a>
+    <a *ngIf="auth.isAdminStatus() | async" [routerLink]="['/Configuracion']"><i class="fa-solid fa-gear"></i></a>
+    <a *ngIf="(auth.isLoggedIn() | async) === false" [routerLink]="['/Login']"><i class="fa-solid fa-right-to-bracket"></i></a>
+    <div class="header">
+        <div (click)="toggleMenu()" class="icon-container">
+          <i class="fa-solid fa-ellipsis-vertical"></i>
+        </div>
+        <div class="menu" *ngIf="showMenu">
+          <div class="close-button" (click)="closeMenu()">
+            &times;          </div>
+          <ul>
+            <li><a [routerLink]="['/ayuda']">Ayuda</a></li>
+            <li><a [routerLink]="['/contacto']">Contactanos</a></li>
+            <li *ngIf="auth.isLoggedIn() | async" class="nav-item active"><a class="nav-link" [routerLink]="['/']" (click)="auth.logout()">Salir</a></li>
+          </ul>
+        </div>
+      </div>
+  </header>
+  

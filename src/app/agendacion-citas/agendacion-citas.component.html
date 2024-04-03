@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<div class="contenedorAgendacion">
+  <div class="user" *ngIf="usuarioInfo" >
+    <p>{{ usuarioInfo.nombre }} {{ usuarioInfo.apellido }}</p>
+  </div>
+
+  <div class="contenedorH">
+    <!-- Opciones estáticas -->
+    <div class="contenedorOpciones">
+
+      <div (click)="seleccionarNuevaCita()">
+        <i class="fa-regular fa-calendar"></i>
+        <span>Nueva cita</span>
+      </div>
+
+      <div (click)="seleccionarCitasAgendadas()">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>Historial</span>
+      </div>
+
+      <div (click)="seleccionarFavoritos()">
+        <i class="fa-regular fa-heart"></i>
+        <span>Favoritos</span>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="pociones-manicurista" *ngIf="opcionSeleccionada === 'nuevaCita'">
+    <app-opciones-manicura (siguiente)="mostrarSeleccionarHorario()"></app-opciones-manicura>
+  </div>
+
+ <div *ngIf="opcionSeleccionada === 'fechas-agendadas'">
+    <app-fechas-agendadas></app-fechas-agendadas>
+  </div>
+
+  <div *ngIf="opcionSeleccionada === 'favoritos'">
+    <app-favoritos></app-favoritos>
+  </div>
+  
+  
+</div>
+<app-header-responsive></app-header-responsive>
+

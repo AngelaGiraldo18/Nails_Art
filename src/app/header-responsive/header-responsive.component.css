@@ -1,0 +1,50 @@
+header{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    background-color: #631878;
+}
+a{
+    color: white;
+}
+i{
+    font-size: 25px;
+}
+.menu {
+    position: absolute;
+    left: 100%;
+    list-style: none;
+    text-decoration: none;
+    transform: translateX(-50%);
+    background-color: #631878;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: -100px;
+  }
+
+  /* Estilos para dispositivos móviles */
+@media only screen and (max-width: 600px) {
+    header {
+        display: flex;
+        width: 141%;
+        align-items: center;
+        justify-content: space-around;
+        color: white;
+        background-color: #631878;
+        position: absolute;
+        top: 136%;
+        
+    }
+    i{
+        font-size: 40px;
+    }
+
+  }
+  @media only screen and (min-width: 768px) {
+    header {
+      display: none; /* Ocultar el encabezado en dispositivos grandes */
+    }
+}

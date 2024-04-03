@@ -1,0 +1,90 @@
+<app-header></app-header>
+<button (click)="abrirModal()" class="botonagg" type="button">
+  <span class="shadow"></span>
+  <span class="edge"></span>
+  <span class="front text">Agregar nuevo servicio</span>
+</button>
+
+<div class="modal-overlay" *ngIf="modalAbierta">
+  <div class="modal-container">
+    <div class="modal-header">
+      <span>Agregar otro servicio</span>
+      <span class="close-icon" (click)="cerrarModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmitForm()">
+        <label for="nombre">Nombre del servicio:</label>
+        <input type="text" id="nombre" name="nombre" [(ngModel)]="nuevoServicio.tipo_servicio" required>
+
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" name="precio" [(ngModel)]="nuevoServicio.precio" required>
+        
+        <button type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="configuracionMaster">
+    <h2>Configura tus servicios</h2>
+    <div class="contenedor2">
+      <ul>
+        <li *ngFor="let servicio of servicios">
+          <p><span class="label">Nombre del servicio:</span>{{ servicio?.tipo_servicio }}</p>
+          <p> <span class="label">Precio actual:</span>{{ servicio?.precio }}</p>
+          <button (click)="abrirOtraModal(servicio)" type="button">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front text">Actualizar precio</span>
+          </button> 
+          <button (click)="eliminarServicio(servicio.id_servicio)" type="button">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front text">Eliminar</span>
+          </button>          
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="modal-overlay" *ngIf="otraModal"> <!-- Corregido el nombre de la propiedad a otraModal -->
+  <div class="modal-container">
+    <div class="modal-header">
+      <span>actualiza el precio</span>
+      <span class="close-icon" (click)="cerrarOtraModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="actualizarPrecio()">
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" name="precio" [(ngModel)]="nuevoPrecio" required>
+        
+        <button type="submit">Actualizar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="configuracionMaster">
+    <h2>revisa las citas diarias</h2>
+    <div class="contenedorCitas">
+      <div class="listas">
+        <ul>
+          <li *ngFor="let cita of citasPorFecha">
+            <p><span class="label">Estado de la cita</span>{{ cita.estado }}</p>
+            <p><span class="label">Usuario:</span>{{ cita.usuario_nombre }}</p>
+            <p><span class="label">Manicurista:</span>{{ cita.manicurista_nombre }}</p>
+          </li>
+        </ul>
+      </div>
+      <div class="agenda">
+        <mat-card class="demo-inline-calendar-card">
+          <mat-calendar [(selected)]="selected" (selectedChange)="onDateSelected($event)"></mat-calendar>
+        </mat-card>
+      </div>
+    </div>
+    </div>
+</section>
+<app-header-responsive></app-header-responsive>

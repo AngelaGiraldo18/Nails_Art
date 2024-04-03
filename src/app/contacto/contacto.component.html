@@ -1,0 +1,53 @@
+<app-header></app-header>
+<div class="todo">
+  <section class="parte2">
+    <div class="registro-cuadro">
+      <h2>Comunícate con Nuestro Equipo</h2><br>
+      <!-- Tu formulario HTML -->
+      <form (ngSubmit)="onSubmit()" [formGroup]="form" enctype="multipart/form-data">
+        <div class="group">
+          <input required="" class="input" type="text" id="nombre" formControlName="nombre" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label class="label">Ingresa tu Nombre</label>
+        </div>
+
+        <div class="group">
+          <input required="" type="text" class="input" id="apellido" formControlName="apellido" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label class="label">Ingresa tu Apellido</label>
+        </div>
+
+        <div class="group">
+          <input required="" class="input" type="email" id="email" formControlName="email" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label class="label">Ingresa tu CorreoE</label>
+        </div>
+
+        <div class="group">
+          <input required="" class="input" type="number" id="telefono" formControlName="telefono" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label class="label">Ingresa tu Telefono</label>
+        </div>
+        <div class="hojaDeVida">
+          <label for="hojaVidaFile">Adjunta un PDF de tu hoja de vida:</label>
+        <input type="file" id="hojaVidaFile" name="hoja_vida_path" (change)="onFileSelected($event)" accept=".pdf" required><br><br>
+        </div>
+        <div class="aceptacion-Privacidad">
+          <input class="CuadroAcepto" type="checkbox" id="aceptoPrivacidad" type="checkbox" formControlName="aceptoPrivacidad" required>
+          <label class="politicas" for="aceptoPrivacidad">Acepto política y tratamiento de datos</label>
+        </div>
+        <button type="submit" [disabled]="processing">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front text">Enviar
+          </span>
+        </button>
+      </form>
+    </div>
+  </section>
+</div>
+<app-header-responsive></app-header-responsive>

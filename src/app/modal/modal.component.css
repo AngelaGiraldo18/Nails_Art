@@ -1,0 +1,118 @@
+.contenedorPrincipalModal {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: #fff;
+  border-radius: 10px;
+  max-width: 90%;
+  max-height: 80%;
+  padding: 0;
+  position: fixed;
+
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0; /* Restablece el margen a 0 */
+  padding: 0; /* Restablece el relleno a 0 */
+  background-color: #631878;
+  color: white;
+  border-top-left-radius: 10px; /* Aplica border-radius solo a la esquina superior izquierda */
+  border-top-right-radius: 10px; /* Aplica border-radius solo a la esquina superior derecha */
+}
+
+
+
+
+.close-button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-body {
+  overflow-y: auto; 
+  max-height: calc(80vh - 60px); 
+  padding-right: 15px;
+}
+
+
+.input {
+    --input-focus: #631878;
+    --font-color: #631878;
+    --font-color-sub: #631878;
+    --bg-color: #fff;
+    --main-color: #631878;
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+    margin-left: 30px;
+    margin-top: 20px;
+  }
+  
+  .input::placeholder {
+    color: var(--font-color-sub);
+    opacity: 0.8;
+  }
+  
+  .input:focus {
+    border: 2px solid var(--input-focus);
+  }
+  .cita-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #631878;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.cita-info {
+  flex: 1;
+}
+
+.estado {
+  margin-right: 10px;
+}
+
+.botones-acciones {
+  display: flex;
+  align-items: center;
+}
+
+.boton-realizada,
+.boton-cancelada {
+  margin-left: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.boton-realizada {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.boton-cancelada {
+  background-color: #f44336;
+  color: white;
+}
